@@ -1,0 +1,3 @@
+include ':BAR'
+include ':app'
+rootProject.name = "KittBar"
