@@ -40,6 +40,7 @@ import java.lang.annotation.RetentionPolicy;
 import knight.rider.kitt.bar.attr.EditSupport;
 import knight.rider.kitt.bar.attr.RightBtn;
 import knight.rider.kitt.bar.listener.OnBarEventListener;
+import knight.rider.kitt.bar.listener.OnCustomBarEventListener;
 
 import static android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH;
 
@@ -481,12 +482,12 @@ public class KittBar extends FrameLayout {
      *                 <code>R.layout.main_page</code>)
      * @return the custom view
      */
-    public View setCustomLayout(@LayoutRes int resource) {
+    public KittBar setCustomLayout(@LayoutRes int resource) {
         View inflate = LayoutInflater.from(getContext()).inflate(resource, this, false);
         mCustomLayout.removeAllViews();
         mCustomLayout.addView(inflate);
         mCustomView = inflate;
-        return mCustomView;
+        return this;
     }
 
     /**
@@ -1132,6 +1133,16 @@ public class KittBar extends FrameLayout {
      */
     public KittBar setOnBarEventListener(OnBarEventListener listener) {
         this.mListener = listener;
+        return this;
+    }
+
+    /**
+     * 设置自定义布局的监听，请在设置完自定义的view之后再设置点击事件
+     */
+    public KittBar setOnCustomBarEventListener(OnCustomBarEventListener listener) {
+        if (mCustomView != null && listener != null) {
+            listener.onCustom(mCustomView);
+        }
         return this;
     }
 
