@@ -24,38 +24,39 @@ public class MainActivity extends AppCompatActivity {
 
         kittBar = (KittBar) findViewById(R.id.kitt_bar);
 
-        kittBar.setBarSmartPadding();
-        kittBar.setOnBarEventListener(new OnBarEventListener() {
-            @Override
-            public void onBack(ImageView backView) {
+        kittBar.setBarSmartPadding()
+                .setOnBarEventListener(new OnBarEventListener() {
+                    @Override
+                    public void onBack(ImageView backView) {
 
-            }
+                    }
 
-            @Override
-            public void onTitle(TextView titleView) {
+                    @Override
+                    public void onTitleClick(TextView titleView) {
 
-            }
+                    }
 
-            @Override
-            public void onRightIconClick(RightBtn rightBtn, TextView right) {
+                    @Override
+                    public void onRightButtonClick(RightBtn rightBtn, TextView right) {
 
-            }
+                    }
 
-            @Override
-            public void onSearchRightIconClick(ImageView rightIcon) {
 
-            }
+                    @Override
+                    public void onSearchRightIconClick(ImageView rightIcon) {
 
-            @Override
-            public void onKeyboardSearchClick(String content, boolean isHintSearch) {
+                    }
 
-            }
+                    @Override
+                    public void onKeyboardSearchClick(String content, boolean isHintSearch) {
 
-            @Override
-            public void onTextChanged(String content) {
+                    }
 
-            }
-        });
+                    @Override
+                    public void onTextChanged(String content) {
+
+                    }
+                });
 
         SeekBar seekBar = (SeekBar) findViewById(R.id.seek);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -93,23 +94,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void title(View view) {
-        kittBar.setTitleContent("我是标题");
-        kittBar.setTitleColor("blue");
-        kittBar.setTitleTextSize(TypedValue.COMPLEX_UNIT_DIP, 15);
-        kittBar.setTitlePaddingLeft(0);
-        kittBar.setTitlePaddingRight(10);
+        kittBar.setTitleContent("我是标题")
+                .setTitleColor("blue")
+                .setTitleTextSize(TypedValue.COMPLEX_UNIT_DIP, 15)
+                .setTitlePaddingLeft(0)
+                .setTitlePaddingRight(10);
     }
 
     public void titleDrawable(View view) {
-        kittBar.setTitleCompoundDrawables(null, null, getDrawable(R.mipmap.zhankai2), null);
-        kittBar.setTitleCompoundDrawablePadding(20);
+        kittBar.setTitleCompoundDrawables(null, null, getDrawable(R.mipmap.zhankai2), null)
+                .setTitleCompoundDrawablePadding(20);
     }
 
     public void searchLayoutBg(View view) {
-        kittBar.setSearchLayoutCornerRadius(1000);
-        kittBar.setSearchLayoutColor("red");
-        kittBar.setSearchLayoutMargin(1, 40, 5, 20);
-        kittBar.setSearchLayoutStoke(5, "blue");
+        kittBar.setSearchLayoutCornerRadius(1000)
+                .setSearchLayoutColor("red")
+                .setSearchLayoutMargin(1, 40, 5, 20)
+                .setSearchLayoutStoke(5, "blue");
     }
 
     public void searchVisible(View view) {
@@ -117,14 +118,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void searchEditBase(View view) {
-        kittBar.setSearchEditHint("hint");
-        kittBar.setSearchEditHintColor("red");
-        kittBar.setSearchEditTextColor("green");
-        kittBar.setSearchEditTextSize(40);
+        kittBar.setSearchEditHint("hint")
+                .setSearchEditHintColor("red")
+                .setSearchEditTextColor("green")
+                .setSearchEditTextSize(40);
     }
 
     public void right(View view) {
-        kittBar.setRightButtonsVisibility(false, false, true);
-        kittBar.setRightButtonsText(RightBtn.RIGHT_THIRD, "第三个");
+        kittBar.setRightButtonsVisibility(false, false, true)
+                .setRightButtonsText(RightBtn.RIGHT_THIRD, "第三个");
     }
 }

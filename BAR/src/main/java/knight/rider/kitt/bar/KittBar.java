@@ -490,6 +490,16 @@ public class KittBar extends FrameLayout {
     }
 
     /**
+     * 添加自定义布局
+     */
+    public KittBar setCustomLayout(View view) {
+        mCustomLayout.removeAllViews();
+        mCustomLayout.addView(view);
+        mCustomView = view;
+        return this;
+    }
+
+    /**
      * 设置搜标题颜色
      *
      * @param color A color value in the form 0xAARRGGBB.
