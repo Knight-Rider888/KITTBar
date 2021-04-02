@@ -10,9 +10,9 @@ public interface OnBarEventListener {
 
     void onBack(ImageView backView);
 
-    void onTitle(TextView titleView);
+    void onTitleClick(TextView titleView);
 
-    void onRightIconClick(RightBtn rightBtn, TextView right);
+    void onRightButtonClick(RightBtn rightBtn, TextView right);
 
     void onSearchRightIconClick(ImageView rightIcon);
 
