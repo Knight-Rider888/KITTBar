@@ -259,6 +259,8 @@ public class KittBar extends FrameLayout {
 
         // 自定义布局
         mCustomLayout = findViewById(R.id.kitt_bar_custom_layout);
+        int customId = array.getResourceId(R.styleable.KittBar_ui_custom_layout, 0);
+        setCustomLayout(customId);
 
         // 标题
         mTitle = ((TextView) findViewById(R.id.kitt_bar_title));
@@ -483,10 +485,14 @@ public class KittBar extends FrameLayout {
      * @return the custom view
      */
     public KittBar setCustomLayout(@LayoutRes int resource) {
-        View inflate = LayoutInflater.from(getContext()).inflate(resource, this, false);
-        mCustomLayout.removeAllViews();
-        mCustomLayout.addView(inflate);
-        mCustomView = inflate;
+        try {
+            View inflate = LayoutInflater.from(getContext()).inflate(resource, this, false);
+            mCustomLayout.removeAllViews();
+            mCustomLayout.addView(inflate);
+            mCustomView = inflate;
+        } catch (Exception e) {
+            Log.e(KittBar.class.getName(), "setCustomLayout()", e);
+        }
         return this;
     }
 

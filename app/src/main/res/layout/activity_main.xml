@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="100dp"
         android:layout_marginRight="10dp">
 
 
@@ -106,6 +106,7 @@
         android:layout_height="wrap_content"
         android:background="#000"
         app:ui_background_alpha="0.5"
+        app:ui_custom_layout="@layout/custom"
         app:ui_searchEdit_hint="我是提示内容"
         app:ui_searchEdit_hintColor="#00BCD4"
         app:ui_searchEdit_paddingLeft="10dp"
