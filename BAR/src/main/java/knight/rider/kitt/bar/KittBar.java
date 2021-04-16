@@ -812,6 +812,26 @@ public class KittBar extends FrameLayout {
     }
 
     /**
+     * 设置搜索编辑框内容
+     *
+     * @param text text to be displayed
+     */
+    public KittBar setSearchEditText(CharSequence text) {
+        mSearchView.setText(text);
+        return this;
+    }
+
+    /**
+     * 设置搜索编辑框内容
+     *
+     * @param resId the resource identifier of the string resource to be displayed
+     */
+    public KittBar setSearchEditText(@StringRes int resId) {
+        mSearchView.setText(resId);
+        return this;
+    }
+
+    /**
      * 设置搜索编辑框文字颜色
      *
      * @param color A color value in the form 0xAARRGGBB.
