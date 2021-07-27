@@ -113,15 +113,6 @@ public class KittBarUtils {
         } else {
             immersive(window, color, alpha);
         }
-//        if (Build.VERSION.SDK_INT >= 21) {
-//            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-//            window.setStatusBarColor(Color.TRANSPARENT);
-//        } else if (Build.VERSION.SDK_INT >= 19) {
-//            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//        }
-
-//        setTranslucentView((ViewGroup) window.getDecorView(), color, alpha);
     }
 
     //------------------------->
@@ -131,9 +122,6 @@ public class KittBarUtils {
      */
     @RequiresApi(Build.VERSION_CODES.M)
     private static void darkModeForM(Window window, boolean dark) {
-//        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-//        window.setStatusBarColor(Color.TRANSPARENT);
 
         int systemUiVisibility = window.getDecorView().getSystemUiVisibility();
         if (dark) {
@@ -312,5 +300,13 @@ public class KittBarUtils {
                     result, Resources.getSystem().getDisplayMetrics());
         }
         return result;
+    }
+
+    /**
+     * 将dp转换成px值
+     */
+    public static int dip2px(Context context, float dip) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dip * scale + 0.5);
     }
 }

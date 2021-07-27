@@ -1,5 +1,7 @@
 package knight.rider.kitt.bar;
 
+import static android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -41,8 +43,6 @@ import knight.rider.kitt.bar.attr.EditSupport;
 import knight.rider.kitt.bar.attr.RightBtn;
 import knight.rider.kitt.bar.listener.OnBarEventListener;
 import knight.rider.kitt.bar.listener.OnCustomBarEventListener;
-
-import static android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH;
 
 
 /**

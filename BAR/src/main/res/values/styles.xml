@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--windowBackground是显示内容区域的窗口的背景色，不是整个屏幕的背景色-->
+    <!--透明灰色的覆盖层 backgroundDimEnabled = true-->
+
+    <!--windowBackground是显示内容区域的窗口的背景色，不是整个屏幕的背景色-->
+    <!--无透明灰色的覆盖层 backgroundDimEnabled = false-->
+    <style name="KittDialogNoBackgroundDimStyle" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+</resources>
