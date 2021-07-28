@@ -37,6 +37,8 @@ public class KittSideBar extends View {
 
     // 选中的位置
     private int mChoose = -1;
+    // 提示的选中位置
+    private int mNotice = -1;
 
     // 监听
     private OnSelectLetterListener mOnSelectLetterListener;
@@ -133,6 +135,7 @@ public class KittSideBar extends View {
         if (pos == mChoose)
             return true;
 
+        // 如果实际通讯录里包含这个首字母才更改位置
         if (isPosInContainLetters(pos))
             mChoose = pos;
 
@@ -141,12 +144,12 @@ public class KittSideBar extends View {
 
 
         // 支持展示，所划过的字符
-        showDialog(String.valueOf(mLetters[pos]));
+        showDialog(pos);
 
         switch (action) {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_MOVE:
-                if (mOnSelectLetterListener != null)
+                if (mOnSelectLetterListener != null && isPosInContainLetters(pos))
                     mOnSelectLetterListener.onSelect(pos, mLetters[pos]);
                 break;
         }
@@ -155,7 +158,15 @@ public class KittSideBar extends View {
     }
 
     // 内部弹窗使用
-    private void showDialog(String msg) {
+    private void showDialog(int pos) {
+
+        if (pos == mNotice)
+            return;
+        else
+            mNotice = pos;
+
+
+        String msg = String.valueOf(mLetters[pos]);
 
         mHandler.removeMessages(0);
         mHandler.sendEmptyMessageDelayed(0, 500);
