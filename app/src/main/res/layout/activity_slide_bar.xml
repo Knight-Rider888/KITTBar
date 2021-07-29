@@ -11,6 +11,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <TextView
+        android:id="@+id/sessionTv"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#D6D2D2"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        tools:text="A">
+
+    </TextView>
+
     <knight.rider.kitt.bar.KittSideBar
         android:id="@+id/side"
         android:layout_width="30dp"

@@ -33,7 +33,7 @@ import androidx.appcompat.app.AlertDialog;
 import java.util.HashSet;
 import java.util.Set;
 
-import knight.rider.kitt.bar.listener.OnSelectLetterListener;
+import knight.rider.kitt.bar.listener.OnTouchSideListener;
 
 public class KittSideBar extends View {
 
@@ -48,7 +48,7 @@ public class KittSideBar extends View {
     private int mNotice = -1;
 
     // 监听
-    private OnSelectLetterListener mOnSelectLetterListener;
+    private OnTouchSideListener mOnTouchSideListener;
 
     // 对话框、内容
     private final AlertDialog mDialog;
@@ -197,8 +197,8 @@ public class KittSideBar extends View {
 
         showDialog(pos);
 
-        if (mOnSelectLetterListener != null && isPosInContainLetters(pos))
-            mOnSelectLetterListener.onSelect(pos, mLetters[pos]);
+        if (mOnTouchSideListener != null && isPosInContainLetters(pos))
+            mOnTouchSideListener.onTouch(mLetters[pos], mLetters[pos] >= 'A' && mLetters[pos] <= 'Z' ? (char) (mLetters[pos] + 32) : mLetters[pos]);
 
         return true;
 
@@ -265,8 +265,8 @@ public class KittSideBar extends View {
     /**
      * 选择监听的事件
      */
-    public final void setOnSelectLetterListener(OnSelectLetterListener onSelectLetterListener) {
-        this.mOnSelectLetterListener = onSelectLetterListener;
+    public final void setOnTouchSideListener(OnTouchSideListener onTouchSideListener) {
+        this.mOnTouchSideListener = onTouchSideListener;
     }
 
     /**
@@ -377,9 +377,16 @@ public class KittSideBar extends View {
      * <code>navy</code>, <code>olive</code>, <code>purple</code>, <code>silver</code>,
      * and <code>teal</code>.</p>
      */
-    public final KittSideBar setTitleColor(@Size(min = 1) String colorString) {
+    public final KittSideBar setNoticeColor(@Size(min = 1) String colorString) {
         mNoticeColor = Color.parseColor(colorString);
         return this;
     }
 
+
+    /**
+     * 获得当前目标的字母
+     */
+    public final char getTargetLetter() {
+        return mLetters[mChoose];
+    }
 }
