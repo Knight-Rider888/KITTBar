@@ -56,7 +56,8 @@
             android:singleLine="true"
             android:textColor="#3E4343"
             android:textSize="13dp"
-            tools:hint="石家庄" />
+            tools:hint="石家庄"
+            tools:ignore="NestedWeights" />
 
         <ImageView
             android:id="@+id/kitt_clear_View"
@@ -85,9 +86,9 @@
         android:layout_height="match_parent"
         android:foreground="?android:attr/selectableItemBackground"
         android:gravity="center"
-        android:text="左边"
         android:textColor="#DA3333"
-        android:textSize="14dp" />
+        android:textSize="14dp"
+        tools:text="左边" />
 
     <TextView
         android:id="@+id/kitt_bar_right_btn2"
@@ -95,9 +96,9 @@
         android:layout_height="match_parent"
         android:foreground="?android:attr/selectableItemBackground"
         android:gravity="center"
-        android:text="中间"
         android:textColor="#1043A6"
-        android:textSize="14dp" />
+        android:textSize="14dp"
+        tools:text="中间" />
 
     <TextView
         android:id="@+id/kitt_bar_right_btn3"
@@ -105,7 +106,7 @@
         android:layout_height="match_parent"
         android:foreground="?android:attr/selectableItemBackground"
         android:gravity="center"
-        android:text="右边"
         android:textColor="#009688"
-        android:textSize="14dp" />
+        android:textSize="14dp"
+        tools:text="右边" />
 </LinearLayout>

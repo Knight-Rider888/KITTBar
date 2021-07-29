@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/kitt_slide_bar_letter_bg"
@@ -10,9 +11,9 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:gravity="center"
-        android:text="A"
         android:textColor="#FFFFFF"
         android:textSize="30dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:text="A" />
 
 </FrameLayout>
