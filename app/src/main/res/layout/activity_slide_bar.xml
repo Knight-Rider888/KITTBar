@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SlideBarActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <knight.rider.kitt.bar.KittSideBar
+        android:id="@+id/side"
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:layout_margin="20dp"
+        app:ui_notice_height="80dp"
+        app:ui_notice_letter_color="#FFFFFF"
+        app:ui_notice_letter_textSize="30dp"
+        app:ui_notice_width="80dp"
+        app:ui_show_letter_notice="CONTAIN"
+        app:ui_side_letter_color="#666666"
+        app:ui_side_letter_select_color="#0a59f7"
+        app:ui_side_letter_textSize="10dp" />
+
+</FrameLayout>

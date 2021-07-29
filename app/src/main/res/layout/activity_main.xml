@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -21,113 +20,23 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:text="背景透明度" />
-
-            <SeekBar
-                android:id="@+id/seek"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:onClick="backIcon"
-                android:text="返回键图标" />
+                android:onClick="bar"
+                android:text="顶部导航栏" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:onClick="backIconPadding"
-                android:text="返回键padding" />
+                android:onClick="slideBar"
+                android:text="侧边栏" />
 
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:onClick="backVisible"
-                android:text="返回键隐藏显示（随机）" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:onClick="custom"
-                android:text="填充自定义布局" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:onClick="title"
-                android:text="更改标题内容 颜色 大小 padding" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:onClick="titleDrawable"
-                android:text="设置标题右侧图标 与 padding" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:onClick="searchLayoutBg"
-                android:text="设置搜索背景色 圆角 描边 外边距" />
-
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:onClick="searchVisible"
-                android:text="显示搜索框" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:onClick="searchEditBase"
-                android:text="设置搜索框 hint 颜色 文字大小" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:onClick="right"
-                android:text="设置右侧按钮" />
 
         </LinearLayout>
 
 
     </ScrollView>
-
-
-    <knight.rider.kitt.bar.KittBar
-        android:id="@+id/kitt_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#000"
-        app:ui_background_alpha="0.5"
-        app:ui_custom_layout="@layout/custom"
-        app:ui_searchEdit_hint="我是提示内容"
-        app:ui_searchEdit_hintColor="#00BCD4"
-        app:ui_searchEdit_paddingLeft="10dp"
-        app:ui_searchEdit_paddingRight="10dp"
-        app:ui_searchEdit_support_write_and_clear="bothSupport"
-        app:ui_searchEdit_textColor="#9C27B0"
-        app:ui_searchEdit_textSize="30dp"
-        app:ui_searchLayout_color="@color/design_default_color_primary"
-        app:ui_searchLayout_margin="5dp"
-        app:ui_searchLayout_radius="12dp"
-        app:ui_searchLayout_stoke_color="#8BC34A"
-        app:ui_searchLayout_stoke_width="3dp"
-        app:ui_title_color="@color/design_default_color_error"
-        app:ui_title_content="标题"
-        app:ui_title_drawableBottom="@mipmap/dot"
-        app:ui_title_drawableLeft="@mipmap/dot"
-        app:ui_title_drawablePadding="3dp"
-        app:ui_title_drawableRight="@mipmap/dot"
-        app:ui_title_drawableTop="@mipmap/dot"
-        app:ui_title_paddingLeft="30dp"
-        app:ui_title_paddingRight="10dp"
-        app:ui_title_textSize="10dp" />
 
 </FrameLayout>
