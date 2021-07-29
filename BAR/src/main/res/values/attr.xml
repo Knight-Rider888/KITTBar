@@ -3,6 +3,12 @@
 
     <declare-styleable name="KittBar">
 
+        <!--标题的位置-->
+        <attr name="ui_title_gravity" format="enum">
+            <enum name="left" value="0x03" />
+            <enum name="center" value="0x11" />
+        </attr>
+
         <!--背景透明度(上下滑动时透明度变化)-->
         <attr name="ui_background_alpha" format="float" />
 

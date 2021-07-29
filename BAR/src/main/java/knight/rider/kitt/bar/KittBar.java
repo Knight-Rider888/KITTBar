@@ -239,7 +239,9 @@ public class KittBar extends FrameLayout {
     private void init(AttributeSet attrs, int defStyle) {
 
         TypedArray array = getContext().obtainStyledAttributes(attrs, R.styleable.KittBar, defStyle, 0);
-        LayoutInflater.from(getContext()).inflate(R.layout.kitt_bar, this, true);
+
+        int title_gravity = array.getInt(R.styleable.KittBar_ui_title_gravity, 0x03);
+        LayoutInflater.from(getContext()).inflate(title_gravity == 0x03 ? R.layout.kitt_bar : R.layout.kitt_bar2, this, true);
 
         // 背景透明度，默认不透明
         float fraction = array.getFloat(R.styleable.KittBar_ui_background_alpha, 1);

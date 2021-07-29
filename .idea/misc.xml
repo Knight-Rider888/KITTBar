@@ -7,12 +7,14 @@
         <entry key="BAR/src/main/res/drawable/kitt_bar_search_bg.xml" value="0.15" />
         <entry key="BAR/src/main/res/drawable/kitt_slide_bar_letter_bg.xml" value="0.125" />
         <entry key="BAR/src/main/res/layout/kitt_bar.xml" value="0.29030797101449274" />
+        <entry key="BAR/src/main/res/layout/kitt_bar2.xml" value="0.335" />
         <entry key="BAR/src/main/res/layout/kitt_letter_dialog.xml" value="0.29030797101449274" />
         <entry key="BAR/src/main/res/layout/kitt_slide_bar_letter_dialog.xml" value="0.28396739130434784" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.15" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.296195652173913" />
         <entry key="app/src/main/res/layout/activity_slide_bar.xml" value="0.271286231884058" />
         <entry key="app/src/main/res/layout/activity_top_bar.xml" value="0.271286231884058" />
+        <entry key="app/src/main/res/layout/activity_top_bar2.xml" value="0.33177083333333335" />
         <entry key="app/src/main/res/layout/rv_item.xml" value="0.2644927536231884" />
         <entry key="app/src/main/res/layout/rv_session.xml" value="0.2644927536231884" />
       </map>
