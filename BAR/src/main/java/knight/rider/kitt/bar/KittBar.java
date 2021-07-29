@@ -89,7 +89,7 @@ public class KittBar extends FrameLayout {
     private TextView mRightBtn3;
 
 
-    private Context mContext;
+    private final Context mContext;
 
     public KittBar(@NonNull Context context) {
         this(context, null);
