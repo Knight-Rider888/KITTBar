@@ -8,6 +8,11 @@
 
         <attr name="ui_custom_layout" format="reference" />
 
+        <attr name="ui_custom_layout_width" format="enum">
+            <enum name="wrap_content" value="0" />
+            <enum name="match_parent" value="1" />
+        </attr>
+
         <!--返回键按钮-->
         <attr name="ui_backIcon_src" format="reference" />
         <!--返回键icon的padding-->

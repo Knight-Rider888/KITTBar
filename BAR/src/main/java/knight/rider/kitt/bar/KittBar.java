@@ -40,6 +40,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 import knight.rider.kitt.bar.attr.EditSupport;
+import knight.rider.kitt.bar.attr.Params;
 import knight.rider.kitt.bar.attr.RightBtn;
 import knight.rider.kitt.bar.listener.OnBarEventListener;
 import knight.rider.kitt.bar.listener.OnCustomBarEventListener;
@@ -261,6 +262,10 @@ public class KittBar extends FrameLayout {
         mCustomLayout = findViewById(R.id.kitt_bar_custom_layout);
         int customId = array.getResourceId(R.styleable.KittBar_ui_custom_layout, 0);
         setCustomLayout(customId);
+
+        // 设置自定义布局的宽度
+        int customWeight = array.getInt(R.styleable.KittBar_ui_custom_layout_width, 0);
+        setCustomLayoutWidth(customWeight == 1 ? Params.MATCH_PARENT : Params.WRAP_CONTENT);
 
         // 标题
         mTitle = ((TextView) findViewById(R.id.kitt_bar_title));
@@ -503,6 +508,16 @@ public class KittBar extends FrameLayout {
         mCustomLayout.removeAllViews();
         mCustomLayout.addView(view);
         mCustomView = view;
+        return this;
+    }
+
+    /**
+     * 添加自定义布局的宽
+     */
+    public KittBar setCustomLayoutWidth(Params params) {
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mCustomLayout.getLayoutParams();
+        layoutParams.weight = params == Params.MATCH_PARENT ? 1 : 0;
+        mCustomLayout.setLayoutParams(layoutParams);
         return this;
     }
 
