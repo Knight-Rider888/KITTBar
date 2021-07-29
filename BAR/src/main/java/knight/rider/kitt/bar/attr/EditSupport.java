@@ -4,7 +4,7 @@ public enum EditSupport {
 
     WRITE_AND_CLEAR(0), ONLY_WRITE(2), NONE_SUPPORT(1);
 
-    private int type;
+    private final int type;
 
     EditSupport(int type) {
         this.type = type;
