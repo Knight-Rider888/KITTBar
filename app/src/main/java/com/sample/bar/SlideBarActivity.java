@@ -63,7 +63,7 @@ public class SlideBarActivity extends AppCompatActivity {
                     LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
                     int firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
                     char initial = adapter.getData(firstVisibleItemPosition).getInitial();
-                    sideBar.setChoosePosition(initial);
+                    sideBar.setChooseLetter(initial);
                     session.setText("" + initial);
                 }
 
@@ -77,7 +77,7 @@ public class SlideBarActivity extends AppCompatActivity {
                 LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
                 int firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
                 char initial = adapter.getData(firstVisibleItemPosition).getInitial();
-                sideBar.setChoosePosition(initial);
+                sideBar.setChooseLetter(initial);
                 session.setText("" + initial);
 
             }

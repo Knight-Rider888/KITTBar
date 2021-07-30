@@ -32,7 +32,7 @@
         app:ui_notice_letter_color="#FFFFFF"
         app:ui_notice_letter_textSize="30dp"
         app:ui_notice_width="80dp"
-        app:ui_show_letter_notice="CONTAIN"
+        app:ui_show_letter_notice="FOREVER"
         app:ui_side_letter_color="#666666"
         app:ui_side_letter_select_color="#0a59f7"
         app:ui_side_letter_textSize="10dp" />
