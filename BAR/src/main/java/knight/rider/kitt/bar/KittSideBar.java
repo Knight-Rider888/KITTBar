@@ -263,16 +263,16 @@ public class KittSideBar extends View {
     }
 
     /**
-     * 选择监听的事件
+     * 触摸SideBar的监听
      */
     public final void setOnTouchSideListener(OnTouchSideListener onTouchSideListener) {
         this.mOnTouchSideListener = onTouchSideListener;
     }
 
     /**
-     * 设置选中的位置
+     * 设置选中的字母
      */
-    public final void setChoosePosition(char topItemChar) {
+    public final void setChooseLetter(char topItemChar) {
 
         if (topItemChar >= 'a' && topItemChar <= 'z')
             topItemChar -= 32;
@@ -351,7 +351,7 @@ public class KittSideBar extends View {
     }
 
     /**
-     * 设置搜标题颜色
+     * 设置提示文字的颜色
      *
      * @param color A color value in the form 0xAARRGGBB.
      */
@@ -362,7 +362,7 @@ public class KittSideBar extends View {
 
 
     /**
-     * 设置标题颜色
+     * 设置提示文字的颜色
      *
      * <ul>
      *   <li><code>#RRGGBB</code></li>
