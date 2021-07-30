@@ -20,4 +20,4 @@ dependencies {
 ```
 
 
-### KittSideBar | [查看使用方式](https://github.com/Knight-Rider888/KITT/blob/main/README-AppUtils.md)
+### KittSideBar | [查看使用方式](https://github.com/Knight-Rider888/KITTBar/blob/main/README-KittSideBar.md)
