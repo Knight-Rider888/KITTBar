@@ -100,19 +100,19 @@ public class KittSideBar extends View {
 
         TypedArray array = getContext().obtainStyledAttributes(attrs, R.styleable.KittSideBar, defStyleAttr, 0);
 
-        noticeRule = array.getInt(R.styleable.KittSideBar_ui_show_letter_notice, 0);
-        mSideSize = array.getDimension(R.styleable.KittSideBar_ui_side_letter_textSize, dip2px(10));
-        mNoticeSize = array.getDimension(R.styleable.KittSideBar_ui_notice_letter_textSize, dip2px(30));
+        noticeRule = array.getInt(R.styleable.KittSideBar_bar_show_letter_notice, 0);
+        mSideSize = array.getDimension(R.styleable.KittSideBar_bar_side_letter_textSize, dip2px(10));
+        mNoticeSize = array.getDimension(R.styleable.KittSideBar_bar_notice_letter_textSize, dip2px(30));
 
-        mNoticeWidth = array.getDimension(R.styleable.KittSideBar_ui_notice_width, dip2px(80));
-        mNoticeHeight = array.getDimension(R.styleable.KittSideBar_ui_notice_height, dip2px(80));
+        mNoticeWidth = array.getDimension(R.styleable.KittSideBar_bar_notice_width, dip2px(80));
+        mNoticeHeight = array.getDimension(R.styleable.KittSideBar_bar_notice_height, dip2px(80));
 
-        mSideColor = array.getColor(R.styleable.KittSideBar_ui_side_letter_color, Color.parseColor("#666666"));
-        mSideSelectColor = array.getColor(R.styleable.KittSideBar_ui_side_letter_select_color, Color.parseColor("#0a59f7"));
-        mNoticeColor = array.getColor(R.styleable.KittSideBar_ui_notice_letter_color, Color.parseColor("#FFFFFF"));
+        mSideColor = array.getColor(R.styleable.KittSideBar_bar_side_letter_color, Color.parseColor("#666666"));
+        mSideSelectColor = array.getColor(R.styleable.KittSideBar_bar_side_letter_select_color, Color.parseColor("#0a59f7"));
+        mNoticeColor = array.getColor(R.styleable.KittSideBar_bar_notice_letter_color, Color.parseColor("#FFFFFF"));
         setNoticeColor(mNoticeColor);
 
-        mNoticeDrawable = array.getDrawable(R.styleable.KittSideBar_ui_notice_background);
+        mNoticeDrawable = array.getDrawable(R.styleable.KittSideBar_bar_notice_background);
 
         array.recycle();
 

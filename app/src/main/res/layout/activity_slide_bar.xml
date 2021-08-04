@@ -28,13 +28,13 @@
         android:layout_height="match_parent"
         android:layout_gravity="right"
         android:layout_margin="20dp"
-        app:ui_notice_height="80dp"
-        app:ui_notice_letter_color="#FFFFFF"
-        app:ui_notice_letter_textSize="30dp"
-        app:ui_notice_width="80dp"
-        app:ui_show_letter_notice="FOREVER"
-        app:ui_side_letter_color="#666666"
-        app:ui_side_letter_select_color="#0a59f7"
-        app:ui_side_letter_textSize="10dp" />
+        app:bar_notice_height="80dp"
+        app:bar_notice_letter_color="#FFFFFF"
+        app:bar_notice_letter_textSize="30dp"
+        app:bar_notice_width="80dp"
+        app:bar_show_letter_notice="FOREVER"
+        app:bar_side_letter_color="#666666"
+        app:bar_side_letter_select_color="#0a59f7"
+        app:bar_side_letter_textSize="10dp" />
 
 </FrameLayout>
