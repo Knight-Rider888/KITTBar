@@ -164,4 +164,11 @@
 
     </declare-styleable>
 
+    <declare-styleable name="KittCycleScrollBar">
+
+        <!--自动滚动间隔，默认间隔2000毫秒-->
+        <attr name="bar_auto_scroll_interval" format="integer" />
+
+    </declare-styleable>
+
 </resources>

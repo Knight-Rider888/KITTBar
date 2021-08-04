@@ -19,8 +19,7 @@ import java.lang.reflect.Method;
 import java.util.regex.Pattern;
 
 /**
- * 作者： mr.Wang
- * TODO： 状态栏透明(感谢 scwang)
+ * 状态栏透明(感谢 scwang)
  */
 @SuppressWarnings("unused")
 public class KittBarUtils {
