@@ -11,7 +11,7 @@ import android.widget.ViewFlipper;
 
 /**
  * 作者： mr.Wang
- * 上下翻滚提示
+ * 自动上下滚动栏
  */
 public class KittCycleScrollBar extends RelativeLayout {
 
