@@ -23,4 +23,8 @@ public class MainActivity extends AppCompatActivity {
     public void slideBar(View view) {
         startActivity(new Intent(this, SlideBarActivity.class));
     }
+
+    public void KittCycleScrollBar(View view) {
+        startActivity(new Intent(this, KittCycleScrollBarActivity.class));
+    }
 }

@@ -15,9 +15,11 @@ allprojects {
 Step 2. Add the dependency
 ```
 dependencies {
-    implementation 'com.github.Knight-Rider888:KITTBar:1.0.1'
+    implementation 'com.github.Knight-Rider888:KITTBar:1.0.2'
 }
 ```
 
 
 ### KittSideBar | [查看使用方式](https://github.com/Knight-Rider888/KITTBar/blob/main/README-KittSideBar.md)
+
+### KittCycleScrollBar | [查看使用方式](https://github.com/Knight-Rider888/KITTBar/blob/main/README-KittCycleScrollBar.md)

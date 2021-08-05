@@ -33,6 +33,12 @@
                 android:onClick="slideBar"
                 android:text="侧边栏" />
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:onClick="KittCycleScrollBar"
+                android:text="滚动栏" />
+
 
         </LinearLayout>
 
