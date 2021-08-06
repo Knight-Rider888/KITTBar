@@ -171,4 +171,15 @@
 
     </declare-styleable>
 
+
+    <declare-styleable name="KittBottomBar">
+
+        <!--Tab上、下内间距 默认3dp-->
+        <attr name="bar_tab_paddingTop" format="dimension" />
+        <attr name="bar_tab_paddingBottom" format="dimension" />
+        <!--Tab整体背景,默认无-->
+        <attr name="bar_tab_background" format="reference|color" />
+
+    </declare-styleable>
+
 </resources>
