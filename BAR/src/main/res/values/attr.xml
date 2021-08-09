@@ -180,6 +180,9 @@
         <!--Tab整体背景,默认无-->
         <attr name="bar_tab_background" format="reference|color" />
 
+        <!--Tab字体，默认12dp-->
+        <attr name="bar_tab_text_size" format="dimension"/>
+
     </declare-styleable>
 
 </resources>

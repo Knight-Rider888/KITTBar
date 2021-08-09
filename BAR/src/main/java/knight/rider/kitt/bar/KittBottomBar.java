@@ -17,6 +17,11 @@ public class KittBottomBar extends FrameLayout {
     private final FrameLayout mLayout;
     // tab的布局
     private final LinearLayout mTabLayout;
+    // tab的内间距
+    private int mTabPaddingTop;
+    private int mTabPaddingBottom;
+    // tab的文字大小
+    private float mTabTextSize;
 
     public KittBottomBar(@NonNull Context context) {
         this(context, null);
@@ -37,49 +42,25 @@ public class KittBottomBar extends FrameLayout {
         TypedArray array = getContext().obtainStyledAttributes(attrs, R.styleable.KittBottomBar, defStyleAttr, 0);
 
         // 导航键上下间距
-        int tabPaddingTop = (int) array.getDimension(R.styleable.KittBottomBar_bar_tab_paddingTop, dip2px(3));
-        int tabPaddingBottom = (int) array.getDimension(R.styleable.KittBottomBar_bar_tab_paddingBottom, dip2px(3));
-        setTabLayoutPadding(tabPaddingTop, tabPaddingBottom);
+        mTabPaddingTop = (int) array.getDimension(R.styleable.KittBottomBar_bar_tab_paddingTop, dip2px(3));
+        mTabPaddingBottom = (int) array.getDimension(R.styleable.KittBottomBar_bar_tab_paddingBottom, dip2px(3));
+        // 此处不调用动态设置的方式，防止多次计算
+        mTabLayout.setPadding(0, mTabPaddingTop, 0, mTabPaddingBottom);
         // 导航键容器背景
         Drawable tabLayoutDrawable = array.getDrawable(R.styleable.KittBottomBar_bar_tab_background);
         setTabLayoutBackground(tabLayoutDrawable);
+
+        // tab的文字大小
+        mTabTextSize = array.getDimension(R.styleable.KittBottomBar_bar_tab_text_size, dip2px(12));
+        // 此处不设置，最后初始化完毕才进行设置
 
         array.recycle();
 
     }
 
 
-    /**************对外提供**************/
-    /**
-     * 设置Tab容器的上、下内间距
-     *
-     * @param top    the top padding in pixels.
-     * @param bottom the bottom padding in pixels.
-     */
-    public final KittBottomBar setTabLayoutPadding(int top, int bottom) {
-        mTabLayout.setPadding(0, top, 0, bottom);
-        return this;
-    }
+    /************对外提供***********/
 
-    /**
-     * 设置Tab容器的上内间距
-     *
-     * @param top the top padding in pixels.
-     */
-    public final KittBottomBar setTabLayoutPaddingTop(int top) {
-        mTabLayout.setPadding(0, top, 0, 0);
-        return this;
-    }
-
-    /**
-     * 设置Tab容器的下内间距
-     *
-     * @param bottom the bottom padding in pixels.
-     */
-    public final KittBottomBar setTabLayoutPaddingBottom(int bottom) {
-        mTabLayout.setPadding(0, 0, 0, bottom);
-        return this;
-    }
 
     /**
      * 设置Tab容器背景
@@ -91,6 +72,47 @@ public class KittBottomBar extends FrameLayout {
             mTabLayout.setBackground(background);
         else
             mTabLayout.setBackgroundDrawable(null);
+    }
+
+
+    // TODO 暂不对外提供,此处更改后涉及重新计算高度的问题,后期维护
+
+    /**
+     * 设置Tab容器的上、下内间距
+     *
+     * @param top    the top padding in pixels.
+     * @param bottom the bottom padding in pixels.
+     */
+    private KittBottomBar setTabLayoutPadding(int top, int bottom) {
+        mTabPaddingTop = top;
+        mTabPaddingBottom = bottom;
+        mTabLayout.setPadding(0, mTabPaddingTop, 0, mTabPaddingBottom);
+        // TODO 重新计算Tab
+        return this;
+    }
+
+    /**
+     * 设置Tab容器的上内间距
+     *
+     * @param top the top padding in pixels.
+     */
+    private KittBottomBar setTabLayoutPaddingTop(int top) {
+        mTabPaddingTop = top;
+        mTabLayout.setPadding(0, mTabPaddingTop, 0, mTabPaddingBottom);
+        // TODO 重新计算Tab
+        return this;
+    }
+
+    /**
+     * 设置Tab容器的下内间距
+     *
+     * @param bottom the bottom padding in pixels.
+     */
+    private KittBottomBar setTabLayoutPaddingBottom(int bottom) {
+        mTabPaddingBottom = bottom;
+        mTabLayout.setPadding(0, mTabPaddingTop, 0, mTabPaddingBottom);
+        // TODO 重新计算Tab
+        return this;
     }
 
 
