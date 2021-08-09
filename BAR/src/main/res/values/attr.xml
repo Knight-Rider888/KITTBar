@@ -187,6 +187,10 @@
         <!--Tab红点的字体大小，默认8.5dp-->
         <attr name="bar_tab_badge_text_size" format="dimension" />
 
+        <!--Tab字体颜色-->
+        <attr name="bar_tab_text_color" format="color" />
+        <attr name="bar_tab_text_selected_color" format="color" />
+
     </declare-styleable>
 
 </resources>
