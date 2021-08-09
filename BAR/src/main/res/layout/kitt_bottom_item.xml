@@ -8,20 +8,36 @@
     android:orientation="vertical">
 
 
-    <ImageView
-        android:id="@+id/kitt_bar_item_image"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_gravity="center"
-        android:src="@drawable/lib_temp_close" />
+    <FrameLayout
+        android:id="@+id/kitt_bar_icon_layout"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_gravity="center">
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/kitt_bar_item_lottie"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_gravity="center"
-        app:lottie_autoPlay="false"
-        app:lottie_loop="false" />
+        <ImageView
+            android:id="@+id/kitt_bar_item_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="@drawable/lib_temp_close" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/kitt_bar_item_lottie"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            app:lottie_autoPlay="false"
+            app:lottie_loop="false" />
+
+        <TextView
+            android:id="@+id/kitt_bar_item_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:textSize="8.5dp"
+            tools:text="new" />
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/kitt_bar_item_word"
