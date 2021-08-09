@@ -2,6 +2,8 @@ package knight.rider.kitt.bar;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -22,6 +24,8 @@ public class KittBottomBar extends FrameLayout {
     private int mTabPaddingBottom;
     // tab的文字大小
     private float mTabTextSize;
+    // tab的图标大小
+    private float mTabIconSize;
 
     public KittBottomBar(@NonNull Context context) {
         this(context, null);
@@ -54,6 +58,11 @@ public class KittBottomBar extends FrameLayout {
         mTabTextSize = array.getDimension(R.styleable.KittBottomBar_bar_tab_text_size, dip2px(12));
         // 此处不设置，最后初始化完毕才进行设置
 
+        // tab的图标大小
+        mTabIconSize = array.getDimension(R.styleable.KittBottomBar_bar_tab_icon_normal_size, dip2px(28));
+        // 此处不设置，最后初始化完毕才进行设置
+
+  
         array.recycle();
 
     }
@@ -121,6 +130,22 @@ public class KittBottomBar extends FrameLayout {
     private float dip2px(float dpValue) {
         final float scale = getResources().getDisplayMetrics().density;
         return dpValue * scale + 0.5f;
+    }
+
+    // 计算tab文字控件的高度
+    private int calcTextViewHeight() {
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setTextSize(mTabTextSize);
+        Rect bounds = new Rect();
+        paint.getTextBounds("计算", 0, 2, bounds);
+        Paint.FontMetricsInt fontMetrics = paint.getFontMetricsInt();
+        return fontMetrics.bottom - fontMetrics.top;
+    }
+
+    // 计算导航栏的高度
+    private float calcTabLayoutHeight() {
+        return mTabPaddingTop + mTabPaddingBottom + mTabIconSize + calcTextViewHeight();
     }
 
 }
