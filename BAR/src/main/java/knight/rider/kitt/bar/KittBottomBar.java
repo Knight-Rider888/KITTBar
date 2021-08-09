@@ -33,7 +33,6 @@ public class KittBottomBar extends FrameLayout {
         mLayout = findViewById(R.id.kitt_bar_layout);
         mTabLayout = findViewById(R.id.kitt_bar_tab_layout);
 
-
         // 初始化自定义属性
         TypedArray array = getContext().obtainStyledAttributes(attrs, R.styleable.KittBottomBar, defStyleAttr, 0);
 
@@ -92,21 +91,6 @@ public class KittBottomBar extends FrameLayout {
             mTabLayout.setBackground(background);
         else
             mTabLayout.setBackgroundDrawable(null);
-    }
-
-    /**
-     * 强制超出父布局，由Tab的父布局来控制
-     */
-    @Override
-    public final void setClipChildren(boolean clipChildren) {
-        super.setClipChildren(clipChildren);
-        this.post(new Runnable() {
-            @Override
-            public void run() {
-                mLayout.setClipChildren(false);
-                mLayout.setClipToPadding(false);
-            }
-        });
     }
 
 

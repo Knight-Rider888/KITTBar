@@ -3,6 +3,7 @@
     android:id="@+id/kitt_bar_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipChildren="false"
     android:orientation="vertical">
 
     <androidx.viewpager.widget.ViewPager
@@ -16,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="bottom"
+        android:clipToPadding="false"
         android:gravity="bottom"
         android:orientation="horizontal" />
 
