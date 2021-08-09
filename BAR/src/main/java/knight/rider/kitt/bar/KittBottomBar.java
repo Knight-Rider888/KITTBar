@@ -7,6 +7,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
@@ -62,7 +63,11 @@ public class KittBottomBar extends FrameLayout {
         mTabIconSize = array.getDimension(R.styleable.KittBottomBar_bar_tab_icon_normal_size, dip2px(28));
         // 此处不设置，最后初始化完毕才进行设置
 
-  
+
+        // 初始化完成，可设置TabLayout的高度
+        setTabLayoutHeight();
+        // Tab的初始化由代码去完成
+
         array.recycle();
 
     }
@@ -148,4 +153,10 @@ public class KittBottomBar extends FrameLayout {
         return mTabPaddingTop + mTabPaddingBottom + mTabIconSize + calcTextViewHeight();
     }
 
+    // 设置tab栏高度
+    private void setTabLayoutHeight() {
+        ViewGroup.LayoutParams params = mTabLayout.getLayoutParams();
+        params.height = (int) calcTabLayoutHeight();
+        mTabLayout.setLayoutParams(params);
+    }
 }
