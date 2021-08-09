@@ -184,6 +184,8 @@
         <attr name="bar_tab_text_size" format="dimension" />
         <!--Tab图标的默认大小，默认28dp-->
         <attr name="bar_tab_icon_normal_size" format="dimension" />
+        <!--Tab红点的字体大小，默认8.5dp-->
+        <attr name="bar_tab_badge_text_size" format="dimension" />
 
     </declare-styleable>
 
