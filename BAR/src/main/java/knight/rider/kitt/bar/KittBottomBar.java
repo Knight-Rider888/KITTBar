@@ -82,19 +82,17 @@ public class KittBottomBar extends FrameLayout {
         return this;
     }
 
-
     /**
      * 设置Tab容器背景
      *
      * @param background The Drawable to use as the background
      */
-    private final void setTabLayoutBackground(Drawable background) {
+    public void setTabLayoutBackground(Drawable background) {
         if (background != null)
             mTabLayout.setBackground(background);
         else
             mTabLayout.setBackgroundDrawable(null);
     }
-
 
     /**
      * 强制超出父布局，由Tab的父布局来控制
