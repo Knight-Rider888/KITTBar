@@ -6,13 +6,19 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import knight.rider.kitt.bar.attr.CircleStyle;
+import knight.rider.kitt.bar.attr.Tab;
+import knight.rider.kitt.bar.other.BottomItem;
 
 public class KittBottomBar extends FrameLayout {
 
@@ -27,6 +33,8 @@ public class KittBottomBar extends FrameLayout {
     private float mTabTextSize;
     // tab的图标大小
     private float mTabIconSize;
+    // 红点字体大小
+    private float mBadgeSize;
 
     public KittBottomBar(@NonNull Context context) {
         this(context, null);
@@ -67,6 +75,9 @@ public class KittBottomBar extends FrameLayout {
         // 初始化完成，可设置TabLayout的高度
         setTabLayoutHeight();
         // Tab的初始化由代码去完成
+
+        // 红点字体大小
+        mBadgeSize = array.getDimension(R.styleable.KittBottomBar_bar_tab_badge_text_size, dip2px(8.5f));
 
         array.recycle();
 
@@ -158,5 +169,51 @@ public class KittBottomBar extends FrameLayout {
         ViewGroup.LayoutParams params = mTabLayout.getLayoutParams();
         params.height = (int) calcTabLayoutHeight();
         mTabLayout.setLayoutParams(params);
+    }
+
+    // 摆放底部的item
+    private void onLayoutItem(BottomItem item, Tab tab) {
+
+        // Tab容器设置整体宽度
+        LinearLayout tabGroup = item.getTabGroup();
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) tabGroup.getLayoutParams();
+        params.weight = 1;
+        params.width = 0;
+
+        if (tab.isLargeIcon() && tab.getLargeIconSize() != 0)
+            // 仅计算图片差即可
+            params.height += (tab.getLargeIconSize() - mTabIconSize);
+
+        // 容器设置完成
+        tabGroup.setLayoutParams(params);
+
+        // Icon的容器设置整体高度
+        FrameLayout iconGroup = item.getIconGroup();
+        ViewGroup.LayoutParams params1 = iconGroup.getLayoutParams();
+
+        if (tab.isLargeIcon() && tab.getLargeIconSize() != 0) {
+            // 计算超大图标
+            params1.width = tab.getLargeIconSize();
+            params1.height = tab.getLargeIconSize();
+        } else {
+            // 计算普通图标
+            params1.width = (int) mTabIconSize;
+            params1.height = (int) mTabIconSize;
+        }
+
+        // Icon容器完成设置
+        iconGroup.setLayoutParams(params1);
+
+        // badge设置
+        TextView badge = item.getBadge();
+        badge.setTextSize(TypedValue.COMPLEX_UNIT_PX, mBadgeSize);
+        CircleStyle circleStyle = tab.getCircleStyle();
+        // TODO badge完成设置
+
+        // 文本设置
+        TextView wordView = item.getWordView();
+        wordView.setText(tab.getWord());
+        wordView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTabTextSize);
+        // TODO 文本初始化完成
     }
 }

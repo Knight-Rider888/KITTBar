@@ -1,6 +1,7 @@
 package knight.rider.kitt.bar.attr;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 
 import androidx.fragment.app.Fragment;
 
@@ -10,16 +11,27 @@ public class Tab {
     private String mUnSelectedPicRes;
     // 选中时的图片，可空
     private String mSelectedPicRes;
-    // 文字，可控
-    private String mWord;
+
     // bundle，可空
     private Bundle mBundle;
     // fragment，可空
     private Class<? extends Fragment> mClss;
-    // 数字提醒的样式，可空
-    private CircleStyle mCircleStyle;
+
     // 文字是否变色，可空
     private boolean mChangeWordColor;
+
+
+    // 是否是超大的图标（凸出）
+    private boolean mIsLargeIcon;
+    // 大图标的尺寸, 仅对超大图标属性为true有效
+    private int mLargeIconSize;
+    // 图标类型
+    private IconRule mIconRule;
+    // 数字提醒的样式，可空
+    private CircleStyle mCircleStyle;
+    // 文字，可控
+    private String mWord;
+
 
     /**
      * 无参构造
@@ -27,59 +39,43 @@ public class Tab {
     public Tab() {
     }
 
-    public String getUnSelectedPicRes() {
-        return mUnSelectedPicRes;
+    public boolean isLargeIcon() {
+        return mIsLargeIcon;
     }
 
-    public void setUnSelectedPicRes(String unSelectedPicRes) {
-        this.mUnSelectedPicRes = unSelectedPicRes;
+    public void setLargeIcon(boolean isLargeIcon, int largeIconSize) {
+        this.mIsLargeIcon = isLargeIcon;
+        this.mLargeIconSize = largeIconSize;
     }
 
-    public String getSelectedPicRes() {
-        return mSelectedPicRes;
+    public int getLargeIconSize() {
+        return mLargeIconSize;
     }
 
-    public void setSelectedPicRes(String selectedPicRes) {
-        this.mSelectedPicRes = selectedPicRes;
+    // 默认静态图样式
+    public IconRule getIconRule() {
+        return mIconRule == null ? IconRule.NONE_LOTTIE : mIconRule;
     }
 
-    public String getWord() {
-        return mWord;
+    public void setIconRule(IconRule iconRule) {
+        this.mIconRule = iconRule;
     }
 
-    public void setWord(String word) {
-        this.mWord = word;
-    }
-
-    public Bundle getBundle() {
-        return mBundle;
-    }
-
-    public void setBundle(Bundle bundle) {
-        this.mBundle = bundle;
-    }
-
-    public Class<? extends Fragment> getClss() {
-        return mClss;
-    }
-
-    public void setClss(Class<? extends Fragment> clss) {
-        this.mClss = clss;
-    }
-
+    // 默认 白边红心样式
     public CircleStyle getCircleStyle() {
-        return mCircleStyle;
+        return mCircleStyle == null ? CircleStyle.CIRCLE_RED_SOLID_WRITE_STOKE : mCircleStyle;
     }
 
     public void setCircleStyle(CircleStyle circleStyle) {
         this.mCircleStyle = circleStyle;
     }
 
-    public boolean isChangeWordColor() {
-        return mChangeWordColor;
+    // 默认空字符
+    public String getWord() {
+        return TextUtils.isEmpty(mWord) ? "" : mWord;
     }
 
-    public void setChangeWordColor(boolean changeWordColor) {
-        this.mChangeWordColor = changeWordColor;
+    public void setWord(String mWord) {
+        this.mWord = mWord;
     }
 }
