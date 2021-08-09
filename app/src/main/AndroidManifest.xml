@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KittBar">
         <activity
-            android:name=".KittCycleScrollBarActivity"
+            android:name=".BottomBarActivity"
+            android:exported="true" />
+        <activity
+            android:name=".CycleScrollBarActivity"
             android:exported="true" />
         <activity
             android:name=".SlideBarActivity"

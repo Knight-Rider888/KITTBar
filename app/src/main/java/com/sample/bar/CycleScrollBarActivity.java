@@ -8,14 +8,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import knight.rider.kitt.bar.KittCycleScrollBar;
 
-public class KittCycleScrollBarActivity extends AppCompatActivity {
+public class CycleScrollBarActivity extends AppCompatActivity {
 
     private KittCycleScrollBar scrollBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kitt_cycle_scroll_bar);
+        setContentView(R.layout.activity_cycle_scroll_bar);
 
         scrollBar = (KittCycleScrollBar) findViewById(R.id.bar);
 

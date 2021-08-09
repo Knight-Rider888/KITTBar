@@ -25,6 +25,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void KittCycleScrollBar(View view) {
-        startActivity(new Intent(this, KittCycleScrollBarActivity.class));
+        startActivity(new Intent(this, CycleScrollBarActivity.class));
+    }
+
+    public void KittBottomBar(View view) {
+        startActivity(new Intent(this, BottomBarActivity.class));
     }
 }
