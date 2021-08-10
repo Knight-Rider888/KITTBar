@@ -53,9 +53,6 @@ public class BottomItem extends LinearLayout {
         return mBadge;
     }
 
-    public TextView getWordView() {
-        return mWord;
-    }
 
     // TODO 红点待完成
 
@@ -68,7 +65,7 @@ public class BottomItem extends LinearLayout {
      * @param textColorSelected   由BottomBar控制，默认 #666666
      * @param textSize
      */
-    public void init(int unSelectedRes, int selectedRes, int textColorUnSelected, int textColorSelected, float textSize) {
+    public void init(int unSelectedRes, int selectedRes, int textColorUnSelected, int textColorSelected, String text, float textSize) {
 
         // 选中图片为空使用默认图片
         if (selectedRes == 0)
@@ -96,8 +93,12 @@ public class BottomItem extends LinearLayout {
             }
         }
 
-        mWord.setTextColor(getStateListColor(textColorUnSelected, textColorSelected));
-        mWord.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
+        // 初始化tab字体大小
+        updateTabTextSize(textSize);
+        // 初始化tab字体颜色
+        updateTabTextColor(textColorUnSelected, textColorSelected);
+        // 初始化文字内容
+        updateTabText(text);
     }
 
     /**
@@ -130,6 +131,21 @@ public class BottomItem extends LinearLayout {
      */
     public void updateTabTextColor(int normalTextColor, int selectedTextColor) {
         mWord.setTextColor(getStateListColor(normalTextColor, selectedTextColor));
+    }
+
+    /**
+     * 更新字体大小
+     */
+    public void updateTabTextSize(float textSize) {
+        mWord.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
+
+    }
+
+    /**
+     * 更新tab内容
+     */
+    public void updateTabText(String text) {
+        mWord.setText(text == null ? "" : text);
     }
 
     private static ColorStateList getStateListColor(int textColorUnSelected, int textColorSelected) {
