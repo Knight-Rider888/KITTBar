@@ -20,8 +20,6 @@ public class Tab {
     private boolean mIsLargeIcon;
     // 大图标的尺寸, 仅对超大图标属性为true有效
     private int mLargeIconSize;
-    // 数字提醒的样式，可空
-    private CircleStyle mCircleStyle;
     // 文字，可空
     private String mWord;
     // 未选中时的图片(默认图片)，可空 rawRes为lottie动画 drawableRes为静态图片
@@ -106,7 +104,17 @@ public class Tab {
     }
 
     public Tab setNormalPicRes(int normalPicRes) {
+
+        // 获取旧值
+        int oldValue = getNormalPicRes();
+        // 赋新值
         this.mNormalPicRes = normalPicRes;
+
+        if (oldValue != normalPicRes) {
+            // 发布监听事件
+            firePropertyChange("normalRes", oldValue, normalPicRes);
+        }
+
         return this;
     }
 
@@ -115,11 +123,19 @@ public class Tab {
     }
 
     public Tab setSelectedPicRes(int selectedPicRes) {
+
+        // 获取旧值
+        int oldValue = getSelectedPicRes();
+        // 赋新值
         this.mSelectedPicRes = selectedPicRes;
+
+        if (oldValue != selectedPicRes) {
+            // 发布监听事件
+            firePropertyChange("selectedRes", oldValue, selectedPicRes);
+        }
+
         return this;
     }
-
-    /****？*****/
 
 
     /**
