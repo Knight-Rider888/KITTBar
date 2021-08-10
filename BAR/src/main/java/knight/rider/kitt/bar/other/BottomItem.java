@@ -2,7 +2,6 @@ package knight.rider.kitt.bar.other;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
@@ -17,13 +16,13 @@ public class BottomItem extends LinearLayout {
 
 
     // icon容器
-    private FrameLayout mIconLayout;
+    private final FrameLayout mIconLayout;
     // badge
-    private TextView mBadge;
+    private final TextView mBadge;
     // 文字
-    private TextView mWord;
+    private final TextView mWord;
     // 图片
-    private LottieAnimationView mLottie;
+    private final LottieAnimationView mLottie;
 
     private int mUnSelectedPicRes;
     private int mSelectedPicRes;
@@ -59,25 +58,34 @@ public class BottomItem extends LinearLayout {
     }
 
     // TODO 红点待完成
-    public void init(int unSelectedRes, int selectedRes, int textColorUnSelected, int textColorSelected, int textSize) {
 
-        if (textColorUnSelected == 0)
-            textColorUnSelected = Color.parseColor("#666666");
+    /**
+     * 初始化
+     *
+     * @param unSelectedRes       可空，需判断
+     * @param selectedRes         可空，需判断
+     * @param textColorUnSelected 由BottomBar控制，默认 #666666
+     * @param textColorSelected   由BottomBar控制，默认 #666666
+     * @param textSize
+     */
+    public void init(int unSelectedRes, int selectedRes, int textColorUnSelected, int textColorSelected, float textSize) {
 
+        // 选中图片为空使用默认图片
         if (selectedRes == 0)
             selectedRes = unSelectedRes;
 
-        if (textColorSelected == 0)
-            textColorSelected = textColorUnSelected;
-
+        // 赋值全局变量
         mSelectedPicRes = selectedRes;
         mUnSelectedPicRes = unSelectedRes;
 
         int picRes = isSelected() ? selectedRes : unSelectedRes;
 
         if (picRes == 0) {
+            // 无图片资源，直接占位不显示
             mLottie.setVisibility(INVISIBLE);
         } else {
+
+            // raw默认为动画类型
             String typeName = getResources().getResourceTypeName(picRes);
             if ("raw".equalsIgnoreCase(typeName)) {
                 // 动画资源
@@ -92,7 +100,10 @@ public class BottomItem extends LinearLayout {
         mWord.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
     }
 
-    public void changeIcon() {
+    /**
+     * 改变icon的状态
+     */
+    public void changeIconState() {
 
         int picRes = isSelected() ? mSelectedPicRes : mUnSelectedPicRes;
 
@@ -109,6 +120,16 @@ public class BottomItem extends LinearLayout {
                 mLottie.setImageResource(picRes);
             }
         }
+    }
+
+    /**
+     * 更新字体颜色
+     *
+     * @param normalTextColor   默认颜色
+     * @param selectedTextColor 选中颜色
+     */
+    public void updateTabTextColor(int normalTextColor, int selectedTextColor) {
+        mWord.setTextColor(getStateListColor(normalTextColor, selectedTextColor));
     }
 
     private static ColorStateList getStateListColor(int textColorUnSelected, int textColorSelected) {
