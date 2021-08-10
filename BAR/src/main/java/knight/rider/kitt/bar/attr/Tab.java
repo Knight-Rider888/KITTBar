@@ -74,16 +74,6 @@ public class Tab {
     }
 
 
-    // 默认 白边红心样式
-    public CircleStyle getCircleStyle() {
-        return mCircleStyle == null ? CircleStyle.CIRCLE_RED_SOLID_WRITE_STOKE : mCircleStyle;
-    }
-
-    public Tab setCircleStyle(CircleStyle circleStyle) {
-        this.mCircleStyle = circleStyle;
-        return this;
-    }
-
     /****文字*****/
 
     public String getWord() {

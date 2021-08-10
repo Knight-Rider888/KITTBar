@@ -257,6 +257,29 @@ public class KittBottomBar extends FrameLayout {
 
     }
 
+    /**
+     * √设置tab图片默认值,传0，即不使用图片
+     */
+    public void setTabIconNormalSize(int iconSIze) {
+
+        mTabIconSize = iconSIze;
+
+        // 未初始化前可随意更改，无需重绘
+        if (!isInit)
+            return;
+
+
+        // 已经初始化重新计算bar的整体高度
+        setTabLayoutHeight();
+
+        // 已经初始化循环更改
+        for (int i = 0; i < mTabLayout.getChildCount(); i++) {
+            BottomItem item = (BottomItem) mTabLayout.getChildAt(i);
+            onLayoutTabItem(item, mTabs.get(i));
+        }
+
+    }
+
 
     /**
      * √设置Tab容器的上、下内间距
