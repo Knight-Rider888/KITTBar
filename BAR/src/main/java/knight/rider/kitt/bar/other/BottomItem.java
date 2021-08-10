@@ -134,6 +134,28 @@ public class BottomItem extends LinearLayout {
     }
 
     /**
+     * 更新默认图标
+     */
+    public void updateTabNormalIcon(int icon) {
+
+        mUnSelectedPicRes = icon;
+
+        if (!isSelected())
+            changeIconState();
+    }
+
+    /**
+     * 更新选中图标
+     */
+    public void updateTabSelectedIcon(int icon) {
+
+        mSelectedPicRes = icon;
+
+        if (isSelected())
+            changeIconState();
+    }
+
+    /**
      * 更新字体大小
      */
     public void updateTabTextSize(float textSize) {

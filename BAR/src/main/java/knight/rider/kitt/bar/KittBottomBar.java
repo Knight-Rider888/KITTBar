@@ -189,6 +189,12 @@ public class KittBottomBar extends FrameLayout {
                         case "largeIcon":
                             onLayoutTabItem(item, tab);
                             break;
+                        case "normalRes":
+                            item.updateTabNormalIcon(tab.getNormalPicRes());
+                            break;
+                        case "selectedRes":
+                            item.updateTabSelectedIcon(tab.getSelectedPicRes());
+                            break;
                     }
                 }
             });
