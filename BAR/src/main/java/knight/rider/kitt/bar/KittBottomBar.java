@@ -183,8 +183,11 @@ public class KittBottomBar extends FrameLayout {
                     BottomItem item = (BottomItem) mTabLayout.getChildAt(index);
 
                     switch (propertyChangeEvent.getPropertyName()) {
-                        case "mWord":
+                        case "tabContent":
                             item.updateTabText((String) propertyChangeEvent.getNewValue());
+                            break;
+                        case "largeIcon":
+                            onLayoutTabItem(item, tab);
                             break;
                     }
                 }
@@ -358,7 +361,7 @@ public class KittBottomBar extends FrameLayout {
         // 先设置为默认高度
         params.height = mTabLayout.getLayoutParams().height - mTabPaddingTop - mTabPaddingBottom;
 
-        if (tab.isLargeIcon() && tab.getLargeIconSize() != 0)
+        if (tab.isLargeIcon())
             // 仅计算图片差即可,必须设置，否则无凸出效果
             params.height += (tab.getLargeIconSize() - mTabIconSize);
 
@@ -369,7 +372,7 @@ public class KittBottomBar extends FrameLayout {
         FrameLayout iconGroup = item.getIconGroup();
         ViewGroup.LayoutParams params1 = iconGroup.getLayoutParams();
 
-        if (tab.isLargeIcon() && tab.getLargeIconSize() != 0) {
+        if (tab.isLargeIcon()) {
             // 计算超大图标
             params1.width = tab.getLargeIconSize();
             params1.height = tab.getLargeIconSize();

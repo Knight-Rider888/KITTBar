@@ -47,8 +47,25 @@ public class Tab {
     }
 
     public Tab setLargeIcon(boolean isLargeIcon, int largeIconSize) {
+
+
+        // 获取旧值
+        boolean oldValue = isLargeIcon();
+        int oldValue2 = getLargeIconSize();
+
+        // 仅设置大图标，不设置大小
+        // 展示为默认图标
+        if (isLargeIcon && largeIconSize <= 0)
+            isLargeIcon = false;
+
+        // 赋新值
         this.mIsLargeIcon = isLargeIcon;
         this.mLargeIconSize = largeIconSize;
+
+        if (oldValue != isLargeIcon || (isLargeIcon && oldValue2 != largeIconSize))
+            // 发布监听事件
+            firePropertyChange("largeIcon", isLargeIcon, largeIconSize);
+
         return this;
     }
 
@@ -85,7 +102,7 @@ public class Tab {
 
         if (!oldValue.equals(word)) {
             // 发布监听事件
-            firePropertyChange("mWord", oldValue, word);
+            firePropertyChange("tabContent", oldValue, word);
         }
 
         return this;
