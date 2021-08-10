@@ -191,6 +191,9 @@
         <attr name="bar_tab_text_color" format="color" />
         <attr name="bar_tab_text_selected_color" format="color" />
 
+        <!--Tab字体颜色,默认 #666666-->
+        <attr name="bar_lottie_speed" format="float" />
+
     </declare-styleable>
 
 </resources>

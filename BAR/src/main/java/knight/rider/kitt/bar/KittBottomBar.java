@@ -44,6 +44,8 @@ public class KittBottomBar extends FrameLayout {
     private int mWordColor;
     // 选中时的字体颜色
     private int mWordSelectedColor;
+    // 动画播放速度
+    private float mLottieSpeed;
 
 
     private List<Tab> mTabs = new ArrayList<>();
@@ -103,6 +105,10 @@ public class KittBottomBar extends FrameLayout {
         mWordSelectedColor = array.getColor(R.styleable.KittBottomBar_bar_tab_text_selected_color, Color.parseColor("#666666"));
         // 此处不设置，最后初始化完毕才进行设置
 
+        // 播放速度
+        mLottieSpeed = array.getFloat(R.styleable.KittBottomBar_bar_lottie_speed, 1);
+        // 此处不设置，最后初始化完毕才进行设置
+
         array.recycle();
 
     }
@@ -150,6 +156,7 @@ public class KittBottomBar extends FrameLayout {
 
             // 加入tab
             BottomItem item = new BottomItem(mContext);
+            item.updateSpeed(mLottieSpeed);
 
             if (i == 0)
                 item.setSelected(true);
@@ -164,11 +171,15 @@ public class KittBottomBar extends FrameLayout {
 
                 @Override
                 public void onClick(View view) {
-                    mTabLayout.getChildAt(mCurrentIndex).setSelected(false);
-                    ((BottomItem) mTabLayout.getChildAt(mCurrentIndex)).changeIconState();
-                    mCurrentIndex = clickIndex;
-                    item.setSelected(true);
-                    item.changeIconState();
+
+                    // 点击位置发生变化，才更新
+                    if (mCurrentIndex != clickIndex) {
+                        mTabLayout.getChildAt(mCurrentIndex).setSelected(false);
+                        ((BottomItem) mTabLayout.getChildAt(mCurrentIndex)).changeIconState();
+                        mCurrentIndex = clickIndex;
+                        item.setSelected(true);
+                        item.changeIconState();
+                    }
                 }
             });
             mTabLayout.addView(item);
@@ -213,6 +224,24 @@ public class KittBottomBar extends FrameLayout {
             mTabLayout.setBackground(background);
         else
             mTabLayout.setBackgroundDrawable(null);
+    }
+
+    /**
+     * √设置Tab播放速度
+     */
+    public void setLottieSpeed(float speed) {
+
+        mLottieSpeed = speed;
+
+        // 未初始化前可随意更改，无需设置
+        if (!isInit)
+            return;
+
+        // 已经初始化循环更改
+        for (int i = 0; i < mTabLayout.getChildCount(); i++) {
+            BottomItem item = (BottomItem) mTabLayout.getChildAt(i);
+            item.updateSpeed(speed);
+        }
     }
 
 

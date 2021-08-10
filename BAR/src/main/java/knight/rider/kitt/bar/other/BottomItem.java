@@ -87,6 +87,10 @@ public class BottomItem extends LinearLayout {
             if ("raw".equalsIgnoreCase(typeName)) {
                 // 动画资源
                 mLottie.setAnimation(picRes);
+
+                // 初始化后要在最后一帧
+                mLottie.setProgress(1);
+
             } else {
                 // 静态资源
                 mLottie.setImageResource(picRes);
@@ -124,6 +128,13 @@ public class BottomItem extends LinearLayout {
     }
 
     /**
+     * 更新速度
+     */
+    public void updateSpeed(float speed) {
+        mLottie.setSpeed(speed);
+    }
+
+    /**
      * 更新字体颜色
      *
      * @param normalTextColor   默认颜色
@@ -140,8 +151,12 @@ public class BottomItem extends LinearLayout {
 
         mUnSelectedPicRes = icon;
 
-        if (!isSelected())
+        if (!isSelected()) {
             changeIconState();
+            // 更为最后一帧
+            mLottie.setProgress(1);
+        }
+
     }
 
     /**
@@ -151,8 +166,12 @@ public class BottomItem extends LinearLayout {
 
         mSelectedPicRes = icon;
 
-        if (isSelected())
+        if (isSelected()) {
             changeIconState();
+            // 更为最后一帧
+            mLottie.setProgress(1);
+        }
+
     }
 
     /**
