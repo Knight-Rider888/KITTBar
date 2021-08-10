@@ -2,21 +2,26 @@ package knight.rider.kitt.bar;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import knight.rider.kitt.bar.attr.CircleStyle;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.List;
+
 import knight.rider.kitt.bar.attr.Tab;
 import knight.rider.kitt.bar.other.BottomItem;
 
@@ -35,6 +40,20 @@ public class KittBottomBar extends FrameLayout {
     private float mTabIconSize;
     // 红点字体大小
     private float mBadgeSize;
+    // 未选中时的字体颜色
+    private int mWordColor;
+    // 选中时的字体颜色
+    private int mWordSelectedColor;
+
+
+    private List<Tab> mTabs = new ArrayList<>();
+
+    private Context mContext;
+
+    private int mCurrentIndex;
+
+    // 是否初始化完成？
+    private boolean isInit;
 
     public KittBottomBar(@NonNull Context context) {
         this(context, null);
@@ -46,6 +65,9 @@ public class KittBottomBar extends FrameLayout {
 
     public KittBottomBar(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+
+        mContext = context;
+
         LayoutInflater.from(getContext()).inflate(R.layout.kitt_bottom_bar, this, true);
         // 初始化组件
         mLayout = findViewById(R.id.kitt_bar_layout);
@@ -79,6 +101,10 @@ public class KittBottomBar extends FrameLayout {
         // 红点字体大小
         mBadgeSize = array.getDimension(R.styleable.KittBottomBar_bar_tab_badge_text_size, dip2px(8.5f));
 
+        // 字体颜色
+        mWordColor = array.getColor(R.styleable.KittBottomBar_bar_tab_text_color, Color.parseColor("#666666"));
+        mWordSelectedColor = array.getColor(R.styleable.KittBottomBar_bar_tab_text_selected_color, Color.parseColor("#666666"));
+
         array.recycle();
 
     }
@@ -86,6 +112,66 @@ public class KittBottomBar extends FrameLayout {
 
     /************对外提供***********/
 
+    public KittBottomBar addTab(Tab tab) {
+
+        if (isInit)
+            throw new RuntimeException("调用init()后不允许继续添加Tab");
+
+        // 保存tab信息
+        mTabs.add(tab);
+
+        // 加入tab
+        BottomItem item = new BottomItem(mContext);
+
+        if (mTabs.size() - 1 == 0)
+            item.setSelected(true);
+
+        // 初始化Tab相关样式
+        item.init(tab.getNormalPicRes(), tab.getSelectedPicRes(), mWordColor, mWordSelectedColor, tab.getWord(), mTabTextSize);
+
+        item.setOnClickListener(new OnClickListener() {
+
+            final int clickIndex = mTabs.size() - 1;
+
+            @Override
+            public void onClick(View view) {
+                mTabLayout.getChildAt(mCurrentIndex).setSelected(false);
+                ((BottomItem) mTabLayout.getChildAt(mCurrentIndex)).changeIconState();
+                mCurrentIndex = clickIndex;
+                item.setSelected(true);
+                item.changeIconState();
+            }
+        });
+        mTabLayout.addView(item);
+        onLayoutTabItem(item, tab);
+
+        // 初始化完成后监听实体类
+        tab.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
+                // 属性改变的tab下标
+                int index = mTabs.indexOf(tab);
+                BottomItem item = (BottomItem) mTabLayout.getChildAt(index);
+
+                switch (propertyChangeEvent.getPropertyName()) {
+                    case "mWord":
+                        item.updateTabText((String) propertyChangeEvent.getNewValue());
+                        break;
+                }
+            }
+        });
+
+        return this;
+    }
+
+
+    /**
+     * 初始化
+     */
+    public KittBottomBar init() {
+        isInit = true;
+        return this;
+    }
 
     /**
      * 设置Tab容器背景
@@ -100,7 +186,30 @@ public class KittBottomBar extends FrameLayout {
     }
 
 
-    // TODO 暂不对外提供,此处更改后涉及重新计算高度的问题,后期维护
+    /**
+     * 设置tab文字的颜色(必须初始化后才可进行更改或添加tab前)
+     *
+     * @param tabTextColor         the normal text color.
+     * @param tabTextSelectedColor the selected text color
+     */
+    public void setTabTextColor(@ColorInt int tabTextColor, @ColorInt int tabTextSelectedColor) {
+
+        if (mTabs.size() == 0) {
+            mWordColor = tabTextColor;
+            mWordSelectedColor = tabTextSelectedColor;
+            return;
+        }
+
+        if (!isInit)
+            throw new RuntimeException("请在添加tab前调用或init()后调用");
+
+        for (int i = 0; i < mTabLayout.getChildCount(); i++) {
+            BottomItem item = (BottomItem) mTabLayout.getChildAt(i);
+            item.updateTabTextColor(tabTextColor, tabTextSelectedColor);
+        }
+
+    }
+
 
     /**
      * 设置Tab容器的上、下内间距
@@ -108,11 +217,17 @@ public class KittBottomBar extends FrameLayout {
      * @param top    the top padding in pixels.
      * @param bottom the bottom padding in pixels.
      */
-    private KittBottomBar setTabLayoutPadding(int top, int bottom) {
+    public final KittBottomBar setTabLayoutPadding(int top, int bottom) {
+
+        if (!isInit)
+            throw new RuntimeException("请先调用init()");
+
         mTabPaddingTop = top;
         mTabPaddingBottom = bottom;
         mTabLayout.setPadding(0, mTabPaddingTop, 0, mTabPaddingBottom);
-        // TODO 重新计算Tab
+
+        // 重新TabLayout的高度，并不影响tab的高度
+        setTabLayoutHeight();
         return this;
     }
 
@@ -121,10 +236,16 @@ public class KittBottomBar extends FrameLayout {
      *
      * @param top the top padding in pixels.
      */
-    private KittBottomBar setTabLayoutPaddingTop(int top) {
+    public final KittBottomBar setTabLayoutPaddingTop(int top) {
+
+        if (!isInit)
+            throw new RuntimeException("请先调用init()");
+
         mTabPaddingTop = top;
         mTabLayout.setPadding(0, mTabPaddingTop, 0, mTabPaddingBottom);
-        // TODO 重新计算Tab
+
+        // 重新TabLayout的高度，并不影响tab的高度
+        setTabLayoutHeight();
         return this;
     }
 
@@ -133,10 +254,16 @@ public class KittBottomBar extends FrameLayout {
      *
      * @param bottom the bottom padding in pixels.
      */
-    private KittBottomBar setTabLayoutPaddingBottom(int bottom) {
+    public final KittBottomBar setTabLayoutPaddingBottom(int bottom) {
+
+        if (!isInit)
+            throw new RuntimeException("请先调用init()");
+
         mTabPaddingBottom = bottom;
         mTabLayout.setPadding(0, mTabPaddingTop, 0, mTabPaddingBottom);
-        // TODO 重新计算Tab
+
+        // 重新TabLayout的高度，并不影响tab的高度
+        setTabLayoutHeight();
         return this;
     }
 
@@ -171,21 +298,22 @@ public class KittBottomBar extends FrameLayout {
         mTabLayout.setLayoutParams(params);
     }
 
-    // 摆放底部的item
-    private void onLayoutItem(BottomItem item, Tab tab) {
+    // 底部的Item重新计算高度
+    private void onLayoutTabItem(BottomItem item, Tab tab) {
 
-        // Tab容器设置整体宽度
-        LinearLayout tabGroup = item.getTabGroup();
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) tabGroup.getLayoutParams();
+        // Tab容器设置整体宽、高
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) item.getLayoutParams();
         params.weight = 1;
         params.width = 0;
+        // 先设置为默认高度
+        params.height = mTabLayout.getLayoutParams().height - mTabPaddingTop - mTabPaddingBottom;
 
         if (tab.isLargeIcon() && tab.getLargeIconSize() != 0)
-            // 仅计算图片差即可
+            // 仅计算图片差即可,必须设置，否则无凸出效果
             params.height += (tab.getLargeIconSize() - mTabIconSize);
 
         // 容器设置完成
-        tabGroup.setLayoutParams(params);
+        item.setLayoutParams(params);
 
         // Icon的容器设置整体高度
         FrameLayout iconGroup = item.getIconGroup();
@@ -203,17 +331,5 @@ public class KittBottomBar extends FrameLayout {
 
         // Icon容器完成设置
         iconGroup.setLayoutParams(params1);
-
-        // badge设置
-        TextView badge = item.getBadge();
-        badge.setTextSize(TypedValue.COMPLEX_UNIT_PX, mBadgeSize);
-        CircleStyle circleStyle = tab.getCircleStyle();
-        // TODO badge完成设置
-
-        // 文本设置
-        TextView wordView = item.getWordView();
-        wordView.setText(tab.getWord());
-        wordView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTabTextSize);
-        // TODO 文本初始化完成
     }
 }
