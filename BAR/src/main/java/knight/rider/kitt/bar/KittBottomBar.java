@@ -88,14 +88,14 @@ public class KittBottomBar extends FrameLayout {
 
         // 导航键上下间距
         mTabPaddingTop = (int) array.getDimension(R.styleable.KittBottomBar_bar_tab_paddingTop, dip2px(3));
-        mTabPaddingBottom = (int) array.getDimension(R.styleable.KittBottomBar_bar_tab_paddingBottom, dip2px(3));
+        mTabPaddingBottom = (int) array.getDimension(R.styleable.KittBottomBar_bar_tab_paddingBottom, dip2px(5));
 
         // 导航键容器背景
         Drawable tabLayoutDrawable = array.getDrawable(R.styleable.KittBottomBar_bar_tab_background);
         setTabLayoutBackground(tabLayoutDrawable);
 
         // tab的文字大小
-        mTabTextSize = array.getDimension(R.styleable.KittBottomBar_bar_tab_text_size, dip2px(12));
+        mTabTextSize = array.getDimension(R.styleable.KittBottomBar_bar_tab_text_size, dip2px(10.5f));
         // 此处不设置，最后初始化完毕才进行设置
 
         // tab的图标大小
