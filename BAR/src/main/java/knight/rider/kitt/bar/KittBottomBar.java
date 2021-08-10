@@ -16,12 +16,18 @@ import android.widget.LinearLayout;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.viewpager.widget.ViewPager;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 
+import knight.rider.kitt.bar.adapter.BottomBarAdapter;
 import knight.rider.kitt.bar.attr.Tab;
 import knight.rider.kitt.bar.other.BottomItem;
 
@@ -31,6 +37,8 @@ public class KittBottomBar extends FrameLayout {
     private final FrameLayout mLayout;
     // tab的布局
     private final LinearLayout mTabLayout;
+    // pager
+    private final ViewPager mPager;
     // tab的内间距
     private int mTabPaddingTop;
     private int mTabPaddingBottom;
@@ -47,11 +55,12 @@ public class KittBottomBar extends FrameLayout {
     // 动画播放速度
     private float mLottieSpeed;
 
-
-    private List<Tab> mTabs = new ArrayList<>();
-
-    private Context mContext;
-
+    // tabs
+    private final List<Tab> mTabs = new ArrayList<>();
+    // fragments
+    private final LinkedHashMap<Integer, Fragment> mFragmentTags = new LinkedHashMap<>();
+    private final List<Fragment> mFragments = new ArrayList<>();
+    // 当前位置
     private int mCurrentIndex;
 
     // 是否初始化完成？
@@ -68,12 +77,11 @@ public class KittBottomBar extends FrameLayout {
     public KittBottomBar(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        mContext = context;
-
         LayoutInflater.from(getContext()).inflate(R.layout.kitt_bottom_bar, this, true);
         // 初始化组件
         mLayout = findViewById(R.id.kitt_bar_layout);
         mTabLayout = findViewById(R.id.kitt_bar_tab_layout);
+        mPager = findViewById(R.id.kitt_bar_pager);
 
         // 初始化自定义属性
         TypedArray array = getContext().obtainStyledAttributes(attrs, R.styleable.KittBottomBar, defStyleAttr, 0);
@@ -135,7 +143,7 @@ public class KittBottomBar extends FrameLayout {
     /**
      * √初始化
      */
-    public final KittBottomBar init() {
+    public final KittBottomBar init(FragmentManager manager) {
 
         if (isInit)
             throw new RuntimeException("请不要多次调用init()");
@@ -154,8 +162,21 @@ public class KittBottomBar extends FrameLayout {
 
             Tab tab = mTabs.get(i);
 
+            if (tab.getClss() != null) {
+                try {
+                    Class<?> aClass = Class.forName(tab.getClss().getName());
+                    Fragment obj = (Fragment) aClass.newInstance();
+                    // tab的index,tab对应的fragment
+                    mFragments.add(obj);
+                    mFragmentTags.put(i, obj);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+
             // 加入tab
-            BottomItem item = new BottomItem(mContext);
+            BottomItem item = new BottomItem(getContext());
             item.updateSpeed(mLottieSpeed);
 
             if (i == 0)
@@ -179,6 +200,12 @@ public class KittBottomBar extends FrameLayout {
                         mCurrentIndex = clickIndex;
                         item.setSelected(true);
                         item.changeIconState();
+
+                        // 是否绑定fragment
+                        Fragment fragment = mFragmentTags.get(clickIndex);
+                        if (fragment != null)
+                            mPager.setCurrentItem(mFragments.indexOf(fragment));
+
                     }
                 }
             });
@@ -211,6 +238,50 @@ public class KittBottomBar extends FrameLayout {
             });
         }
 
+        // 绑定适配器
+        mPager.setAdapter(new BottomBarAdapter(manager, mFragments));
+        mPager.setOffscreenPageLimit(mFragments.size());
+        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+                // key值遍历器
+                Iterator<Integer> iterator = mFragmentTags.keySet().iterator();
+                while (iterator.hasNext()) {
+
+                    // 当前的key值
+                    Integer integer = iterator.next();
+
+                    if (position == 0) {
+                        // 真正的tab的位置
+                        position = integer;
+                        break;
+                    }
+                    position--;
+                }
+
+
+                // 当前position所对应的item
+                BottomItem item = (BottomItem) mTabLayout.getChildAt(position);
+
+                // 上一个tab设置为未选中
+                mTabLayout.getChildAt(mCurrentIndex).setSelected(false);
+                ((BottomItem) mTabLayout.getChildAt(mCurrentIndex)).changeIconState();
+                mCurrentIndex = position;
+                item.setSelected(true);
+                item.changeIconState();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         return this;
     }
 

@@ -7,8 +7,10 @@ import androidx.fragment.app.Fragment;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+/**
+ * 调用init()后，mClss不支持动态刷新
+ */
 public class Tab {
-
 
     // bundle，可空
     private Bundle mBundle;
@@ -38,6 +40,14 @@ public class Tab {
      * 无参构造
      */
     public Tab() {
+    }
+
+    public Tab(Class<? extends Fragment> mClss) {
+        this.mClss = mClss;
+    }
+
+    public Class<? extends Fragment> getClss() {
+        return mClss;
     }
 
     public boolean isLargeIcon() {
