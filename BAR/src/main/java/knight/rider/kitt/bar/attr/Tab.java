@@ -37,11 +37,14 @@ public class Tab {
     PropertyChangeSupport listeners = new PropertyChangeSupport(this);
 
     /**
-     * 无参构造
+     * 无参构造，无绑定的fragment
      */
     public Tab() {
     }
 
+    /**
+     * 绑定fragment必须调用此构造
+     */
     public Tab(Class<? extends Fragment> mClss) {
         this.mClss = mClss;
     }

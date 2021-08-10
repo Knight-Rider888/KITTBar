@@ -9,11 +9,13 @@
         <entry key="BAR/src/main/res/drawable/kitt_slide_bar_letter_bg.xml" value="0.125" />
         <entry key="BAR/src/main/res/layout/kitt_bar.xml" value="0.29030797101449274" />
         <entry key="BAR/src/main/res/layout/kitt_bar2.xml" value="0.335" />
-        <entry key="BAR/src/main/res/layout/kitt_bottom_bar.xml" value="0.18229166666666666" />
-        <entry key="BAR/src/main/res/layout/kitt_bottom_item.xml" value="0.18229166666666666" />
+        <entry key="BAR/src/main/res/layout/kitt_bottom_bar.xml" value="0.335" />
+        <entry key="BAR/src/main/res/layout/kitt_bottom_item.xml" value="0.335" />
         <entry key="BAR/src/main/res/layout/kitt_cycle_scroll_bar.xml" value="0.16134751773049646" />
         <entry key="BAR/src/main/res/layout/kitt_letter_dialog.xml" value="0.29030797101449274" />
         <entry key="BAR/src/main/res/layout/kitt_slide_bar_letter_dialog.xml" value="0.28396739130434784" />
+        <entry key="BAR/src/main/res/layout/kitt_tab_icon.xml" value="0.28396739130434784" />
+        <entry key="BAR/src/main/res/layout/kitt_tab_text.xml" value="0.28396739130434784" />
         <entry key="BAR/src/main/res/layout/lib_tips_layout.xml" value="0.2776268115942029" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.15" />
         <entry key="app/src/main/res/layout/activity_bottom_bar.xml" value="0.18229166666666666" />
