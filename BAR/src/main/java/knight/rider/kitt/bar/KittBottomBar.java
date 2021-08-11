@@ -329,6 +329,9 @@ public class KittBottomBar extends FrameLayout {
      */
     public final void setGestureSliding(boolean sliding) {
         this.mSliding = sliding;
+
+        if (isInit)
+            mPager.setSliding(sliding);
     }
 
     /**

@@ -1,6 +1,7 @@
 package com.sample.bar;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +10,7 @@ import com.sample.bar.fragment.ThreeFragment;
 
 import knight.rider.kitt.bar.KittBottomBar;
 import knight.rider.kitt.bar.attr.Tab;
+import knight.rider.kitt.bar.listener.OnBottomBarEventListener;
 
 public class BottomBarActivity extends AppCompatActivity {
 
@@ -33,6 +35,16 @@ public class BottomBarActivity extends AppCompatActivity {
         bottomBar.init(getSupportFragmentManager());
 
         bottomBar.setLottieSpeed(1);
+
+        bottomBar.setGestureSliding(true);
+        bottomBar.setTabClickSmoothScroll(true);
+
+        bottomBar.setOnBottomBarEventListener(new OnBottomBarEventListener() {
+            @Override
+            public void onEvent(int tabIndex, boolean isRepeat, boolean isBindFragment) {
+                Log.e(BottomBarActivity.class.getName(), "当前Tab" + tabIndex + "-是否重复点击" + isRepeat + "-当前Tab是否绑定了fragment" + isBindFragment);
+            }
+        });
 
     }
 
