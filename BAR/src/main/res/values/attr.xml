@@ -184,21 +184,24 @@
         <attr name="bar_tab_text_size" format="dimension" />
         <!--Tab图标的默认大小，默认28dp-->
         <attr name="bar_tab_icon_normal_size" format="dimension" />
-        <!--Tab红点的字体大小，默认8.5dp-->
-        <attr name="bar_tab_badge_text_size" format="dimension" />
 
         <!--Tab字体颜色,默认 #666666-->
         <attr name="bar_tab_text_color" format="color" />
         <attr name="bar_tab_text_selected_color" format="color" />
 
-        <!--Tab字体颜色,默认 #666666-->
+        <!--Tab图标动画播放速度，默认1-->
         <attr name="bar_lottie_speed" format="float" />
 
-        <!--是否支持手势滑动，默认不滑动-->
+        <!--是否支持手势滑动，默认不支持-->
         <attr name="bar_gesture_sliding" format="boolean" />
 
         <!--点击Tab，fragment是否有滑动效果，默认无-->
         <attr name="bar_tab_click_smoothScroll" format="boolean" />
+
+        <!--Tab的顶部分割线，默认0px-->
+        <attr name="bar_divider_height" format="dimension" />
+        <!--Tab的顶部分割线颜色，默认#e4e4e4-->
+        <attr name="bar_divider_color" format="color" />
 
     </declare-styleable>
 
