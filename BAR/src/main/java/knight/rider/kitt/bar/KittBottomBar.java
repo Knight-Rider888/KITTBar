@@ -29,6 +29,7 @@ import java.util.List;
 
 import knight.rider.kitt.bar.adapter.BottomBarAdapter;
 import knight.rider.kitt.bar.attr.Tab;
+import knight.rider.kitt.bar.listener.OnBottomBarEventListener;
 import knight.rider.kitt.bar.other.BottomItem;
 import knight.rider.kitt.bar.other.BottomPager;
 
@@ -71,6 +72,7 @@ public class KittBottomBar extends FrameLayout {
     // 是否初始化完成？
     private boolean isInit;
 
+    private OnBottomBarEventListener mEventListener;
 
     public KittBottomBar(@NonNull Context context) {
         this(context, null);
@@ -217,6 +219,16 @@ public class KittBottomBar extends FrameLayout {
                         if (fragment != null)
                             mPager.setCurrentItem(mFragments.indexOf(fragment), mSmoothScroll);
 
+                        if (mEventListener != null)
+                            mEventListener.onEvent(clickIndex, false, fragment != null);
+
+                    } else {
+
+                        // 是否绑定fragment
+                        Fragment fragment = mFragmentTags.get(clickIndex);
+
+                        if (mEventListener != null)
+                            mEventListener.onEvent(clickIndex, true, fragment != null);
                     }
                 }
             });
@@ -287,6 +299,9 @@ public class KittBottomBar extends FrameLayout {
                 mCurrentIndex = position;
                 item.setSelected(true);
                 item.changeIconState();
+
+                if (mEventListener != null)
+                    mEventListener.onEvent(mCurrentIndex, false, mFragmentTags.get(mCurrentIndex) != null);
             }
 
             @Override
@@ -461,6 +476,12 @@ public class KittBottomBar extends FrameLayout {
         return this;
     }
 
+    /**
+     * 绑定监听
+     */
+    public void setOnBottomBarEventListener(OnBottomBarEventListener eventListener) {
+        this.mEventListener = eventListener;
+    }
 
     /******************私有方法**********************/
 
