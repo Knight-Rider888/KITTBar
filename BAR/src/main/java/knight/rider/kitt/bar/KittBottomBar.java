@@ -317,7 +317,7 @@ public class KittBottomBar extends FrameLayout {
      *
      * @param background The Drawable to use as the background
      */
-    public void setTabLayoutBackground(Drawable background) {
+    public final void setTabLayoutBackground(Drawable background) {
         if (background != null)
             mTabLayout.setBackground(background);
         else
@@ -325,9 +325,23 @@ public class KittBottomBar extends FrameLayout {
     }
 
     /**
+     * √设置可通过手势滑动切换Tab
+     */
+    public final void setGestureSliding(boolean sliding) {
+        this.mSliding = sliding;
+    }
+
+    /**
+     * √设置点击Tab是否有切换动画
+     */
+    public final void setTabClickSmoothScroll(boolean smoothScroll) {
+        this.mSmoothScroll = smoothScroll;
+    }
+
+    /**
      * √设置Tab播放速度
      */
-    public void setLottieSpeed(float speed) {
+    public final void setLottieSpeed(float speed) {
 
         mLottieSpeed = speed;
 
@@ -349,7 +363,7 @@ public class KittBottomBar extends FrameLayout {
      * @param tabTextColor         the normal text color.
      * @param tabTextSelectedColor the selected text color
      */
-    public void setTabTextColor(@ColorInt int tabTextColor, @ColorInt int tabTextSelectedColor) {
+    public final void setTabTextColor(@ColorInt int tabTextColor, @ColorInt int tabTextSelectedColor) {
 
         // 未初始化前可随意更改，无需循环更改
         if (!isInit) {
@@ -369,7 +383,7 @@ public class KittBottomBar extends FrameLayout {
     /**
      * √设置tab文字的大小
      */
-    public void setTabTextSize(int textSize) {
+    public final void setTabTextSize(int textSize) {
 
         mTabTextSize = textSize;
 
@@ -393,7 +407,7 @@ public class KittBottomBar extends FrameLayout {
     /**
      * √设置tab图片默认值,传0，即不使用图片
      */
-    public void setTabIconNormalSize(int iconSIze) {
+    public final void setTabIconNormalSize(int iconSIze) {
 
         mTabIconSize = iconSIze;
 
@@ -479,7 +493,7 @@ public class KittBottomBar extends FrameLayout {
     /**
      * 绑定监听
      */
-    public void setOnBottomBarEventListener(OnBottomBarEventListener eventListener) {
+    public final void setOnBottomBarEventListener(OnBottomBarEventListener eventListener) {
         this.mEventListener = eventListener;
     }
 
