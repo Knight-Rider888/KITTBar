@@ -197,6 +197,13 @@ public class BottomItem extends LinearLayout {
         mLottie.playAnimation();
     }
 
+    /**
+     * 默认状态不满足，可自行逻辑处理
+     */
+    public void stopAnim() {
+        mLottie.setProgress(1);
+    }
+
     private static ColorStateList getStateListColor(int textColorUnSelected, int textColorSelected) {
 
         int[] colors = new int[]{textColorUnSelected, textColorSelected, textColorUnSelected};

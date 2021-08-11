@@ -5,8 +5,10 @@
       <map>
         <entry key="../../../../../layout/custom_preview.xml" value="0.335" />
         <entry key="../../../../layout/custom_preview.xml" value="0.35833333333333334" />
+        <entry key="BAR/src/main/res/drawable-v21/kitt_tab_press_bg.xml" value="0.34791666666666665" />
         <entry key="BAR/src/main/res/drawable/kitt_bar_search_bg.xml" value="0.15" />
         <entry key="BAR/src/main/res/drawable/kitt_slide_bar_letter_bg.xml" value="0.125" />
+        <entry key="BAR/src/main/res/drawable/kitt_tab_press_bg.xml" value="0.34791666666666665" />
         <entry key="BAR/src/main/res/layout/kitt_bar.xml" value="0.29030797101449274" />
         <entry key="BAR/src/main/res/layout/kitt_bar2.xml" value="0.335" />
         <entry key="BAR/src/main/res/layout/kitt_bottom_bar.xml" value="0.335" />
