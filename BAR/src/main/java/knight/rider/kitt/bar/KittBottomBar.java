@@ -232,7 +232,7 @@ public class KittBottomBar extends FrameLayout {
                             mPager.setCurrentItem(mFragments.indexOf(fragment), mSmoothScroll);
 
                         if (mEventListener != null)
-                            mEventListener.onEvent(clickIndex, false, fragment != null);
+                            mEventListener.onEvent(clickIndex, false, fragment != null, mTabs.get(clickIndex));
 
                     } else {
 
@@ -240,7 +240,7 @@ public class KittBottomBar extends FrameLayout {
                         Fragment fragment = mFragmentTags.get(clickIndex);
 
                         if (mEventListener != null)
-                            mEventListener.onEvent(clickIndex, true, fragment != null);
+                            mEventListener.onEvent(clickIndex, true, fragment != null, mTabs.get(clickIndex));
                     }
                 }
             });
@@ -313,7 +313,7 @@ public class KittBottomBar extends FrameLayout {
                 item.changeIconState();
 
                 if (mEventListener != null)
-                    mEventListener.onEvent(mCurrentIndex, false, mFragmentTags.get(mCurrentIndex) != null);
+                    mEventListener.onEvent(mCurrentIndex, false, mFragmentTags.get(mCurrentIndex) != null, mTabs.get(mCurrentIndex));
             }
 
             @Override
@@ -560,7 +560,7 @@ public class KittBottomBar extends FrameLayout {
                 mPager.setCurrentItem(mFragments.indexOf(fragment), mSmoothScroll);
 
             if (mEventListener != null)
-                mEventListener.onEvent(tabIndex, false, fragment != null);
+                mEventListener.onEvent(tabIndex, false, fragment != null, mTabs.get(tabIndex));
 
         } else {
 
@@ -568,7 +568,7 @@ public class KittBottomBar extends FrameLayout {
             Fragment fragment = mFragmentTags.get(tabIndex);
 
             if (mEventListener != null)
-                mEventListener.onEvent(tabIndex, true, fragment != null);
+                mEventListener.onEvent(tabIndex, true, fragment != null, mTabs.get(tabIndex));
         }
     }
 

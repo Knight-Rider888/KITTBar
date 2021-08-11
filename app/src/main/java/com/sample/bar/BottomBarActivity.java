@@ -45,7 +45,7 @@ public class BottomBarActivity extends AppCompatActivity {
 
         bottomBar.setOnBottomBarEventListener(new OnBottomBarEventListener() {
             @Override
-            public void onEvent(int tabIndex, boolean isRepeat, boolean isBindFragment) {
+            public void onEvent(int tabIndex, boolean isRepeat, boolean isBindFragment, Tab tab) {
                 Log.e(BottomBarActivity.class.getName(), "当前Tab" + tabIndex + "-是否重复点击" + isRepeat + "-当前Tab是否绑定了fragment" + isBindFragment);
 
                 if (tabIndex == 0 && isRepeat) {
