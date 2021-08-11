@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -33,14 +34,17 @@ import knight.rider.kitt.bar.listener.OnBottomBarEventListener;
 import knight.rider.kitt.bar.other.BottomItem;
 import knight.rider.kitt.bar.other.BottomPager;
 
+// TODO 版本预告，Badge
 public class KittBottomBar extends FrameLayout {
 
     // 最外层布局
-    private final FrameLayout mLayout;
+    private final RelativeLayout mLayout;
     // tab的布局
     private final LinearLayout mTabLayout;
     // pager
     private final BottomPager mPager;
+    // 分割线
+    private final View mDivider;
     // tab的内间距
     private int mTabPaddingTop;
     private int mTabPaddingBottom;
@@ -48,8 +52,6 @@ public class KittBottomBar extends FrameLayout {
     private float mTabTextSize;
     // tab的图标大小
     private float mTabIconSize;
-    // 红点字体大小
-    private float mBadgeSize;
     // 未选中时的字体颜色
     private int mWordColor;
     // 选中时的字体颜色
@@ -60,6 +62,7 @@ public class KittBottomBar extends FrameLayout {
     private boolean mSliding;
     // 点击tab滑动
     private boolean mSmoothScroll;
+
 
     // tabs
     private final List<Tab> mTabs = new ArrayList<>();
@@ -73,6 +76,7 @@ public class KittBottomBar extends FrameLayout {
     private boolean isInit;
 
     private OnBottomBarEventListener mEventListener;
+
 
     public KittBottomBar(@NonNull Context context) {
         this(context, null);
@@ -90,6 +94,7 @@ public class KittBottomBar extends FrameLayout {
         mLayout = findViewById(R.id.kitt_bar_layout);
         mTabLayout = findViewById(R.id.kitt_bar_tab_layout);
         mPager = findViewById(R.id.kitt_bar_pager);
+        mDivider = findViewById(R.id.kitt_bar_line);
 
         // 初始化自定义属性
         TypedArray array = getContext().obtainStyledAttributes(attrs, R.styleable.KittBottomBar, defStyleAttr, 0);
@@ -111,9 +116,11 @@ public class KittBottomBar extends FrameLayout {
         // 此处不设置，最后初始化完毕才进行设置
 
 
-        // 红点字体大小
-        mBadgeSize = array.getDimension(R.styleable.KittBottomBar_bar_tab_badge_text_size, dip2px(8.5f));
-        // 此处不设置，最后初始化完毕才进行设置
+        // 分割线
+        float dividerHeight = array.getDimension(R.styleable.KittBottomBar_bar_divider_height, 0);
+        Drawable dividerColor = array.getDrawable(R.styleable.KittBottomBar_bar_divider_color);
+        setDividerColor(dividerColor);
+        setDividerHeight(dividerHeight);
 
 
         // 字体颜色
@@ -163,6 +170,11 @@ public class KittBottomBar extends FrameLayout {
 
         isInit = true;
 
+        if (mCurrentIndex > mTabs.size() - 1) {
+            // 初始化前设置的setCurrentTab不正确
+            mCurrentIndex = 0;
+        }
+
         // 设置padding
         mTabLayout.setPadding(0, mTabPaddingTop, 0, mTabPaddingBottom);
 
@@ -192,7 +204,7 @@ public class KittBottomBar extends FrameLayout {
             BottomItem item = new BottomItem(getContext());
             item.updateSpeed(mLottieSpeed);
 
-            if (i == 0)
+            if (i == mCurrentIndex)
                 item.setSelected(true);
 
             // 初始化Tab相关样式
@@ -318,10 +330,25 @@ public class KittBottomBar extends FrameLayout {
      * @param background The Drawable to use as the background
      */
     public final void setTabLayoutBackground(Drawable background) {
-        if (background != null)
-            mTabLayout.setBackground(background);
-        else
-            mTabLayout.setBackgroundDrawable(null);
+        mTabLayout.setBackground(background);
+    }
+
+    /**
+     * √设置分割线颜色
+     *
+     * @param background The Drawable to use as the background
+     */
+    public final void setDividerColor(Drawable background) {
+        mDivider.setBackground(background);
+    }
+
+    /**
+     * √设置分割线高度
+     */
+    public final void setDividerHeight(float dividerHeight) {
+        ViewGroup.LayoutParams params = mDivider.getLayoutParams();
+        params.height = (int) dividerHeight;
+        mDivider.setLayoutParams(params);
     }
 
     /**
@@ -491,6 +518,58 @@ public class KittBottomBar extends FrameLayout {
         }
 
         return this;
+    }
+
+
+    /**
+     * √设置默认展示的Tab
+     * 注：初始化前调用不播放动画，初始化后调用会播放动画(与当前选中tab不一致才会播放)
+     * 并且初始化前调用不会监听
+     */
+    public final void setCurrentTab(int tabIndex) {
+
+        if (tabIndex < 0)
+            return;
+
+        if (!isInit) {
+            // 未初始化前调用
+            mCurrentIndex = tabIndex;
+            return;
+        }
+
+        if (tabIndex > mTabs.size() - 1) {
+            // 非正确索引
+            return;
+        }
+
+
+        // 点击位置发生变化，才更新
+        if (mCurrentIndex != tabIndex) {
+
+            mTabLayout.getChildAt(mCurrentIndex).setSelected(false);
+            ((BottomItem) mTabLayout.getChildAt(mCurrentIndex)).changeIconState();
+
+            mCurrentIndex = tabIndex;
+
+            mTabLayout.getChildAt(mCurrentIndex).setSelected(true);
+            ((BottomItem) mTabLayout.getChildAt(mCurrentIndex)).changeIconState();
+
+            // 是否绑定fragment
+            Fragment fragment = mFragmentTags.get(tabIndex);
+            if (fragment != null)
+                mPager.setCurrentItem(mFragments.indexOf(fragment), mSmoothScroll);
+
+            if (mEventListener != null)
+                mEventListener.onEvent(tabIndex, false, fragment != null);
+
+        } else {
+
+            // 是否绑定fragment
+            Fragment fragment = mFragmentTags.get(tabIndex);
+
+            if (mEventListener != null)
+                mEventListener.onEvent(tabIndex, true, fragment != null);
+        }
     }
 
     /**

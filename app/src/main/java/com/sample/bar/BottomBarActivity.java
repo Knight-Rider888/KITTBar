@@ -16,6 +16,7 @@ import knight.rider.kitt.bar.listener.OnBottomBarEventListener;
 public class BottomBarActivity extends AppCompatActivity {
 
     Tab tab;
+    KittBottomBar bottomBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +24,7 @@ public class BottomBarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bottom_bar);
 
 
-        KittBottomBar bottomBar = (KittBottomBar) findViewById(R.id.bar);
+        bottomBar = (KittBottomBar) findViewById(R.id.bar);
 
         tab = new Tab(OneFragment.class).setWord("主页").setNormalPicRes(R.raw.application_normal).setSelectedPicRes(R.raw.application_press);
         bottomBar.addTab(tab);
@@ -31,6 +32,7 @@ public class BottomBarActivity extends AppCompatActivity {
 
         Tab tab1 = new Tab().setWord("消息").setNormalPicRes(R.raw.msg_normal).setSelectedPicRes(R.raw.msg_press);
         bottomBar.addTab(tab1);
+
         bottomBar.addTab(new Tab(ThreeFragment.class).setWord("通讯录").setNormalPicRes(R.raw.phone_normal).setSelectedPicRes(R.raw.phone_press));
         bottomBar.addTab(new Tab().setWord("我的").setNormalPicRes(R.raw.me_normal).setSelectedPicRes(R.raw.me_press));
         bottomBar.init(getSupportFragmentManager());
@@ -39,6 +41,7 @@ public class BottomBarActivity extends AppCompatActivity {
 
         bottomBar.setGestureSliding(true);
         bottomBar.setTabClickSmoothScroll(true);
+
 
         bottomBar.setOnBottomBarEventListener(new OnBottomBarEventListener() {
             @Override
@@ -56,6 +59,11 @@ public class BottomBarActivity extends AppCompatActivity {
                     tab.setSelectedPicRes(R.raw.application_press);
             }
         });
+
+        bottomBar.setDividerHeight(2);
+        bottomBar.setCurrentTab(2);
+        bottomBar.setDividerColor(getResources().getDrawable(R.mipmap.ic_launcher));
+
 
     }
 

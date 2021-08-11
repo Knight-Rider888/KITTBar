@@ -200,8 +200,8 @@
 
         <!--Tab的顶部分割线，默认0px-->
         <attr name="bar_divider_height" format="dimension" />
-        <!--Tab的顶部分割线颜色，默认#e4e4e4-->
-        <attr name="bar_divider_color" format="color" />
+        <!--Tab的顶部分割线颜色，默认无-->
+        <attr name="bar_divider_color" format="reference|color" />
 
     </declare-styleable>
 
