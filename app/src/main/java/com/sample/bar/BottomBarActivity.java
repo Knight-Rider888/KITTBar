@@ -2,6 +2,7 @@ package com.sample.bar;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -43,9 +44,22 @@ public class BottomBarActivity extends AppCompatActivity {
             @Override
             public void onEvent(int tabIndex, boolean isRepeat, boolean isBindFragment) {
                 Log.e(BottomBarActivity.class.getName(), "当前Tab" + tabIndex + "-是否重复点击" + isRepeat + "-当前Tab是否绑定了fragment" + isBindFragment);
+
+                if (tabIndex == 0 && isRepeat) {
+                    // 变化图片
+                    tab.setSelectedPicRes(R.raw.download);
+                    // 并开启动画
+                    bottomBar.startAnim(0);
+                }
+
+                if (tabIndex != 0)
+                    tab.setSelectedPicRes(R.raw.application_press);
             }
         });
 
     }
 
+    public void click1(View view) {
+        tab.setSelectedPicRes(R.raw.download);
+    }
 }

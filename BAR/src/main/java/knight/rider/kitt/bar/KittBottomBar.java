@@ -500,6 +500,18 @@ public class KittBottomBar extends FrameLayout {
         this.mEventListener = eventListener;
     }
 
+    /**
+     * √默认状态不满足，可自行逻辑处理
+     */
+    public final void startAnim(int tabIndex) {
+        try {
+            BottomItem child = (BottomItem) mTabLayout.getChildAt(tabIndex);
+            child.startAnim();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     /******************私有方法**********************/
 
     private float dip2px(float dpValue) {

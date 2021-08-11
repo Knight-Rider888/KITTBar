@@ -6,4 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:bar_tab_background="#5E2196F3"
-    tools:context=".BottomBarActivity" />
+    tools:context=".BottomBarActivity">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="click1"
+        android:text="切换图标（默认无动画）" />
+
+
+</knight.rider.kitt.bar.KittBottomBar>
