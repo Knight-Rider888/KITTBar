@@ -30,6 +30,7 @@ import java.util.List;
 import knight.rider.kitt.bar.adapter.BottomBarAdapter;
 import knight.rider.kitt.bar.attr.Tab;
 import knight.rider.kitt.bar.other.BottomItem;
+import knight.rider.kitt.bar.other.BottomPager;
 
 public class KittBottomBar extends FrameLayout {
 
@@ -38,7 +39,7 @@ public class KittBottomBar extends FrameLayout {
     // tab的布局
     private final LinearLayout mTabLayout;
     // pager
-    private final ViewPager mPager;
+    private final BottomPager mPager;
     // tab的内间距
     private int mTabPaddingTop;
     private int mTabPaddingBottom;
@@ -54,6 +55,10 @@ public class KittBottomBar extends FrameLayout {
     private int mWordSelectedColor;
     // 动画播放速度
     private float mLottieSpeed;
+    // 滑动
+    private boolean mSliding;
+    // 点击tab滑动
+    private boolean mSmoothScroll;
 
     // tabs
     private final List<Tab> mTabs = new ArrayList<>();
@@ -65,6 +70,7 @@ public class KittBottomBar extends FrameLayout {
 
     // 是否初始化完成？
     private boolean isInit;
+
 
     public KittBottomBar(@NonNull Context context) {
         this(context, null);
@@ -116,6 +122,11 @@ public class KittBottomBar extends FrameLayout {
         // 播放速度
         mLottieSpeed = array.getFloat(R.styleable.KittBottomBar_bar_lottie_speed, 1);
         // 此处不设置，最后初始化完毕才进行设置
+
+        // 是否可滑动
+        mSliding = array.getBoolean(R.styleable.KittBottomBar_bar_gesture_sliding, false);
+        // 点击页面是否出现滑动效果
+        mSmoothScroll = array.getBoolean(R.styleable.KittBottomBar_bar_tab_click_smoothScroll, false);
 
         array.recycle();
 
@@ -204,7 +215,7 @@ public class KittBottomBar extends FrameLayout {
                         // 是否绑定fragment
                         Fragment fragment = mFragmentTags.get(clickIndex);
                         if (fragment != null)
-                            mPager.setCurrentItem(mFragments.indexOf(fragment));
+                            mPager.setCurrentItem(mFragments.indexOf(fragment), mSmoothScroll);
 
                     }
                 }
@@ -241,6 +252,7 @@ public class KittBottomBar extends FrameLayout {
         // 绑定适配器
         mPager.setAdapter(new BottomBarAdapter(manager, mFragments));
         mPager.setOffscreenPageLimit(mFragments.size());
+        mPager.setSliding(mSliding);
         mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

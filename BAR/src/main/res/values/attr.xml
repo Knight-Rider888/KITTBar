@@ -194,6 +194,12 @@
         <!--Tab字体颜色,默认 #666666-->
         <attr name="bar_lottie_speed" format="float" />
 
+        <!--是否支持手势滑动，默认不滑动-->
+        <attr name="bar_gesture_sliding" format="boolean" />
+
+        <!--点击Tab，fragment是否有滑动效果，默认无-->
+        <attr name="bar_tab_click_smoothScroll" format="boolean" />
+
     </declare-styleable>
 
 </resources>

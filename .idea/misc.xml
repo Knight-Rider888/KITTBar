@@ -24,6 +24,11 @@
         <entry key="app/src/main/res/layout/activity_slide_bar.xml" value="0.271286231884058" />
         <entry key="app/src/main/res/layout/activity_top_bar.xml" value="0.271286231884058" />
         <entry key="app/src/main/res/layout/activity_top_bar2.xml" value="0.33177083333333335" />
+        <entry key="app/src/main/res/layout/custom.xml" value="0.33177083333333335" />
+        <entry key="app/src/main/res/layout/fragment_four.xml" value="0.22010869565217392" />
+        <entry key="app/src/main/res/layout/fragment_one.xml" value="0.22010869565217392" />
+        <entry key="app/src/main/res/layout/fragment_three.xml" value="0.22010869565217392" />
+        <entry key="app/src/main/res/layout/fragment_two.xml" value="0.22010869565217392" />
         <entry key="app/src/main/res/layout/rv_item.xml" value="0.2644927536231884" />
         <entry key="app/src/main/res/layout/rv_session.xml" value="0.2644927536231884" />
       </map>
