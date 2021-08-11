@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/kitt_bar_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clipChildren="false"
-    android:orientation="vertical">
+    android:clipChildren="false">
 
     <knight.rider.kitt.bar.other.BottomPager
         android:id="@+id/kitt_bar_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <View
+        android:id="@+id/kitt_bar_line"
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_above="@id/kitt_bar_tab_layout"
+        android:background="#e4e4e4" />
 
     <LinearLayout
         android:id="@+id/kitt_bar_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
         android:clipToPadding="false"
         android:gravity="bottom"
         android:orientation="horizontal" />
 
-</FrameLayout>
+</RelativeLayout>
