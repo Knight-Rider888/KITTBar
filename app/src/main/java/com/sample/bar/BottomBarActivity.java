@@ -55,7 +55,7 @@ public class BottomBarActivity extends AppCompatActivity {
                     bottomBar.startAnim(0);
                 }
 
-                if (tabIndex != 0)
+                if (tabIndex == 0 && !isRepeat)
                     tab.setSelectedPicRes(R.raw.application_press);
             }
         });
@@ -68,6 +68,7 @@ public class BottomBarActivity extends AppCompatActivity {
     }
 
     public void click1(View view) {
+        // 切换主页图标,无动画
         tab.setSelectedPicRes(R.raw.download);
     }
 }
