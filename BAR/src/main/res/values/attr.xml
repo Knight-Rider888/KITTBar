@@ -12,22 +12,28 @@
         <!--背景透明度,范围 0f - 1f (默认1-不透明)-->
         <attr name="bar_background_alpha" format="float" />
 
-        <attr name="bar_custom_layout" format="reference" />
-
-        <attr name="bar_custom_layout_width" format="enum">
-            <enum name="wrap_content" value="0" />
-            <enum name="match_parent" value="1" />
-        </attr>
-
-        <!--返回键按钮-->
-        <attr name="bar_backIcon_src" format="reference" />
-        <!--返回键icon的padding-->
-        <attr name="bar_backIcon_padding" format="dimension" />
+        <!--返回键按钮，请将切图放入到对应的文件夹下，此处用的wrap_content进行自适应的-->
+        <!--如果图片过大，需要通过控制导航栏高度、padding等方式进行限制-->
+        <attr name="bar_backIcon" format="reference" />
+        <!--返回键icon的垂直方向padding，包含paddingTop、paddingBottom-->
+        <attr name="bar_backIcon_verticalPadding" format="dimension" />
+        <!--返回键icon的paddingLeft-->
+        <attr name="bar_backIcon_paddingLeft" format="dimension" />
+        <!--返回键icon的paddingRight-->
+        <attr name="bar_backIcon_paddingRight" format="dimension" />
         <!--返回键icon的是否显示-->
         <attr name="bar_backIcon_visibility" format="enum">
             <enum name="VISIBLE" value="0x00000000" />
             <enum name="INVISIBLE" value="0x00000004" />
             <enum name="GONE" value="0x00000008" />
+        </attr>
+
+
+        <attr name="bar_custom_layout" format="reference" />
+
+        <attr name="bar_custom_layout_width" format="enum">
+            <enum name="wrap_content" value="0" />
+            <enum name="match_parent" value="1" />
         </attr>
 
 
