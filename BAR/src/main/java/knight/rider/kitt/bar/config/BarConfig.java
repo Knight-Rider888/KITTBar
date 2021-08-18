@@ -1,7 +1,5 @@
 package knight.rider.kitt.bar.config;
 
-import androidx.annotation.FloatRange;
-
 import knight.rider.kitt.bar.attr.BarTitleGravity;
 
 public class BarConfig {
@@ -21,11 +19,6 @@ public class BarConfig {
 
     public BarConfig setTitleGravity(BarTitleGravity titleGravity) {
         builder.setTitleGravity(titleGravity);
-        return this;
-    }
-
-    public BarConfig setBackgroundAlpha(@FloatRange(from = 0, to = 1) float backgroundAlpha) {
-        builder.setBackgroundAlpha(backgroundAlpha);
         return this;
     }
 
@@ -56,8 +49,7 @@ public class BarConfig {
 
     public static class Builder {
 
-        private BarTitleGravity title_gravity;
-        private float background_alpha = -1;
+        private BarTitleGravity titleGravity;
         private int backIcon;
         private int backIcon_verticalPadding;
         private int backIcon_paddingRight;
@@ -66,19 +58,11 @@ public class BarConfig {
 
 
         public BarTitleGravity getTitleGravity() {
-            return title_gravity == null ? BarTitleGravity.LEFT : title_gravity;
+            return titleGravity == null ? BarTitleGravity.LEFT : titleGravity;
         }
 
         public void setTitleGravity(BarTitleGravity title_gravity) {
-            this.title_gravity = title_gravity;
-        }
-
-        public float getBackgroundAlpha() {
-            return background_alpha == -1 ? 1 : background_alpha;
-        }
-
-        public void setBackgroundAlpha(float background_alpha) {
-            this.background_alpha = background_alpha;
+            this.titleGravity = title_gravity;
         }
 
         public int getBarBackIcon() {
