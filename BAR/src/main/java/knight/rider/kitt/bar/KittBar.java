@@ -39,9 +39,11 @@ import androidx.annotation.StringRes;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+import knight.rider.kitt.bar.attr.BarTitleGravity;
 import knight.rider.kitt.bar.attr.EditSupport;
 import knight.rider.kitt.bar.attr.Params;
 import knight.rider.kitt.bar.attr.RightBtn;
+import knight.rider.kitt.bar.config.BarConfig;
 import knight.rider.kitt.bar.listener.OnBarEventListener;
 import knight.rider.kitt.bar.listener.OnCustomBarEventListener;
 
@@ -240,7 +242,17 @@ public class KittBar extends FrameLayout {
 
         TypedArray array = getContext().obtainStyledAttributes(attrs, R.styleable.KittBar, defStyle, 0);
 
-        int title_gravity = array.getInt(R.styleable.KittBar_bar_title_gravity, 0x03);
+        // 获取全局参数
+        BarConfig.Builder builder = BarConfig.getInstance().getBuilder();
+
+
+        // 标题的摆放位置,优先使用xml获取，无设置，取用全局参数，初始化后不支持代码动态更改
+        int title_gravity = array.getInt(R.styleable.KittBar_bar_title_gravity, -1);
+
+        if (title_gravity == -1)
+            title_gravity = builder.getBarTitleGravity() == BarTitleGravity.LEFT ? 0x03 : 0x11;
+
+        // 固定布局
         LayoutInflater.from(getContext()).inflate(title_gravity == 0x03 ? R.layout.kitt_bar : R.layout.kitt_bar2, this, true);
 
         // 背景透明度，默认不透明
