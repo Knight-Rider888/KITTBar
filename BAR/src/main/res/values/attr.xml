@@ -3,7 +3,7 @@
 
     <declare-styleable name="KittBar">
 
-        <!--标题的位置-->
+        <!--标题的位置，默认左侧-->
         <attr name="bar_title_gravity" format="enum">
             <enum name="left" value="0x03" />
             <enum name="center" value="0x11" />
