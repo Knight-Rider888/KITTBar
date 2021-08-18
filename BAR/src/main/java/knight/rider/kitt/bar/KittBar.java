@@ -267,9 +267,9 @@ public class KittBar extends FrameLayout {
         mBack = findViewById(R.id.kitt_bar_back);
 
         // 设置返回键资源
-        int backResourceId = array.getResourceId(R.styleable.KittBar_bar_backIcon, 0);
+        int backResourceId = array.getResourceId(R.styleable.KittBar_bar_backIcon, -1);
 
-        if (backResourceId == 0)
+        if (backResourceId == -1)
             backResourceId = builder.getBarBackIcon();
         // 设置
         setBackIconResource(backResourceId);

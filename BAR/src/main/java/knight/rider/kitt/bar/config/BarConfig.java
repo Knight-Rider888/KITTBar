@@ -1,5 +1,8 @@
 package knight.rider.kitt.bar.config;
 
+import androidx.annotation.DrawableRes;
+
+import knight.rider.kitt.bar.R;
 import knight.rider.kitt.bar.attr.BarTitleGravity;
 
 /**
@@ -27,6 +30,11 @@ public class BarConfig {
         return this;
     }
 
+    public BarConfig setBackIcon(@DrawableRes int backIcon) {
+        builder.setBackIcon(backIcon);
+        return this;
+    }
+
     public BarConfig setBackIconVerticalPadding(int backIconVerticalPadding) {
         builder.setBackIconVerticalPadding(backIconVerticalPadding);
         return this;
@@ -50,7 +58,7 @@ public class BarConfig {
     public static class Builder {
 
         private BarTitleGravity titleGravity;
-        private int backIcon;
+        private int backIcon = R.drawable.kitt_bar_back;
         private int backIcon_verticalPadding;
         private int backIcon_paddingRight;
         private int backIcon_paddingLeft;
