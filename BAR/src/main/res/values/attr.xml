@@ -4,27 +4,27 @@
     <declare-styleable name="KittBar">
 
         <!--标题的位置-->
-        <attr name="ui_title_gravity" format="enum">
+        <attr name="bar_title_gravity" format="enum">
             <enum name="left" value="0x03" />
             <enum name="center" value="0x11" />
         </attr>
 
         <!--背景透明度(上下滑动时透明度变化)-->
-        <attr name="ui_background_alpha" format="float" />
+        <attr name="bar_background_alpha" format="float" />
 
-        <attr name="ui_custom_layout" format="reference" />
+        <attr name="bar_custom_layout" format="reference" />
 
-        <attr name="ui_custom_layout_width" format="enum">
+        <attr name="bar_custom_layout_width" format="enum">
             <enum name="wrap_content" value="0" />
             <enum name="match_parent" value="1" />
         </attr>
 
         <!--返回键按钮-->
-        <attr name="ui_backIcon_src" format="reference" />
+        <attr name="bar_backIcon_src" format="reference" />
         <!--返回键icon的padding-->
-        <attr name="ui_backIcon_padding" format="dimension" />
+        <attr name="bar_backIcon_padding" format="dimension" />
         <!--返回键icon的是否显示-->
-        <attr name="ui_backIcon_visibility" format="enum">
+        <attr name="bar_backIcon_visibility" format="enum">
             <enum name="VISIBLE" value="0x00000000" />
             <enum name="INVISIBLE" value="0x00000004" />
             <enum name="GONE" value="0x00000008" />
@@ -32,105 +32,105 @@
 
 
         <!--title颜色-->
-        <attr name="ui_title_color" format="color" />
+        <attr name="bar_title_color" format="color" />
         <!--title文字内容-->
-        <attr name="ui_title_content" format="string" />
+        <attr name="bar_title_content" format="string" />
         <!--title字体大小-->
-        <attr name="ui_title_textSize" format="dimension" />
+        <attr name="bar_title_textSize" format="dimension" />
         <!--title字体左边距-->
-        <attr name="ui_title_paddingLeft" format="dimension" />
+        <attr name="bar_title_paddingLeft" format="dimension" />
         <!--title字体右边距-->
-        <attr name="ui_title_paddingRight" format="dimension" />
+        <attr name="bar_title_paddingRight" format="dimension" />
 
 
         <!--title四周的图片-->
-        <attr name="ui_title_drawableLeft" format="reference" />
-        <attr name="ui_title_drawableRight" format="reference" />
-        <attr name="ui_title_drawableTop" format="reference" />
-        <attr name="ui_title_drawableBottom" format="reference" />
+        <attr name="bar_title_drawableLeft" format="reference" />
+        <attr name="bar_title_drawableRight" format="reference" />
+        <attr name="bar_title_drawableTop" format="reference" />
+        <attr name="bar_title_drawableBottom" format="reference" />
         <!--title四周的图片与文字的距离-->
-        <attr name="ui_title_drawablePadding" format="dimension" />
+        <attr name="bar_title_drawablePadding" format="dimension" />
 
 
         <!--搜索框是否支持、默认不支持搜索框-->
-        <attr name="ui_searchLayout_visibility" format="enum">
+        <attr name="bar_searchLayout_visibility" format="enum">
             <enum name="VISIBLE" value="0x00000000" />
             <enum name="INVISIBLE" value="0x00000004" />
             <enum name="GONE" value="0x00000008" />
         </attr>
 
         <!--搜索框背景,默认有背景-->
-        <attr name="ui_searchLayout_color" format="color|reference" />
-        <attr name="ui_searchLayout_stoke_width" format="dimension" />
-        <attr name="ui_searchLayout_stoke_color" format="color|reference" />
-        <attr name="ui_searchLayout_radius" format="dimension" />
+        <attr name="bar_searchLayout_color" format="color|reference" />
+        <attr name="bar_searchLayout_stoke_width" format="dimension" />
+        <attr name="bar_searchLayout_stoke_color" format="color|reference" />
+        <attr name="bar_searchLayout_radius" format="dimension" />
 
         <!--搜索框margin-->
-        <attr name="ui_searchLayout_margin" format="dimension" />
-        <attr name="ui_searchLayout_marginTop" format="dimension" />
-        <attr name="ui_searchLayout_marginBottom" format="dimension" />
-        <attr name="ui_searchLayout_marginLeft" format="dimension" />
-        <attr name="ui_searchLayout_marginRight" format="dimension" />
+        <attr name="bar_searchLayout_margin" format="dimension" />
+        <attr name="bar_searchLayout_marginTop" format="dimension" />
+        <attr name="bar_searchLayout_marginBottom" format="dimension" />
+        <attr name="bar_searchLayout_marginLeft" format="dimension" />
+        <attr name="bar_searchLayout_marginRight" format="dimension" />
 
 
         <!--搜索框输入控件的hint-->
-        <attr name="ui_searchEdit_hint" format="string" />
+        <attr name="bar_searchEdit_hint" format="string" />
         <!--搜索框输入控件的hint颜色-->
-        <attr name="ui_searchEdit_hintColor" format="color" />
+        <attr name="bar_searchEdit_hintColor" format="color" />
         <!--搜索框输入控件的字体大小-->
-        <attr name="ui_searchEdit_textSize" format="dimension" />
+        <attr name="bar_searchEdit_textSize" format="dimension" />
         <!--搜索框输入控件的颜色-->
-        <attr name="ui_searchEdit_textColor" format="color" />
+        <attr name="bar_searchEdit_textColor" format="color" />
         <!--搜索框输入控件的padding-->
-        <attr name="ui_searchEdit_paddingLeft" format="dimension" />
-        <attr name="ui_searchEdit_paddingRight" format="dimension" />
+        <attr name="bar_searchEdit_paddingLeft" format="dimension" />
+        <attr name="bar_searchEdit_paddingRight" format="dimension" />
 
         <!--搜索框输入控件的左、右侧图标-->
-        <attr name="ui_searchEdit_drawableLeft" format="reference" />
-        <attr name="ui_searchEdit_drawableRight" format="reference" />
+        <attr name="bar_searchEdit_drawableLeft" format="reference" />
+        <attr name="bar_searchEdit_drawableRight" format="reference" />
         <!--搜索框输入控件的左侧图标的距离文字距离-->
-        <attr name="ui_searchEdit_drawablePadding" format="dimension" />
+        <attr name="bar_searchEdit_drawablePadding" format="dimension" />
 
         <!--搜索框输入控件的清空文字按钮-->
-        <attr name="ui_searchEditClear_src" format="reference" />
+        <attr name="bar_searchEditClear_src" format="reference" />
 
         <!--搜索框输入控件是否支持输入和清除 默认支持写入与删除-->
-        <attr name="ui_searchEdit_support_write_and_clear" format="enum">
+        <attr name="bar_searchEdit_support_write_and_clear" format="enum">
             <enum name="bothSupport" value="0" />
             <enum name="noneSupport" value="1" />
             <enum name="onlyWrite" value="2" />
         </attr>
 
         <!--搜索框支持搜索hint内容-->
-        <attr name="ui_searchEdit_hint_search_support" format="boolean" />
+        <attr name="bar_searchEdit_hint_search_support" format="boolean" />
 
         <!--右侧三个按钮的显示-->
-        <attr name="ui_rightButton_show" format="flags">
+        <attr name="bar_rightButton_show" format="flags">
             <flag name="left" value="1" />
             <flag name="middle" value="10" />
             <flag name="right" value="100" />
         </attr>
 
         <!--右侧三个按钮的内边距-->
-        <attr name="ui_rightButton_padding" format="dimension" />
+        <attr name="bar_rightButton_padding" format="dimension" />
         <!--右侧三个按钮的字体大小-->
-        <attr name="ui_rightButton_textSize" format="dimension" />
+        <attr name="bar_rightButton_textSize" format="dimension" />
         <!--右侧三个按钮的字体颜色-->
-        <attr name="ui_rightButton_textColor" format="color" />
+        <attr name="bar_rightButton_textColor" format="color" />
 
         <!--右侧三个按钮的第一个文字内容-->
-        <attr name="ui_rightButton_first_text" format="string" />
+        <attr name="bar_rightButton_first_text" format="string" />
         <!--右侧三个按钮的第二个文字内容-->
-        <attr name="ui_rightButton_second_text" format="string" />
+        <attr name="bar_rightButton_second_text" format="string" />
         <!--右侧三个按钮的第三个文字内容-->
-        <attr name="ui_rightButton_third_text" format="string" />
+        <attr name="bar_rightButton_third_text" format="string" />
 
         <!--右侧三个按钮的第一个image-->
-        <attr name="ui_rightButton_first_src" format="reference" />
+        <attr name="bar_rightButton_first_src" format="reference" />
         <!--右侧三个按钮的第二个image-->
-        <attr name="ui_rightButton_second_src" format="reference" />
+        <attr name="bar_rightButton_second_src" format="reference" />
         <!--右侧三个按钮的第三个image-->
-        <attr name="ui_rightButton_third_src" format="reference" />
+        <attr name="bar_rightButton_third_src" format="reference" />
 
 
     </declare-styleable>

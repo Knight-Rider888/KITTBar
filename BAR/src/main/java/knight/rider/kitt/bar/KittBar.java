@@ -240,89 +240,89 @@ public class KittBar extends FrameLayout {
 
         TypedArray array = getContext().obtainStyledAttributes(attrs, R.styleable.KittBar, defStyle, 0);
 
-        int title_gravity = array.getInt(R.styleable.KittBar_ui_title_gravity, 0x03);
+        int title_gravity = array.getInt(R.styleable.KittBar_bar_title_gravity, 0x03);
         LayoutInflater.from(getContext()).inflate(title_gravity == 0x03 ? R.layout.kitt_bar : R.layout.kitt_bar2, this, true);
 
         // 背景透明度，默认不透明
-        float fraction = array.getFloat(R.styleable.KittBar_ui_background_alpha, 1);
+        float fraction = array.getFloat(R.styleable.KittBar_bar_background_alpha, 1);
         setBackgroundAlpha(fraction);
 
         // 返回键
         mBack = ((ImageView) findViewById(R.id.kitt_bar_back));
 
         // 设置返回键资源
-        int backResourceId = array.getResourceId(R.styleable.KittBar_ui_backIcon_src, 0);
+        int backResourceId = array.getResourceId(R.styleable.KittBar_bar_backIcon_src, 0);
         setBackIconResource(backResourceId);
         // 设置返回键的padding
-        int backIconPadding = (int) array.getDimension(R.styleable.KittBar_ui_backIcon_padding, 0);
+        int backIconPadding = (int) array.getDimension(R.styleable.KittBar_bar_backIcon_padding, 0);
         setBackIconPadding(backIconPadding);
         // 设置返回键是否可见
-        int backVisible = array.getInt(R.styleable.KittBar_ui_backIcon_visibility, VISIBLE);
+        int backVisible = array.getInt(R.styleable.KittBar_bar_backIcon_visibility, VISIBLE);
         setBackIconVisibility(backVisible);
 
         // 自定义布局
         mCustomLayout = findViewById(R.id.kitt_bar_custom_layout);
-        int customId = array.getResourceId(R.styleable.KittBar_ui_custom_layout, 0);
+        int customId = array.getResourceId(R.styleable.KittBar_bar_custom_layout, 0);
         setCustomLayout(customId);
 
         // 设置自定义布局的宽度
-        int customWeight = array.getInt(R.styleable.KittBar_ui_custom_layout_width, 0);
+        int customWeight = array.getInt(R.styleable.KittBar_bar_custom_layout_width, 0);
         setCustomLayoutWidth(customWeight == 1 ? Params.MATCH_PARENT : Params.WRAP_CONTENT);
 
         // 标题
         mTitle = ((TextView) findViewById(R.id.kitt_bar_title));
         mTitle.setSelected(true);
 
-        int titleColor = array.getColor(R.styleable.KittBar_ui_title_color, Color.parseColor("#000000"));
+        int titleColor = array.getColor(R.styleable.KittBar_bar_title_color, Color.parseColor("#000000"));
         setTitleColor(titleColor);
 
-        String titleStr = array.getString(R.styleable.KittBar_ui_title_content);
+        String titleStr = array.getString(R.styleable.KittBar_bar_title_content);
         setTitleContent(titleStr);
 
-        float titleSize = array.getDimension(R.styleable.KittBar_ui_title_textSize, dip2px(18));
+        float titleSize = array.getDimension(R.styleable.KittBar_bar_title_textSize, dip2px(18));
         setTitleTextSize(titleSize);
 
-        int titlePaddingLeft = (int) array.getDimension(R.styleable.KittBar_ui_title_paddingLeft, 0);
-        int titlePaddingRight = (int) array.getDimension(R.styleable.KittBar_ui_title_paddingRight, 0);
+        int titlePaddingLeft = (int) array.getDimension(R.styleable.KittBar_bar_title_paddingLeft, 0);
+        int titlePaddingRight = (int) array.getDimension(R.styleable.KittBar_bar_title_paddingRight, 0);
         setTitlePadding(titlePaddingLeft, titlePaddingRight);
 
 
-        int titleLeftDrawableId = array.getResourceId(R.styleable.KittBar_ui_title_drawableLeft, 0);
-        int titleRightDrawableId = array.getResourceId(R.styleable.KittBar_ui_title_drawableRight, 0);
-        int titleTopDrawableId = array.getResourceId(R.styleable.KittBar_ui_title_drawableTop, 0);
-        int titleBottomDrawableId = array.getResourceId(R.styleable.KittBar_ui_title_drawableBottom, 0);
+        int titleLeftDrawableId = array.getResourceId(R.styleable.KittBar_bar_title_drawableLeft, 0);
+        int titleRightDrawableId = array.getResourceId(R.styleable.KittBar_bar_title_drawableRight, 0);
+        int titleTopDrawableId = array.getResourceId(R.styleable.KittBar_bar_title_drawableTop, 0);
+        int titleBottomDrawableId = array.getResourceId(R.styleable.KittBar_bar_title_drawableBottom, 0);
 
         setTitleCompoundDrawables(getDrawable(titleLeftDrawableId), getDrawable(titleTopDrawableId),
                 getDrawable(titleRightDrawableId), getDrawable(titleBottomDrawableId));
 
-        int titleDrawablePadding = (int) array.getDimension(R.styleable.KittBar_ui_title_drawablePadding, 0);
+        int titleDrawablePadding = (int) array.getDimension(R.styleable.KittBar_bar_title_drawablePadding, 0);
         setTitleCompoundDrawablePadding(titleDrawablePadding);
 
         // 搜索区域
         mSearchLayout = findViewById(R.id.kitt_bar_searchLayout);
 
         // 是否可见
-        int searchLayoutVisible = array.getInt(R.styleable.KittBar_ui_searchLayout_visibility, INVISIBLE);
+        int searchLayoutVisible = array.getInt(R.styleable.KittBar_bar_searchLayout_visibility, INVISIBLE);
         setSearchLayoutVisibility(searchLayoutVisible);
 
         mSearchLayoutDrawable = getSearchLayoutDrawable();
         mSearchLayout.setBackground(mSearchLayoutDrawable);
 
-        Drawable searchBg = array.getDrawable(R.styleable.KittBar_ui_searchLayout_color);
+        Drawable searchBg = array.getDrawable(R.styleable.KittBar_bar_searchLayout_color);
         setSearchLayoutBackground(searchBg);
 
-        int searchBgStoke = (int) array.getDimension(R.styleable.KittBar_ui_searchLayout_stoke_width, 0);
-        int searchBgStokeColor = array.getColor(R.styleable.KittBar_ui_searchLayout_stoke_color, Color.parseColor("#00000000"));
+        int searchBgStoke = (int) array.getDimension(R.styleable.KittBar_bar_searchLayout_stoke_width, 0);
+        int searchBgStokeColor = array.getColor(R.styleable.KittBar_bar_searchLayout_stoke_color, Color.parseColor("#00000000"));
         setSearchLayoutStoke(searchBgStoke, searchBgStokeColor);
 
-        float searchBgRadius = array.getDimension(R.styleable.KittBar_ui_searchLayout_radius, 0);
+        float searchBgRadius = array.getDimension(R.styleable.KittBar_bar_searchLayout_radius, 0);
         setSearchLayoutCornerRadius(searchBgRadius);
 
-        int searchLayoutMargin = (int) array.getDimension(R.styleable.KittBar_ui_searchLayout_margin, 0);
-        int searchLayoutMarginTop = (int) array.getDimension(R.styleable.KittBar_ui_searchLayout_marginTop, 0);
-        int searchLayoutMarginBottom = (int) array.getDimension(R.styleable.KittBar_ui_searchLayout_marginBottom, 0);
-        int searchLayoutMarginLeft = (int) array.getDimension(R.styleable.KittBar_ui_searchLayout_marginLeft, 0);
-        int searchLayoutMarginRight = (int) array.getDimension(R.styleable.KittBar_ui_searchLayout_marginRight, 0);
+        int searchLayoutMargin = (int) array.getDimension(R.styleable.KittBar_bar_searchLayout_margin, 0);
+        int searchLayoutMarginTop = (int) array.getDimension(R.styleable.KittBar_bar_searchLayout_marginTop, 0);
+        int searchLayoutMarginBottom = (int) array.getDimension(R.styleable.KittBar_bar_searchLayout_marginBottom, 0);
+        int searchLayoutMarginLeft = (int) array.getDimension(R.styleable.KittBar_bar_searchLayout_marginLeft, 0);
+        int searchLayoutMarginRight = (int) array.getDimension(R.styleable.KittBar_bar_searchLayout_marginRight, 0);
 
         if (searchLayoutMargin == 0)
             setSearchLayoutMargin(searchLayoutMarginLeft, searchLayoutMarginTop, searchLayoutMarginRight, searchLayoutMarginBottom);
@@ -332,39 +332,39 @@ public class KittBar extends FrameLayout {
         // 搜索编辑框
         mSearchView = ((EditText) findViewById(R.id.kitt_bar_search_edit));
 
-        String hint = array.getString(R.styleable.KittBar_ui_searchEdit_hint);
+        String hint = array.getString(R.styleable.KittBar_bar_searchEdit_hint);
         setSearchEditHint(hint);
-        int hintColor = array.getColor(R.styleable.KittBar_ui_searchEdit_hintColor, getResources().getColor(android.R.color.darker_gray));
+        int hintColor = array.getColor(R.styleable.KittBar_bar_searchEdit_hintColor, getResources().getColor(android.R.color.darker_gray));
         setSearchEditHintColor(hintColor);
-        float editSize = array.getDimension(R.styleable.KittBar_ui_searchEdit_textSize, dip2px(13));
+        float editSize = array.getDimension(R.styleable.KittBar_bar_searchEdit_textSize, dip2px(13));
         setSearchEditTextSize(editSize);
-        int editColor = array.getColor(R.styleable.KittBar_ui_searchEdit_textColor, getResources().getColor(android.R.color.black));
+        int editColor = array.getColor(R.styleable.KittBar_bar_searchEdit_textColor, getResources().getColor(android.R.color.black));
         setSearchEditTextColor(editColor);
 
-        int searchEditViewPaddingLeft = (int) array.getDimension(R.styleable.KittBar_ui_searchEdit_paddingLeft, 0);
-        int searchEditViewPaddingRight = (int) array.getDimension(R.styleable.KittBar_ui_searchEdit_paddingRight, 0);
+        int searchEditViewPaddingLeft = (int) array.getDimension(R.styleable.KittBar_bar_searchEdit_paddingLeft, 0);
+        int searchEditViewPaddingRight = (int) array.getDimension(R.styleable.KittBar_bar_searchEdit_paddingRight, 0);
         mSearchRightTemp = ((ImageView) findViewById(R.id.kitt_right_temp));
         setSearchEditViewPadding(searchEditViewPaddingLeft, searchEditViewPaddingRight);
 
 
-        int drawableLeftResourceId = array.getResourceId(R.styleable.KittBar_ui_searchEdit_drawableLeft, 0);
+        int drawableLeftResourceId = array.getResourceId(R.styleable.KittBar_bar_searchEdit_drawableLeft, 0);
         setSearchEditViewDrawableLeft(getDrawable(drawableLeftResourceId));
 
         mSearchRightIcon = ((ImageView) findViewById(R.id.kitt_edit_right_icon));
-        int searchRightIconId = array.getResourceId(R.styleable.KittBar_ui_searchEdit_drawableRight, 0);
+        int searchRightIconId = array.getResourceId(R.styleable.KittBar_bar_searchEdit_drawableRight, 0);
         setSearchEditViewDrawableRight(getDrawable(searchRightIconId));
 
         // 清除按钮
         mClearView = ((ImageView) findViewById(R.id.kitt_clear_View));
         // 要放在设置编辑框drawPadding前
-        int closeResourceId = array.getResourceId(R.styleable.KittBar_ui_searchEditClear_src, R.drawable.lib_temp_close);
+        int closeResourceId = array.getResourceId(R.styleable.KittBar_bar_searchEditClear_src, R.drawable.lib_temp_close);
         setSearchEditClearViewResource(getDrawable(closeResourceId));
 
-        int drawablePadding = (int) array.getDimension(R.styleable.KittBar_ui_searchEdit_drawablePadding, 0);
+        int drawablePadding = (int) array.getDimension(R.styleable.KittBar_bar_searchEdit_drawablePadding, 0);
         setSearchEditCompoundDrawablePadding(drawablePadding);
 
         // 是否支持清除和输入
-        mSupportWriteAndClear = array.getInt(R.styleable.KittBar_ui_searchEdit_support_write_and_clear, 0);
+        mSupportWriteAndClear = array.getInt(R.styleable.KittBar_bar_searchEdit_support_write_and_clear, 0);
         EditSupport editSupport;
         switch (mSupportWriteAndClear) {
             case 1:
@@ -381,7 +381,7 @@ public class KittBar extends FrameLayout {
 
 
         // 是否支持提示内容搜索
-        mSupportHintSearch = array.getBoolean(R.styleable.KittBar_ui_searchEdit_hint_search_support, false);
+        mSupportHintSearch = array.getBoolean(R.styleable.KittBar_bar_searchEdit_hint_search_support, false);
 
 
         // 右侧按钮
@@ -389,30 +389,30 @@ public class KittBar extends FrameLayout {
         mRightBtn2 = findViewById(R.id.kitt_bar_right_btn2);
         mRightBtn3 = findViewById(R.id.kitt_bar_right_btn3);
 
-        int flagValue = array.getInt(R.styleable.KittBar_ui_rightButton_show, 0);
+        int flagValue = array.getInt(R.styleable.KittBar_bar_rightButton_show, 0);
         setRightButtonsVisibility(flagValue);
 
-        float rightBtnPadding = array.getDimension(R.styleable.KittBar_ui_rightButton_padding, 0);
+        float rightBtnPadding = array.getDimension(R.styleable.KittBar_bar_rightButton_padding, 0);
         setRightButtonsPadding((int) rightBtnPadding);
 
-        float rightBtnTextSize = array.getDimension(R.styleable.KittBar_ui_rightButton_textSize, dip2px(14));
+        float rightBtnTextSize = array.getDimension(R.styleable.KittBar_bar_rightButton_textSize, dip2px(14));
         setRightButtonsTextSize(rightBtnTextSize);
 
-        int color = array.getColor(R.styleable.KittBar_ui_rightButton_textColor, Color.parseColor("#000000"));
+        int color = array.getColor(R.styleable.KittBar_bar_rightButton_textColor, Color.parseColor("#000000"));
         setRightButtonsTextColor(color);
 
-        String text1 = array.getString(R.styleable.KittBar_ui_rightButton_first_text);
+        String text1 = array.getString(R.styleable.KittBar_bar_rightButton_first_text);
         setRightButtonsText(RightBtn.RIGHT_FIRST, text1);
-        String text2 = array.getString(R.styleable.KittBar_ui_rightButton_second_text);
+        String text2 = array.getString(R.styleable.KittBar_bar_rightButton_second_text);
         setRightButtonsText(RightBtn.RIGHT_SECOND, text2);
-        String text3 = array.getString(R.styleable.KittBar_ui_rightButton_third_text);
+        String text3 = array.getString(R.styleable.KittBar_bar_rightButton_third_text);
         setRightButtonsText(RightBtn.RIGHT_THIRD, text3);
 
-        int resourceId1 = array.getResourceId(R.styleable.KittBar_ui_rightButton_first_src, 0);
+        int resourceId1 = array.getResourceId(R.styleable.KittBar_bar_rightButton_first_src, 0);
         setRightButtonsImage(RightBtn.RIGHT_FIRST, getDrawable(resourceId1));
-        int resourceId2 = array.getResourceId(R.styleable.KittBar_ui_rightButton_second_src, 0);
+        int resourceId2 = array.getResourceId(R.styleable.KittBar_bar_rightButton_second_src, 0);
         setRightButtonsImage(RightBtn.RIGHT_SECOND, getDrawable(resourceId2));
-        int resourceId3 = array.getResourceId(R.styleable.KittBar_ui_rightButton_third_src, 0);
+        int resourceId3 = array.getResourceId(R.styleable.KittBar_bar_rightButton_third_src, 0);
         setRightButtonsImage(RightBtn.RIGHT_THIRD, getDrawable(resourceId3));
 
         // 回收
