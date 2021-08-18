@@ -158,7 +158,7 @@ public class KittBar extends FrameLayout {
         });
 
         // 返回键的监听事件
-        mBack.setOnClickListener(new OnClickListener() {
+        mBackLayout.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mListener != null && mBack.getDrawable() != null)
@@ -552,7 +552,7 @@ public class KittBar extends FrameLayout {
      * @param visibility One of {@link #VISIBLE}, {@link #INVISIBLE}.
      */
     public KittBar setBackIconVisibility(@Visibility int visibility) {
-        mBack.setVisibility(visibility);
+        mBackLayout.setVisibility(visibility);
         return this;
     }
 
