@@ -9,7 +9,7 @@
             <enum name="center" value="0x11" />
         </attr>
 
-        <!--背景透明度(上下滑动时透明度变化)-->
+        <!--背景透明度,范围 0f - 1f (默认1-不透明)-->
         <attr name="bar_background_alpha" format="float" />
 
         <attr name="bar_custom_layout" format="reference" />

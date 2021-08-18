@@ -255,8 +255,13 @@ public class KittBar extends FrameLayout {
         // 固定布局
         LayoutInflater.from(getContext()).inflate(title_gravity == 0x03 ? R.layout.kitt_bar : R.layout.kitt_bar2, this, true);
 
-        // 背景透明度，默认不透明
-        float fraction = array.getFloat(R.styleable.KittBar_bar_background_alpha, 1);
+        // 背景透明度，优先使用xml获取，无设置，取用全局参数
+        float fraction = array.getFloat(R.styleable.KittBar_bar_background_alpha, -1);
+
+        if (fraction == -1)
+            fraction = builder.getBarBackgroundAlpha();
+
+        // 设置背景透明度
         setBackgroundAlpha(fraction);
 
         // 返回键
