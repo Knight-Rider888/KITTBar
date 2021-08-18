@@ -15,13 +15,13 @@
         <!--返回键按钮，请将切图放入到对应的文件夹下，此处用的wrap_content进行自适应的-->
         <!--如果图片过大，需要通过控制导航栏高度、padding等方式进行限制-->
         <attr name="bar_backIcon" format="reference" />
-        <!--返回键icon的垂直方向padding，包含paddingTop、paddingBottom-->
+        <!--返回键icon的垂直方向padding，包含paddingTop、paddingBottom，默认0-->
         <attr name="bar_backIcon_verticalPadding" format="dimension" />
-        <!--返回键icon的paddingLeft-->
+        <!--返回键icon的paddingLeft，默认0-->
         <attr name="bar_backIcon_paddingLeft" format="dimension" />
-        <!--返回键icon的paddingRight-->
+        <!--返回键icon的paddingRight，默认0-->
         <attr name="bar_backIcon_paddingRight" format="dimension" />
-        <!--返回键icon的是否显示-->
+        <!--返回键icon的是否显示，默认显示-->
         <attr name="bar_backIcon_visibility" format="enum">
             <enum name="VISIBLE" value="0x00000000" />
             <enum name="INVISIBLE" value="0x00000004" />

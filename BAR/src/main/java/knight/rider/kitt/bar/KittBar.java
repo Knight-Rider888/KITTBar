@@ -60,6 +60,8 @@ public class KittBar extends FrameLayout {
 
 
     // 返回按钮
+    private FrameLayout mBackLayout;
+    // 返回按钮
     private ImageView mBack;
     // 用户自定义布局的容器
     private FrameLayout mCustomLayout;
@@ -250,7 +252,7 @@ public class KittBar extends FrameLayout {
         int title_gravity = array.getInt(R.styleable.KittBar_bar_title_gravity, -1);
 
         if (title_gravity == -1)
-            title_gravity = builder.getBarTitleGravity() == BarTitleGravity.LEFT ? 0x03 : 0x11;
+            title_gravity = builder.getTitleGravity() == BarTitleGravity.LEFT ? 0x03 : 0x11;
 
         // 固定布局
         LayoutInflater.from(getContext()).inflate(title_gravity == 0x03 ? R.layout.kitt_bar : R.layout.kitt_bar2, this, true);
@@ -259,22 +261,54 @@ public class KittBar extends FrameLayout {
         float fraction = array.getFloat(R.styleable.KittBar_bar_background_alpha, -1);
 
         if (fraction == -1)
-            fraction = builder.getBarBackgroundAlpha();
+            fraction = builder.getBackgroundAlpha();
 
         // 设置背景透明度
         setBackgroundAlpha(fraction);
 
         // 返回键
+        mBackLayout = ((FrameLayout) findViewById(R.id.kitt_bar_back_layout));
         mBack = ((ImageView) findViewById(R.id.kitt_bar_back));
 
         // 设置返回键资源
-        int backResourceId = array.getResourceId(R.styleable.KittBar_bar_backIcon_src, 0);
+        int backResourceId = array.getResourceId(R.styleable.KittBar_bar_backIcon, 0);
+
+        if (backResourceId == 0)
+            backResourceId = builder.getBarBackIcon();
+        // 设置
         setBackIconResource(backResourceId);
-        // 设置返回键的padding
-        int backIconPadding = (int) array.getDimension(R.styleable.KittBar_bar_backIcon_padding, 0);
-        setBackIconPadding(backIconPadding);
+
+        // 设置返回键的垂直方向的padding
+        int backVerticalPadding = (int) array.getDimension(R.styleable.KittBar_bar_backIcon_verticalPadding, Integer.MAX_VALUE);
+
+        if (backVerticalPadding == Integer.MAX_VALUE)
+            backVerticalPadding = builder.getBackIconVerticalPadding();
+
+        setBackIconVerticalPadding(backVerticalPadding);
+
+        // 设置返回键的paddingLeft
+        int backPaddingLeft = (int) array.getDimension(R.styleable.KittBar_bar_backIcon_paddingLeft, Integer.MAX_VALUE);
+
+        if (backPaddingLeft == Integer.MAX_VALUE)
+            backPaddingLeft = builder.getBackIconPaddingLeft();
+
+        setBackIconPaddingLeft(backPaddingLeft);
+
+        // 设置返回键的paddingRight
+        int backPaddingRight = (int) array.getDimension(R.styleable.KittBar_bar_backIcon_paddingRight, Integer.MAX_VALUE);
+
+        if (backPaddingRight == Integer.MAX_VALUE)
+            backPaddingRight = builder.getBackIconPaddingRight();
+
+        setBackIconPaddingRight(backPaddingRight);
+
+
         // 设置返回键是否可见
-        int backVisible = array.getInt(R.styleable.KittBar_bar_backIcon_visibility, VISIBLE);
+        int backVisible = array.getInt(R.styleable.KittBar_bar_backIcon_visibility, -1);
+
+        if (backVisible == -1)
+            backVisible = builder.getBackIconVisibility();
+
         setBackIconVisibility(backVisible);
 
         // 自定义布局
@@ -450,7 +484,7 @@ public class KittBar extends FrameLayout {
         if (background == null)
             return this;
 
-        int alpha = 1;
+        int alpha;
 
         if (alphaPercent >= 1) {
             alpha = 255;
@@ -475,18 +509,39 @@ public class KittBar extends FrameLayout {
             Drawable drawable_n = getResources().getDrawable(resId);
             mBack.setImageDrawable(drawable_n);
         } catch (Exception e) {
-            Log.e("XTopNavigationBar", "setBackIconResource()", e);
+            Log.e(KittBar.class.getSimpleName(), "setBackIconResource()", e);
         }
         return this;
     }
 
+
     /**
-     * 设置返回键的左、右padding
+     * 设置返回键的上、下padding
      *
-     * @param backIconPadding the left and right padding in pixels
+     * @param backIconVerticalPadding the top and bottom padding in pixels
      */
-    public KittBar setBackIconPadding(int backIconPadding) {
-        mBack.setPadding(backIconPadding, 0, backIconPadding, 0);
+    public KittBar setBackIconVerticalPadding(int backIconVerticalPadding) {
+        mBack.setPadding(mBack.getPaddingLeft(), backIconVerticalPadding, mBack.getPaddingRight(), backIconVerticalPadding);
+        return this;
+    }
+
+    /**
+     * 设置返回键的左padding
+     *
+     * @param backIconPaddingLeft the left padding in pixels
+     */
+    public KittBar setBackIconPaddingLeft(int backIconPaddingLeft) {
+        mBack.setPadding(backIconPaddingLeft, mBack.getPaddingTop(), mBack.getPaddingRight(), mBack.getPaddingBottom());
+        return this;
+    }
+
+    /**
+     * 设置返回键的右padding
+     *
+     * @param backIconPaddingRight the right padding in pixels
+     */
+    public KittBar setBackIconPaddingRight(int backIconPaddingRight) {
+        mBack.setPadding(mBack.getPaddingLeft(), mBack.getPaddingTop(), backIconPaddingRight, mBack.getPaddingBottom());
         return this;
     }
 

@@ -19,13 +19,33 @@ public class BarConfig {
     }
 
 
-    public BarConfig setBarTitleGravity(BarTitleGravity titleGravity) {
-        builder.setBarTitleGravity(titleGravity);
+    public BarConfig setTitleGravity(BarTitleGravity titleGravity) {
+        builder.setTitleGravity(titleGravity);
         return this;
     }
 
-    public BarConfig bar_background_alpha(@FloatRange(from = 0, to = 1) float backgroundAlpha) {
-        builder.setBarBackgroundAlpha(backgroundAlpha);
+    public BarConfig setBackgroundAlpha(@FloatRange(from = 0, to = 1) float backgroundAlpha) {
+        builder.setBackgroundAlpha(backgroundAlpha);
+        return this;
+    }
+
+    public BarConfig setBackIconVerticalPadding(int backIconVerticalPadding) {
+        builder.setBackIconVerticalPadding(backIconVerticalPadding);
+        return this;
+    }
+
+    public BarConfig setBackIconPaddingLeft(int backIconPaddingLeft) {
+        builder.setBackIconPaddingLeft(backIconPaddingLeft);
+        return this;
+    }
+
+    public BarConfig setBackIconPaddingRight(int backIconPaddingRight) {
+        builder.setBackIconPaddingRight(backIconPaddingRight);
+        return this;
+    }
+
+    public BarConfig setBackIconVisibility(int backIconVisibility) {
+        builder.setBackIconVisibility(backIconVisibility);
         return this;
     }
 
@@ -36,23 +56,69 @@ public class BarConfig {
 
     public static class Builder {
 
-        private BarTitleGravity bar_title_gravity;
-        private float bar_background_alpha = -1;
+        private BarTitleGravity title_gravity;
+        private float background_alpha = -1;
+        private int backIcon;
+        private int backIcon_verticalPadding;
+        private int backIcon_paddingRight;
+        private int backIcon_paddingLeft;
+        private int backIcon_visibility;
 
-        public BarTitleGravity getBarTitleGravity() {
-            return bar_title_gravity == null ? BarTitleGravity.LEFT : bar_title_gravity;
+
+        public BarTitleGravity getTitleGravity() {
+            return title_gravity == null ? BarTitleGravity.LEFT : title_gravity;
         }
 
-        public void setBarTitleGravity(BarTitleGravity bar_title_gravity) {
-            this.bar_title_gravity = bar_title_gravity;
+        public void setTitleGravity(BarTitleGravity title_gravity) {
+            this.title_gravity = title_gravity;
         }
 
-        public float getBarBackgroundAlpha() {
-            return bar_background_alpha == -1 ? 1 : bar_background_alpha;
+        public float getBackgroundAlpha() {
+            return background_alpha == -1 ? 1 : background_alpha;
         }
 
-        public void setBarBackgroundAlpha(float bar_background_alpha) {
-            this.bar_background_alpha = bar_background_alpha;
+        public void setBackgroundAlpha(float background_alpha) {
+            this.background_alpha = background_alpha;
+        }
+
+        public int getBarBackIcon() {
+            return backIcon;
+        }
+
+        public void setBackIcon(int backIcon) {
+            this.backIcon = backIcon;
+        }
+
+        public int getBackIconVerticalPadding() {
+            return backIcon_verticalPadding;
+        }
+
+        public void setBackIconVerticalPadding(int backIcon_verticalPadding) {
+            this.backIcon_verticalPadding = backIcon_verticalPadding;
+        }
+
+        public int getBackIconPaddingRight() {
+            return backIcon_paddingRight;
+        }
+
+        public void setBackIconPaddingRight(int backIcon_paddingRight) {
+            this.backIcon_paddingRight = backIcon_paddingRight;
+        }
+
+        public int getBackIconPaddingLeft() {
+            return backIcon_paddingLeft;
+        }
+
+        public void setBackIconPaddingLeft(int backIcon_paddingLeft) {
+            this.backIcon_paddingLeft = backIcon_paddingLeft;
+        }
+
+        public int getBackIconVisibility() {
+            return backIcon_visibility;
+        }
+
+        public void setBackIconVisibility(int backIcon_visibility) {
+            this.backIcon_visibility = backIcon_visibility;
         }
     }
 
