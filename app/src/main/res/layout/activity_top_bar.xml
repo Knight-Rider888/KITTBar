@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -103,31 +102,6 @@
     <knight.rider.kitt.bar.KittBar
         android:id="@+id/kitt_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#000"
-        app:bar_background_alpha="0.5"
-        app:bar_custom_layout="@layout/custom"
-        app:bar_searchEdit_hint="我是提示内容"
-        app:bar_searchEdit_hintColor="#00BCD4"
-        app:bar_searchEdit_paddingLeft="10dp"
-        app:bar_searchEdit_paddingRight="10dp"
-        app:bar_searchEdit_support_write_and_clear="bothSupport"
-        app:bar_searchEdit_textColor="#9C27B0"
-        app:bar_searchEdit_textSize="30dp"
-        app:bar_searchLayout_color="@color/design_default_color_primary"
-        app:bar_searchLayout_margin="5dp"
-        app:bar_searchLayout_radius="12dp"
-        app:bar_searchLayout_stoke_color="#8BC34A"
-        app:bar_searchLayout_stoke_width="3dp"
-        app:bar_title_color="@color/design_default_color_error"
-        app:bar_title_content="标题"
-        app:bar_title_drawableBottom="@mipmap/dot"
-        app:bar_title_drawableLeft="@mipmap/dot"
-        app:bar_title_drawablePadding="3dp"
-        app:bar_title_drawableRight="@mipmap/dot"
-        app:bar_title_drawableTop="@mipmap/dot"
-        app:bar_title_paddingLeft="30dp"
-        app:bar_title_paddingRight="10dp"
-        app:bar_title_textSize="10dp" />
+        android:layout_height="50dp" />
 
 </FrameLayout>

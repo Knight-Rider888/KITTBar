@@ -60,11 +60,11 @@ public class KittBar extends FrameLayout {
 
 
     // 返回按钮
-    private FrameLayout mBackLayout;
+    private LinearLayout mBackLayout;
     // 返回按钮
     private ImageView mBack;
     // 用户自定义布局的容器
-    private FrameLayout mCustomLayout;
+    private LinearLayout mCustomLayout;
     // 用户填充的自定义布局
     private View mCustomView;
 
@@ -263,8 +263,8 @@ public class KittBar extends FrameLayout {
         setBackgroundAlpha(fraction);
 
         // 返回键
-        mBackLayout = ((FrameLayout) findViewById(R.id.kitt_bar_back_layout));
-        mBack = ((ImageView) findViewById(R.id.kitt_bar_back));
+        mBackLayout = findViewById(R.id.kitt_bar_back_layout);
+        mBack = findViewById(R.id.kitt_bar_back);
 
         // 设置返回键资源
         int backResourceId = array.getResourceId(R.styleable.KittBar_bar_backIcon, 0);

@@ -86,7 +86,9 @@ public class TopBarActivity extends AppCompatActivity {
     }
 
     public void backIconPadding(View view) {
-        kittBar.setBackIconPadding(100);
+        kittBar.setBackIconVerticalPadding(50);
+        kittBar.setBackIconPaddingLeft(100);
+        kittBar.setBackIconPaddingRight(300);
     }
 
     public void custom(View view) {
