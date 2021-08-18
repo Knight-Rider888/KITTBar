@@ -300,11 +300,7 @@ public class KittBar extends FrameLayout {
 
 
         // 设置返回键是否可见
-        int backVisible = array.getInt(R.styleable.KittBar_bar_backIcon_visibility, -1);
-
-        if (backVisible == -1)
-            backVisible = builder.getBackIconVisibility();
-
+        int backVisible = array.getInt(R.styleable.KittBar_bar_backIcon_visibility, 0x00000000);
         setBackIconVisibility(backVisible);
 
         // 自定义布局

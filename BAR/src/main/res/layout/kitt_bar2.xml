@@ -9,12 +9,20 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/kitt_bar_back"
+        <FrameLayout
+            android:id="@+id/kitt_bar_back_layout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:src="@drawable/kitt_bar_back" />
+            android:foreground="?android:attr/selectableItemBackground">
+
+            <ImageView
+                android:id="@+id/kitt_bar_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/kitt_bar_back" />
+
+        </FrameLayout>
 
         <FrameLayout
             android:id="@+id/kitt_bar_custom_layout"

@@ -2,6 +2,11 @@ package knight.rider.kitt.bar.config;
 
 import knight.rider.kitt.bar.attr.BarTitleGravity;
 
+/**
+ * 全局样式，只要请单文件、代码无设置就会使用全局的样式，
+ * 请尽量减少使用全局参数，全局95%都在用的在进行设置，如：返回键的资源id
+ * 否则部分布局使用不到的全局样式也需要进行单独替换
+ */
 public class BarConfig {
 
     private final static BarConfig INSTANCE = new BarConfig();
@@ -37,11 +42,6 @@ public class BarConfig {
         return this;
     }
 
-    public BarConfig setBackIconVisibility(int backIconVisibility) {
-        builder.setBackIconVisibility(backIconVisibility);
-        return this;
-    }
-
     // 返回builder
     public BarConfig.Builder getBuilder() {
         return builder;
@@ -54,7 +54,6 @@ public class BarConfig {
         private int backIcon_verticalPadding;
         private int backIcon_paddingRight;
         private int backIcon_paddingLeft;
-        private int backIcon_visibility;
 
 
         public BarTitleGravity getTitleGravity() {
@@ -97,13 +96,6 @@ public class BarConfig {
             this.backIcon_paddingLeft = backIcon_paddingLeft;
         }
 
-        public int getBackIconVisibility() {
-            return backIcon_visibility;
-        }
-
-        public void setBackIconVisibility(int backIcon_visibility) {
-            this.backIcon_visibility = backIcon_visibility;
-        }
     }
 
 }
