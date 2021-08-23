@@ -1,5 +1,7 @@
 package knight.rider.kitt.bar.config;
 
+import android.graphics.Color;
+
 import androidx.annotation.DrawableRes;
 
 import knight.rider.kitt.bar.R;
@@ -50,6 +52,21 @@ public class BarConfig {
         return this;
     }
 
+    public BarConfig setTitleColor(int titleColor) {
+        builder.setTitleColor(titleColor);
+        return this;
+    }
+
+    public BarConfig setTitleTextSize(float titleTextSize) {
+        builder.setTitleTextSize(titleTextSize);
+        return this;
+    }
+
+    public BarConfig setTitleTextStyle(float titleTextStyle) {
+        builder.setTitleTextStyle(titleTextStyle);
+        return this;
+    }
+
     // 返回builder
     public BarConfig.Builder getBuilder() {
         return builder;
@@ -62,6 +79,10 @@ public class BarConfig {
         private int backIcon_verticalPadding;
         private int backIcon_paddingRight;
         private int backIcon_paddingLeft;
+
+        private int title_color = -1;
+        private float title_textSize = -1;
+        private float title_textStyle = 1;
 
 
         public BarTitleGravity getTitleGravity() {
@@ -104,6 +125,29 @@ public class BarConfig {
             this.backIcon_paddingLeft = backIcon_paddingLeft;
         }
 
+        public int getTitleColor() {
+            return title_color < 0 ? Color.parseColor("#000000") : title_color;
+        }
+
+        public void setTitleColor(int title_color) {
+            this.title_color = title_color;
+        }
+
+        public float getTitleTextSize() {
+            return title_textSize < 0 ? 30 : title_textSize;
+        }
+
+        public void setTitleTextSize(float title_textSize) {
+            this.title_textSize = title_textSize;
+        }
+
+        public float getTitleTextStyle() {
+            return title_textStyle < 0 ? 0 : title_textStyle;
+        }
+
+        public void setTitleTextStyle(float title_textStyle) {
+            this.title_textStyle = title_textStyle;
+        }
     }
 
 }

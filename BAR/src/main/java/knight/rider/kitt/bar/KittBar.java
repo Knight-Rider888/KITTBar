@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -43,6 +44,7 @@ import knight.rider.kitt.bar.attr.BarTitleGravity;
 import knight.rider.kitt.bar.attr.EditSupport;
 import knight.rider.kitt.bar.attr.Params;
 import knight.rider.kitt.bar.attr.RightBtn;
+import knight.rider.kitt.bar.attr.TextStyle;
 import knight.rider.kitt.bar.config.BarConfig;
 import knight.rider.kitt.bar.listener.OnBarEventListener;
 import knight.rider.kitt.bar.listener.OnCustomBarEventListener;
@@ -316,14 +318,21 @@ public class KittBar extends FrameLayout {
         mTitle = ((TextView) findViewById(R.id.kitt_bar_title));
         mTitle.setSelected(true);
 
-        int titleColor = array.getColor(R.styleable.KittBar_bar_title_color, Color.parseColor("#000000"));
+        int titleColor = array.getColor(R.styleable.KittBar_bar_title_color, -1);
+        if (titleColor < 0)
+            titleColor = builder.getTitleColor();
         setTitleColor(titleColor);
 
         String titleStr = array.getString(R.styleable.KittBar_bar_title_content);
         setTitleContent(titleStr);
 
-        float titleSize = array.getDimension(R.styleable.KittBar_bar_title_textSize, dip2px(18));
+        float titleSize = array.getDimension(R.styleable.KittBar_bar_title_textSize, -1);
+        if (titleSize < 0)
+            titleSize = builder.getTitleTextSize();
         setTitleTextSize(titleSize);
+
+        int titleStyle = array.getInt(R.styleable.KittBar_bar_title_textStyle, 0);
+        setTitleTextStyle(titleStyle);
 
         int titlePaddingLeft = (int) array.getDimension(R.styleable.KittBar_bar_title_paddingLeft, 0);
         int titlePaddingRight = (int) array.getDimension(R.styleable.KittBar_bar_title_paddingRight, 0);
@@ -657,6 +666,19 @@ public class KittBar extends FrameLayout {
     public KittBar setTitleTextSize(int unit, float size) {
         mTitle.setTextSize(unit, size);
         return this;
+    }
+
+    /**
+     * 设置标题文字的样式
+     */
+    @SuppressLint("WrongConstant")
+    public KittBar setTitleTextStyle(TextStyle style) {
+        mTitle.setTypeface(Typeface.SANS_SERIF, style.getStyle());
+        return this;
+    }
+
+    private void setTitleTextStyle(int style) {
+        mTitle.setTypeface(Typeface.SANS_SERIF, style);
     }
 
     /**
