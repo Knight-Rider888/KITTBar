@@ -6,6 +6,7 @@ import androidx.annotation.DrawableRes;
 
 import knight.rider.kitt.bar.R;
 import knight.rider.kitt.bar.attr.BarTitleGravity;
+import knight.rider.kitt.bar.attr.TextStyle;
 
 /**
  * 全局样式，只要请单文件、代码无设置就会使用全局的样式，
@@ -62,7 +63,7 @@ public class BarConfig {
         return this;
     }
 
-    public BarConfig setTitleTextStyle(float titleTextStyle) {
+    public BarConfig setTitleTextStyle(TextStyle titleTextStyle) {
         builder.setTitleTextStyle(titleTextStyle);
         return this;
     }
@@ -82,7 +83,7 @@ public class BarConfig {
 
         private int title_color = -1;
         private float title_textSize = -1;
-        private float title_textStyle = 1;
+        private TextStyle title_textStyle = TextStyle.NORMAL;
 
 
         public BarTitleGravity getTitleGravity() {
@@ -141,11 +142,11 @@ public class BarConfig {
             this.title_textSize = title_textSize;
         }
 
-        public float getTitleTextStyle() {
-            return title_textStyle < 0 ? 0 : title_textStyle;
+        public TextStyle getTitleTextStyle() {
+            return title_textStyle;
         }
 
-        public void setTitleTextStyle(float title_textStyle) {
+        public void setTitleTextStyle(TextStyle title_textStyle) {
             this.title_textStyle = title_textStyle;
         }
     }

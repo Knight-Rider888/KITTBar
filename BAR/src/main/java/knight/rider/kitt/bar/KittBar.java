@@ -331,7 +331,9 @@ public class KittBar extends FrameLayout {
             titleSize = builder.getTitleTextSize();
         setTitleTextSize(titleSize);
 
-        int titleStyle = array.getInt(R.styleable.KittBar_bar_title_textStyle, 0);
+        int titleStyle = array.getInt(R.styleable.KittBar_bar_title_textStyle, -1);
+        if (titleStyle < 0)
+            titleStyle = builder.getTitleTextStyle().getStyle();
         setTitleTextStyle(titleStyle);
 
         int titlePaddingLeft = (int) array.getDimension(R.styleable.KittBar_bar_title_paddingLeft, 0);
