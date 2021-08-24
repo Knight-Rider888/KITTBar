@@ -24,7 +24,7 @@
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         app:realtimeBlurRadius="20dp"
-        app:realtimeOverlayColor="#8000" />
+        app:realtimeOverlayColor="#19000000" />
 
     <LinearLayout
         android:id="@+id/kitt_bar_tab_layout"
