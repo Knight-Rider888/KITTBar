@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.sample.bar.fragment.FourFragment;
 import com.sample.bar.fragment.OneFragment;
 import com.sample.bar.fragment.ThreeFragment;
 
@@ -30,11 +31,11 @@ public class BottomBarActivity extends AppCompatActivity {
         bottomBar.addTab(tab);
 
 
-        Tab tab1 = new Tab().setWord("消息").setNormalPicRes(R.raw.msg_normal).setSelectedPicRes(R.raw.msg_press);
+        Tab tab1 = new Tab().setWord("消息").setNormalPicRes(R.raw.msg_normal).setSelectedPicRes(R.raw.msg_press).setLargeIcon(true, 150);
         bottomBar.addTab(tab1);
 
         bottomBar.addTab(new Tab(ThreeFragment.class).setWord("通讯录").setNormalPicRes(R.raw.phone_normal).setSelectedPicRes(R.raw.phone_press));
-        bottomBar.addTab(new Tab().setWord("我的").setNormalPicRes(R.raw.me_normal).setSelectedPicRes(R.raw.me_press));
+        bottomBar.addTab(new Tab(FourFragment.class).setWord("我的").setNormalPicRes(R.raw.me_normal).setSelectedPicRes(R.raw.me_press));
         bottomBar.init(getSupportFragmentManager());
 
         bottomBar.setLottieSpeed(1);
@@ -63,7 +64,6 @@ public class BottomBarActivity extends AppCompatActivity {
         bottomBar.setDividerHeight(2);
         bottomBar.setCurrentTab(2);
         bottomBar.setDividerColor(getResources().getDrawable(R.mipmap.ic_launcher));
-
 
     }
 

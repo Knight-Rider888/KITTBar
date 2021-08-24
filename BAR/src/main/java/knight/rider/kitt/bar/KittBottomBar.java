@@ -21,6 +21,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
+import com.github.mmin18.widget.RealtimeBlurView;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -41,6 +43,8 @@ public class KittBottomBar extends FrameLayout {
     private final RelativeLayout mLayout;
     // tab的布局
     private final LinearLayout mTabLayout;
+    // tab的布局
+    private final RealtimeBlurView mBlur;
     // pager
     private final BottomPager mPager;
     // 分割线
@@ -92,6 +96,7 @@ public class KittBottomBar extends FrameLayout {
         LayoutInflater.from(getContext()).inflate(R.layout.kitt_bottom_bar, this, true);
         // 初始化组件
         mLayout = findViewById(R.id.kitt_bar_layout);
+        mBlur = findViewById(R.id.kitt_bar_tab_blur);
         mTabLayout = findViewById(R.id.kitt_bar_tab_layout);
         mPager = findViewById(R.id.kitt_bar_pager);
         mDivider = findViewById(R.id.kitt_bar_line);
@@ -631,6 +636,7 @@ public class KittBottomBar extends FrameLayout {
         ViewGroup.LayoutParams params = mTabLayout.getLayoutParams();
         params.height = (int) calcTabLayoutHeight();
         mTabLayout.setLayoutParams(params);
+        mBlur.setLayoutParams(params);
     }
 
     // 底部的Item重新计算高度

@@ -38,4 +38,5 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0'
 
     compileOnly 'com.airbnb.android:lottie:3.7.2'
+    compileOnly 'com.github.mmin18:realtimeblurview:1.2.1'
 }

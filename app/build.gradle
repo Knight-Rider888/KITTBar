@@ -39,4 +39,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     implementation 'com.airbnb.android:lottie:3.7.2'
+    implementation 'com.github.mmin18:realtimeblurview:1.2.1'
 }

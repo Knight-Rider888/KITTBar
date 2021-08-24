@@ -15,7 +15,10 @@ allprojects {
 Step 2. Add the dependency
 ```
 dependencies {
-    implementation 'com.github.Knight-Rider888:KITTBar:1.1.0'
+    implementation 'com.github.Knight-Rider888:KITTBar:1.1.1'
+    // 特效需引入的插件
+    implementation 'com.airbnb.android:lottie:3.7.2'
+    implementation 'com.github.mmin18:realtimeblurview:1.2.1'
 }
 ```
 
