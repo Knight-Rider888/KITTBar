@@ -5,7 +5,7 @@
     android:id="@+id/bar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:bar_tab_background="#5E2196F3"
+    app:bar_tab_background="#B5FFFFFF"
     tools:context=".BottomBarActivity">
 
     <Button

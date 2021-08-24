@@ -104,6 +104,9 @@ public class KittBottomBar extends FrameLayout {
         // 初始化自定义属性
         TypedArray array = getContext().obtainStyledAttributes(attrs, R.styleable.KittBottomBar, defStyleAttr, 0);
 
+        boolean blur = array.getBoolean(R.styleable.KittBottomBar_bar_blur, false);
+        setTabLayoutBlur(blur);
+
         // 导航键上下间距
         mTabPaddingTop = (int) array.getDimension(R.styleable.KittBottomBar_bar_tab_paddingTop, dip2px(3));
         mTabPaddingBottom = (int) array.getDimension(R.styleable.KittBottomBar_bar_tab_paddingBottom, dip2px(5));
@@ -327,6 +330,13 @@ public class KittBottomBar extends FrameLayout {
             }
         });
         return this;
+    }
+
+    /**
+     * √设置Tab容器模糊
+     */
+    public final void setTabLayoutBlur(boolean blur) {
+        mBlur.setVisibility(blur ? VISIBLE : GONE);
     }
 
     /**

@@ -12,9 +12,6 @@
         <!--背景透明度,范围 0f - 1f (默认1-不透明)-->
         <attr name="bar_background_alpha" format="float" />
 
-        <!--背景模糊处理，默认false-->
-        <attr name="bar_blur" format="boolean" />
-
         <!--返回键按钮，请将切图放入到对应的文件夹下，此处用的wrap_content进行自适应的-->
         <!--如果图片过大，需要通过控制导航栏高度、padding等方式进行限制-->
         <attr name="bar_backIcon" format="reference" />
@@ -193,6 +190,9 @@
 
 
     <declare-styleable name="KittBottomBar">
+
+        <!--背景模糊处理，默认false-->
+        <attr name="bar_blur" format="boolean" />
 
         <!--Tab上、下内间距 默认分别3dp、5dp-->
         <attr name="bar_tab_paddingTop" format="dimension" />

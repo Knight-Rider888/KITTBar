@@ -64,7 +64,7 @@ public class BottomBarActivity extends AppCompatActivity {
         bottomBar.setDividerHeight(2);
         bottomBar.setCurrentTab(2);
         bottomBar.setDividerColor(getResources().getDrawable(R.mipmap.ic_launcher));
-
+        bottomBar.setTabLayoutBlur(true);
     }
 
     public void click1(View view) {
