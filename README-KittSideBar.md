@@ -37,7 +37,8 @@
 
 - setChooseLetter()  设置选中的字母
 
-- setContainLetters()  设置数据源所包含的字符，以及当前顶部的item字符
+- setContainLetters()  设置数据源所包含char类型的字符，以及当前顶部的item字符
+- setContainLetters2()  设置数据源所包含String类型的字符，以及当前顶部的item字符
 
 - setNoticeLetterTextSize()  设置提示文字的大小，默认字体单位为px
 
