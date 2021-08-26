@@ -21,29 +21,21 @@ public class Adapter extends BaseListAdapter<ContactBean> {
 
     @Override
     public int getItemViewsType(int position) {
-        ContactBean data = getData(position);
-        return data.getType();
+        return 0;
     }
 
     @Override
     public RecyclerViewHolder onCreateViewHolders(ViewGroup parent, int viewType) {
-        if (viewType == 0) {
-            View view = getInflater().inflate(R.layout.rv_session, parent, false);
-            return new SessionHolder(view);
-        } else {
-            View view = getInflater().inflate(R.layout.rv_item, parent, false);
-            return new ItemHolder(view);
-        }
+        View view = getInflater().inflate(R.layout.rv_item, parent, false);
+        return new ItemHolder(view);
     }
 
     @Override
     public void onBindViewHolders(RecyclerViewHolder holder, ContactBean contactBean, int position) {
 
-        if (holder instanceof SessionHolder) {
-            holder.getTextView(R.id.tv).setText(String.valueOf(contactBean.getInitial()));
-        } else if (holder instanceof ItemHolder) {
-            holder.getTextView(R.id.tv).setText(contactBean.getName());
-        }
+        holder.getTextView(R.id.session).setText(String.valueOf(contactBean.getPhonebook_label()));
+        holder.getTextView(R.id.session).setVisibility(letterCompareSection(position) ? View.GONE : View.VISIBLE);
+        holder.getTextView(R.id.tv).setText(String.valueOf(contactBean.getDisplay_name()));
     }
 
     @Override
@@ -56,12 +48,14 @@ public class Adapter extends BaseListAdapter<ContactBean> {
         return false;
     }
 
+    private boolean letterCompareSection(int position) {
 
-    private static class SessionHolder extends RecyclerViewHolder {
-
-        public SessionHolder(View itemView) {
-            super(itemView);
+        if (position == 0) {
+            return false;
         }
+        String letter1 = getData(position).getPhonebook_label();
+        String letter2 = getData(position - 1).getPhonebook_label();
+        return letter1.equals(letter2);
     }
 
     private static class ItemHolder extends RecyclerViewHolder {

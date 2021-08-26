@@ -33,6 +33,7 @@
 
 
 - setOnTouchSideListener() 触摸SideBar的监听
+返回触摸的当前字符(包含大写、小写)，根据后台实际数据大小写进行对应使用
 
 - setChooseLetter()  设置选中的字母
 

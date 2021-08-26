@@ -197,8 +197,11 @@ public class KittSideBar extends View {
 
         showDialog(pos);
 
-        if (mOnTouchSideListener != null && isPosInContainLetters(pos))
-            mOnTouchSideListener.onTouch(mLetters[pos], mLetters[pos] >= 'A' && mLetters[pos] <= 'Z' ? (char) (mLetters[pos] + 32) : mLetters[pos]);
+        if (mOnTouchSideListener != null && isPosInContainLetters(pos)) {
+            char upperLetter = mLetters[pos];
+            char lowerLetter = mLetters[pos] >= 'A' && mLetters[pos] <= 'Z' ? (char) (mLetters[pos] + 32) : mLetters[pos];
+            mOnTouchSideListener.onTouch(upperLetter, lowerLetter, String.valueOf(upperLetter), String.valueOf(lowerLetter));
+        }
 
         return true;
 
@@ -272,10 +275,18 @@ public class KittSideBar extends View {
     /**
      * 设置选中的字母
      */
-    public final void setChooseLetter(char topItemChar) {
+    public final void setChooseLetter(String chooseLetterStr) {
+        char chooseLetter = chooseLetterStr.charAt(0);
+        setChooseLetter(chooseLetter);
+    }
 
-        if (topItemChar >= 'a' && topItemChar <= 'z')
-            topItemChar -= 32;
+    /**
+     * 设置选中的字母
+     */
+    public final void setChooseLetter(char chooseLetter) {
+
+        if (chooseLetter >= 'a' && chooseLetter <= 'z')
+            chooseLetter -= 32;
 
         int oldChoose = mChoose;
 
@@ -284,7 +295,7 @@ public class KittSideBar extends View {
 
 
         for (int i = 0; i < mLetters.length; i++) {
-            if (mLetters[i] == topItemChar) {
+            if (mLetters[i] == chooseLetter) {
                 mChoose = i;
                 break;
             }
@@ -299,9 +310,46 @@ public class KittSideBar extends View {
     /**
      * 设置数据源所包含的字符
      *
-     * @param topItemChar the initials of the top visible Item
+     * @param topItemInitialStr the initials of the top visible Item
      */
-    public final void setContainLetters(Set<Character> containLetters, char topItemChar) {
+    public final void setContainLetters2(Set<String> containLetters, String topItemInitialStr) {
+        Set<Character> newContainLetters = new HashSet<>();
+        for (String string : containLetters) {
+            newContainLetters.add(string.charAt(0));
+        }
+        setContainLetters(newContainLetters, topItemInitialStr);
+    }
+
+    /**
+     * 设置数据源所包含的字符
+     *
+     * @param topItemInitial the initials of the top visible Item
+     */
+    public final void setContainLetters2(Set<String> containLetters, char topItemInitial) {
+        Set<Character> newContainLetters = new HashSet<>();
+        for (String string : containLetters) {
+            newContainLetters.add(string.charAt(0));
+        }
+        setContainLetters(newContainLetters, topItemInitial);
+    }
+
+    /**
+     * 设置数据源所包含的字符
+     *
+     * @param topItemInitialStr the initials of the top visible Item
+     */
+    public final void setContainLetters(Set<Character> containLetters, String topItemInitialStr) {
+        char topItemInitial = topItemInitialStr.charAt(0);
+        setContainLetters(containLetters, topItemInitial);
+    }
+
+
+    /**
+     * 设置数据源所包含的字符
+     *
+     * @param topItemInitial the initials of the top visible Item
+     */
+    public final void setContainLetters(Set<Character> containLetters, char topItemInitial) {
 
 
         // 添加到集合
@@ -323,13 +371,13 @@ public class KittSideBar extends View {
             return;
         }
 
-        if (topItemChar >= 'a' && topItemChar <= 'z')
-            topItemChar -= 32;
+        if (topItemInitial >= 'a' && topItemInitial <= 'z')
+            topItemInitial -= 32;
 
         mChoose = -1;
 
         for (int i = 0; i < mLetters.length; i++) {
-            if (mLetters[i] == topItemChar) {
+            if (mLetters[i] == topItemInitial) {
                 mChoose = i;
                 break;
             }
@@ -388,5 +436,12 @@ public class KittSideBar extends View {
      */
     public final char getTargetLetter() {
         return mLetters[mChoose];
+    }
+
+    /**
+     * 获得当前目标的字母
+     */
+    public final String getTargetLetterStr() {
+        return String.valueOf(mLetters[mChoose]);
     }
 }

@@ -24,8 +24,6 @@ import knight.rider.kitt.bar.listener.OnTouchSideListener;
 
 public class SlideBarActivity extends AppCompatActivity {
 
-    private int state;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,9 +60,9 @@ public class SlideBarActivity extends AppCompatActivity {
                     // 强制更改为顶部Item的位置
                     LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
                     int firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
-                    char initial = adapter.getData(firstVisibleItemPosition).getInitial();
+                    String initial = adapter.getData(firstVisibleItemPosition).getPhonebook_label();
                     sideBar.setChooseLetter(initial);
-                    session.setText("" + initial);
+                    session.setText(initial);
                 }
 
             }
@@ -76,44 +74,40 @@ public class SlideBarActivity extends AppCompatActivity {
                 // 列表滚动同时变更侧边栏选中字母
                 LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
                 int firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
-                char initial = adapter.getData(firstVisibleItemPosition).getInitial();
+                String initial = adapter.getData(firstVisibleItemPosition).getPhonebook_label();
                 sideBar.setChooseLetter(initial);
-                session.setText("" + initial);
+                session.setText(initial);
 
             }
         });
 
         // 字符区间
-        Map<Character, int[]> map = new HashMap<>();
-        Set<Character> characters = new HashSet<>();
+        Map<String, Integer> map = new HashMap<>();
+        // 当前数据源所有的字符
+        Set<String> characters = new HashSet<>();
 
         for (int i = 0; i < data.size(); i++) {
-            ContactBean bean = data.get(i);
-            if (bean.getType() == 0) {
-                char initial = bean.getInitial();
-                int[] v = new int[2];
-                map.put(initial, v);
-                v[0] = i;
-                characters.add(initial);
-            }
 
-            int[] ints = map.get(bean.getInitial());
-            assert ints != null;
-            ints[1] = i;
+            ContactBean bean = data.get(i);
+
+            if (characters.add(bean.getPhonebook_label()))
+                // 添加字符成功（利用set集合不重复性），记录添加字符的第一条记录的index
+                map.put(bean.getPhonebook_label(), i);
         }
 
 
         sideBar.setOnTouchSideListener(new OnTouchSideListener() {
             @Override
-            public void onTouch(char upperLetter, char lowerLetter) {
-                int[] ints = map.get(upperLetter);
-                if (ints != null) {
+            public void onTouch(char upperLetter, char lowerLetter, String upperLetterStr, String lowerLetterStr) {
+                Integer integer = map.get(upperLetterStr);
+                if (integer != null) {
                     // 触摸调用滚动到指定某字母开头的第一个item
-                    recyclerView.smoothScrollToPosition(ints[0]);
+                    recyclerView.smoothScrollToPosition(integer);
                 }
             }
+
         });
-        sideBar.setContainLetters(characters, data.get(0).getInitial());
+        sideBar.setContainLetters2(characters, data.get(0).getPhonebook_label());
 
     }
 
