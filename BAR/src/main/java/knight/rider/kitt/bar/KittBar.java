@@ -349,17 +349,17 @@ public class KittBar extends FrameLayout {
         int titleDrawablePadding = (int) array.getDimension(R.styleable.KittBar_bar_title_drawablePadding, 0);
         setTitleCompoundDrawablePadding(titleDrawablePadding);
 
-//        // 搜索区域
-//        mSearchLayout = findViewById(R.id.kitt_bar_searchLayout);
-//
-//        int searchLayoutHeight = (int) array.getDimension(R.styleable.KittBar_bar_searchLayout_height, -1);
-//        if (searchLayoutHeight == -1)
-//            searchLayoutHeight = builder.getSearchLayoutHeight();
-//        setSearchLayoutHeight(searchLayoutHeight);
-//
-//        // 是否可见
-//        int searchLayoutVisible = array.getInt(R.styleable.KittBar_bar_searchLayout_visibility, INVISIBLE);
-//        setSearchLayoutVisibility(searchLayoutVisible);
+        // 搜索区域
+        mSearchLayout = findViewById(R.id.kitt_bar_searchLayout);
+
+        int searchLayoutHeight = (int) array.getDimension(R.styleable.KittBar_bar_searchLayout_height, -1);
+        if (searchLayoutHeight == -1)
+            searchLayoutHeight = builder.getSearchLayoutHeight();
+        setSearchLayoutHeight(searchLayoutHeight);
+
+        // 是否可见
+        int searchLayoutVisible = array.getInt(R.styleable.KittBar_bar_searchLayout_visibility, INVISIBLE);
+        setSearchLayoutVisibility(searchLayoutVisible);
 //
 //        Drawable drawable = array.getDrawable(R.styleable.KittBar_bar_searchLayoutBackground);
 //
@@ -787,6 +787,7 @@ public class KittBar extends FrameLayout {
      * 设置搜索布局的高度
      */
     public final KittBar setSearchLayoutHeight(int height) {
+        Log.e("ddd", height + "---");
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mSearchLayout.getLayoutParams();
         layoutParams.height = height;
         mSearchLayout.setLayoutParams(layoutParams);

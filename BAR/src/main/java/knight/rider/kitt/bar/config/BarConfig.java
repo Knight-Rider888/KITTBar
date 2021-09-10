@@ -131,7 +131,7 @@ public class BarConfig {
         private String bar_searchEdit_textColor = "";
 
         private Drawable bar_searchEditClear_src;
-        private int bar_searchLayout_height;
+        private int bar_searchLayout_height = -1;
         private float bar_rightButton_textSize = -1;
         private String bar_rightButton_textColor = "";
 
