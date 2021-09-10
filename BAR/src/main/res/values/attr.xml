@@ -41,7 +41,7 @@
         </attr>
 
 
-        <!--title颜色-->
+        <!--title颜色,请不要使用此透明色 android.R.color.transparent -->
         <attr name="bar_title_color" format="color" />
         <!--title文字内容-->
         <attr name="bar_title_content" format="string" />
@@ -89,11 +89,11 @@
 
         <!--搜索框输入控件的hint-->
         <attr name="bar_searchEdit_hint" format="string" />
-        <!--搜索框输入控件的hint颜色-->
+        <!--搜索框输入控件的hint颜色,请不要使用此透明色 android.R.color.transparent-->
         <attr name="bar_searchEdit_hintColor" format="color" />
         <!--搜索框输入控件的字体大小-->
         <attr name="bar_searchEdit_textSize" format="dimension" />
-        <!--搜索框输入控件的颜色-->
+        <!--搜索框输入控件的颜色,请不要使用此透明色 android.R.color.transparent-->
         <attr name="bar_searchEdit_textColor" format="color" />
         <!--搜索框输入控件的padding-->
         <attr name="bar_searchEdit_paddingLeft" format="dimension" />
