@@ -3,12 +3,12 @@ package knight.rider.kitt.bar;
 import static android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -314,8 +314,8 @@ public class KittBar extends FrameLayout {
         mTitle = ((TextView) findViewById(R.id.kitt_bar_title));
         mTitle.setSelected(true);
 
-        int titleColor = array.getColor(R.styleable.KittBar_bar_title_color, -1);
-        if (titleColor < 0)
+        int titleColor = array.getColor(R.styleable.KittBar_bar_title_color, 0);
+        if (titleColor == 0)
             titleColor = builder.getTitleColor();
         setTitleColor(titleColor);
 
@@ -351,35 +351,44 @@ public class KittBar extends FrameLayout {
         // 搜索区域
         mSearchLayout = findViewById(R.id.kitt_bar_searchLayout);
 
+        int searchLayoutHeight = (int) array.getDimension(R.styleable.KittBar_bar_searchLayout_height, -1);
+        if (searchLayoutHeight == -1)
+            searchLayoutHeight = builder.getSearchLayoutHeight();
+        setSearchLayoutHeight(searchLayoutHeight);
+
         // 是否可见
         int searchLayoutVisible = array.getInt(R.styleable.KittBar_bar_searchLayout_visibility, INVISIBLE);
         setSearchLayoutVisibility(searchLayoutVisible);
 
+        Drawable drawable = array.getDrawable(R.styleable.KittBar_bar_searchLayoutBackground);
+
+        if (drawable == null)
+            drawable = builder.getSearchLayoutBackground();
+
         // 搜索框背景
-        setSearchLayoutBackground(getSearchLayoutDrawable());
+        setSearchLayoutBackground(drawable);
 
 
-        int searchLayoutMargin = (int) array.getDimension(R.styleable.KittBar_bar_searchLayout_margin, 0);
-        int searchLayoutMarginTop = (int) array.getDimension(R.styleable.KittBar_bar_searchLayout_marginTop, 0);
-        int searchLayoutMarginBottom = (int) array.getDimension(R.styleable.KittBar_bar_searchLayout_marginBottom, 0);
         int searchLayoutMarginLeft = (int) array.getDimension(R.styleable.KittBar_bar_searchLayout_marginLeft, 0);
         int searchLayoutMarginRight = (int) array.getDimension(R.styleable.KittBar_bar_searchLayout_marginRight, 0);
+        setSearchLayoutMargin(searchLayoutMarginLeft, 0, searchLayoutMarginRight, 0);
 
-        if (searchLayoutMargin == 0)
-            setSearchLayoutMargin(searchLayoutMarginLeft, searchLayoutMarginTop, searchLayoutMarginRight, searchLayoutMarginBottom);
-        else
-            setSearchLayoutMargin(searchLayoutMargin, searchLayoutMargin, searchLayoutMargin, searchLayoutMargin);
 
         // 搜索编辑框
         mSearchView = ((EditText) findViewById(R.id.kitt_bar_search_edit));
 
         String hint = array.getString(R.styleable.KittBar_bar_searchEdit_hint);
         setSearchEditHint(hint);
-        int hintColor = array.getColor(R.styleable.KittBar_bar_searchEdit_hintColor, getResources().getColor(android.R.color.darker_gray));
+        int hintColor = array.getColor(R.styleable.KittBar_bar_searchEdit_hintColor, 0);
+        if (hintColor == 0)
+            hintColor = builder.getSearchEditHintColor();
         setSearchEditHintColor(hintColor);
+
         float editSize = array.getDimension(R.styleable.KittBar_bar_searchEdit_textSize, dip2px(13));
         setSearchEditTextSize(editSize);
-        int editColor = array.getColor(R.styleable.KittBar_bar_searchEdit_textColor, getResources().getColor(android.R.color.black));
+        int editColor = array.getColor(R.styleable.KittBar_bar_searchEdit_textColor, 0);
+        if (editColor == 0)
+            editColor = builder.getSearchEditTextColor();
         setSearchEditTextColor(editColor);
 
         int searchEditViewPaddingLeft = (int) array.getDimension(R.styleable.KittBar_bar_searchEdit_paddingLeft, 0);
@@ -398,8 +407,11 @@ public class KittBar extends FrameLayout {
         // 清除按钮
         mClearView = ((ImageView) findViewById(R.id.kitt_clear_View));
         // 要放在设置编辑框drawPadding前
-        int closeResourceId = array.getResourceId(R.styleable.KittBar_bar_searchEditClear_src, R.drawable.lib_temp_close);
-        setSearchEditClearViewResource(getDrawable(closeResourceId));
+        int closeResourceId = array.getResourceId(R.styleable.KittBar_bar_searchEditClear_src, 0);
+        if (closeResourceId != 0)
+            setSearchEditClearViewResource(getDrawable(closeResourceId));
+        else
+            setSearchEditClearViewResource(builder.getSearchEditClear() == null ? getDrawable(R.drawable.lib_temp_close) : builder.getSearchEditClear());
 
         int drawablePadding = (int) array.getDimension(R.styleable.KittBar_bar_searchEdit_drawablePadding, 0);
         setSearchEditCompoundDrawablePadding(drawablePadding);
@@ -436,10 +448,14 @@ public class KittBar extends FrameLayout {
         float rightBtnPadding = array.getDimension(R.styleable.KittBar_bar_rightButton_padding, 0);
         setRightButtonsPadding((int) rightBtnPadding);
 
-        float rightBtnTextSize = array.getDimension(R.styleable.KittBar_bar_rightButton_textSize, dip2px(14));
+        float rightBtnTextSize = array.getDimension(R.styleable.KittBar_bar_rightButton_textSize, -1);
+        if (rightBtnTextSize == -1)
+            rightBtnTextSize = builder.getRightButtonTextSize();
         setRightButtonsTextSize(rightBtnTextSize);
 
-        int color = array.getColor(R.styleable.KittBar_bar_rightButton_textColor, Color.parseColor("#000000"));
+        int color = array.getColor(R.styleable.KittBar_bar_rightButton_textColor, 0);
+        if (color == 0)
+            color = builder.getRightButtonTextColor();
         setRightButtonsTextColor(color);
 
         String text1 = array.getString(R.styleable.KittBar_bar_rightButton_first_text);
@@ -459,6 +475,7 @@ public class KittBar extends FrameLayout {
         // 回收
         array.recycle();
 
+        setBarStatusTextSmartDarkMode();
     }
 
 
@@ -467,7 +484,7 @@ public class KittBar extends FrameLayout {
      *
      * @param alphaPercent 0 means fully transparent, and 1 means fully opaque.
      */
-    public KittBar setBackgroundAlpha(@FloatRange(from = 0, to = 1) float alphaPercent) {
+    public final KittBar setBackgroundAlpha(@FloatRange(from = 0, to = 1) float alphaPercent) {
 
         Drawable background = this.getBackground();
 
@@ -494,7 +511,7 @@ public class KittBar extends FrameLayout {
      *              tool. This integer encodes the package, type, and resource
      *              entry. The value 0 is an invalid identifier.
      */
-    public KittBar setBackIconResource(@DrawableRes int resId) {
+    public final KittBar setBackIconResource(@DrawableRes int resId) {
         try {
             Drawable drawable_n = getResources().getDrawable(resId);
             mBack.setImageDrawable(drawable_n);
@@ -510,7 +527,7 @@ public class KittBar extends FrameLayout {
      *
      * @param backIconVerticalPadding the top and bottom padding in pixels
      */
-    public KittBar setBackIconVerticalPadding(int backIconVerticalPadding) {
+    public final KittBar setBackIconVerticalPadding(int backIconVerticalPadding) {
         mBack.setPadding(mBack.getPaddingLeft(), backIconVerticalPadding, mBack.getPaddingRight(), backIconVerticalPadding);
         return this;
     }
@@ -520,7 +537,7 @@ public class KittBar extends FrameLayout {
      *
      * @param backIconPaddingLeft the left padding in pixels
      */
-    public KittBar setBackIconPaddingLeft(int backIconPaddingLeft) {
+    public final KittBar setBackIconPaddingLeft(int backIconPaddingLeft) {
         mBack.setPadding(backIconPaddingLeft, mBack.getPaddingTop(), mBack.getPaddingRight(), mBack.getPaddingBottom());
         return this;
     }
@@ -530,7 +547,7 @@ public class KittBar extends FrameLayout {
      *
      * @param backIconPaddingRight the right padding in pixels
      */
-    public KittBar setBackIconPaddingRight(int backIconPaddingRight) {
+    public final KittBar setBackIconPaddingRight(int backIconPaddingRight) {
         mBack.setPadding(mBack.getPaddingLeft(), mBack.getPaddingTop(), backIconPaddingRight, mBack.getPaddingBottom());
         return this;
     }
@@ -541,7 +558,7 @@ public class KittBar extends FrameLayout {
      *
      * @param visibility One of {@link #VISIBLE}, {@link #INVISIBLE}.
      */
-    public KittBar setBackIconVisibility(@Visibility int visibility) {
+    public final KittBar setBackIconVisibility(@Visibility int visibility) {
         mBackLayout.setVisibility(visibility);
         return this;
     }
@@ -553,7 +570,7 @@ public class KittBar extends FrameLayout {
      *                 <code>R.layout.main_page</code>)
      * @return the custom view
      */
-    public KittBar setCustomLayout(@LayoutRes int resource) {
+    public final KittBar setCustomLayout(@LayoutRes int resource) {
         try {
             View inflate = LayoutInflater.from(getContext()).inflate(resource, this, false);
             mCustomLayout.removeAllViews();
@@ -568,7 +585,7 @@ public class KittBar extends FrameLayout {
     /**
      * 添加自定义布局
      */
-    public KittBar setCustomLayout(View view) {
+    public final KittBar setCustomLayout(View view) {
         mCustomLayout.removeAllViews();
         mCustomLayout.addView(view);
         mCustomView = view;
@@ -578,7 +595,7 @@ public class KittBar extends FrameLayout {
     /**
      * 添加自定义布局的宽
      */
-    public KittBar setCustomLayoutWidth(Params params) {
+    public final KittBar setCustomLayoutWidth(Params params) {
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mCustomLayout.getLayoutParams();
         layoutParams.weight = params == Params.MATCH_PARENT ? 1 : 0;
         mCustomLayout.setLayoutParams(layoutParams);
@@ -590,7 +607,7 @@ public class KittBar extends FrameLayout {
      *
      * @param color A color value in the form 0xAARRGGBB.
      */
-    public KittBar setTitleColor(@ColorInt int color) {
+    public final KittBar setTitleColor(@ColorInt int color) {
         mTitle.setTextColor(color);
         return this;
     }
@@ -611,7 +628,7 @@ public class KittBar extends FrameLayout {
      * <code>navy</code>, <code>olive</code>, <code>purple</code>, <code>silver</code>,
      * and <code>teal</code>.</p>
      */
-    public KittBar setTitleColor(@Size(min = 1) String colorString) {
+    public final KittBar setTitleColor(@Size(min = 1) String colorString) {
         mTitle.setTextColor(Color.parseColor(colorString));
         return this;
     }
@@ -621,7 +638,7 @@ public class KittBar extends FrameLayout {
      *
      * @param text text to be displayed
      */
-    public KittBar setTitleContent(CharSequence text) {
+    public final KittBar setTitleContent(CharSequence text) {
         mTitle.setText(text);
         return this;
     }
@@ -631,7 +648,7 @@ public class KittBar extends FrameLayout {
      *
      * @param resId the resource identifier of the string resource to be displayed
      */
-    public KittBar setTitleContent(@StringRes int resId) {
+    public final KittBar setTitleContent(@StringRes int resId) {
         mTitle.setText(resId);
         return this;
     }
@@ -641,7 +658,7 @@ public class KittBar extends FrameLayout {
      *
      * @param size The scaled pixel size.
      */
-    public KittBar setTitleTextSize(float size) {
+    public final KittBar setTitleTextSize(float size) {
         mTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
         return this;
     }
@@ -652,7 +669,7 @@ public class KittBar extends FrameLayout {
      * @param unit The desired dimension unit.
      * @param size The desired size in the given units.
      */
-    public KittBar setTitleTextSize(int unit, float size) {
+    public final KittBar setTitleTextSize(int unit, float size) {
         mTitle.setTextSize(unit, size);
         return this;
     }
@@ -661,7 +678,7 @@ public class KittBar extends FrameLayout {
      * 设置标题文字的样式
      */
     @SuppressLint("WrongConstant")
-    public KittBar setTitleTextStyle(TextStyle style) {
+    public final KittBar setTitleTextStyle(TextStyle style) {
         mTitle.setTypeface(Typeface.SANS_SERIF, style.getStyle());
         return this;
     }
@@ -676,7 +693,7 @@ public class KittBar extends FrameLayout {
      * @param left  the left padding in pixels.
      * @param right the right padding in pixels.
      */
-    public KittBar setTitlePadding(int left, int right) {
+    public final KittBar setTitlePadding(int left, int right) {
         mTitle.setPadding(left, 0, right, 0);
         return this;
     }
@@ -686,7 +703,7 @@ public class KittBar extends FrameLayout {
      *
      * @param left the left padding in pixels.
      */
-    public KittBar setTitlePaddingLeft(int left) {
+    public final KittBar setTitlePaddingLeft(int left) {
         mTitle.setPadding(left, 0, 0, 0);
         return this;
     }
@@ -696,7 +713,7 @@ public class KittBar extends FrameLayout {
      *
      * @param right the right padding in pixels.
      */
-    public KittBar setTitlePaddingRight(int right) {
+    public final KittBar setTitlePaddingRight(int right) {
         mTitle.setPadding(0, 0, right, 0);
         return this;
     }
@@ -704,7 +721,7 @@ public class KittBar extends FrameLayout {
     /**
      * 设置标题的左上右下的图片
      */
-    public KittBar setTitleCompoundDrawables(Drawable drawableLeft, Drawable drawableTop, Drawable drawableRight, Drawable drawableBottom) {
+    public final KittBar setTitleCompoundDrawables(Drawable drawableLeft, Drawable drawableTop, Drawable drawableRight, Drawable drawableBottom) {
 
         try {
             if (drawableLeft != null)
@@ -731,7 +748,7 @@ public class KittBar extends FrameLayout {
      *
      * @param padding pixels padding.
      */
-    public KittBar setTitleCompoundDrawablePadding(int padding) {
+    public final KittBar setTitleCompoundDrawablePadding(int padding) {
         mTitle.setCompoundDrawablePadding(padding);
         return this;
     }
@@ -742,7 +759,7 @@ public class KittBar extends FrameLayout {
      *
      * @param background The Drawable to use as the background
      */
-    public KittBar setSearchLayoutBackground(Drawable background) {
+    public final KittBar setSearchLayoutBackground(Drawable background) {
         mSearchLayout.setBackground(background);
         return this;
     }
@@ -756,7 +773,7 @@ public class KittBar extends FrameLayout {
      * @param right  the right margin size
      * @param bottom the bottom margin size
      */
-    public KittBar setSearchLayoutMargin(int left, int top, int right, int bottom) {
+    public final KittBar setSearchLayoutMargin(int left, int top, int right, int bottom) {
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mSearchLayout.getLayoutParams();
         layoutParams.setMargins(left, top, right, bottom);
         mSearchLayout.setLayoutParams(layoutParams);
@@ -765,11 +782,21 @@ public class KittBar extends FrameLayout {
 
 
     /**
+     * 设置搜索布局的高度
+     */
+    public final KittBar setSearchLayoutHeight(int height) {
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mSearchLayout.getLayoutParams();
+        layoutParams.height = height;
+        mSearchLayout.setLayoutParams(layoutParams);
+        return this;
+    }
+
+    /**
      * 设置搜索布局是否显示
      *
      * @param visibility One of {@link #VISIBLE}, {@link #INVISIBLE}.
      */
-    public KittBar setSearchLayoutVisibility(@Visibility int visibility) {
+    public final KittBar setSearchLayoutVisibility(@Visibility int visibility) {
         mSearchLayout.setVisibility(visibility);
         return this;
     }
@@ -779,7 +806,7 @@ public class KittBar extends FrameLayout {
      *
      * @param hint Sets the text to be displayed when the text of the TextView is empty
      */
-    public KittBar setSearchEditHint(CharSequence hint) {
+    public final KittBar setSearchEditHint(CharSequence hint) {
 
         if (hint == null)
             hint = "";
@@ -794,7 +821,7 @@ public class KittBar extends FrameLayout {
      *
      * @param hint Sets the text to be displayed when the text of the TextView is empty
      */
-    public KittBar setSearchEditHint(@StringRes int hint) {
+    public final KittBar setSearchEditHint(@StringRes int hint) {
         mSearchView.setHint(hint);
         return this;
     }
@@ -805,7 +832,7 @@ public class KittBar extends FrameLayout {
      *
      * @param color Sets the text color to be displayed when the text of the TextView is empty
      */
-    public KittBar setSearchEditHintColor(@ColorInt int color) {
+    public final KittBar setSearchEditHintColor(@ColorInt int color) {
         mSearchView.setHintTextColor(color);
         return this;
     }
@@ -815,7 +842,7 @@ public class KittBar extends FrameLayout {
      *
      * @param colorString Sets the text color to be displayed when the text of the TextView is empty
      */
-    public KittBar setSearchEditHintColor(@Size(min = 1) String colorString) {
+    public final KittBar setSearchEditHintColor(@Size(min = 1) String colorString) {
         mSearchView.setHintTextColor(Color.parseColor(colorString));
         return this;
     }
@@ -825,7 +852,7 @@ public class KittBar extends FrameLayout {
      *
      * @param size The desired size in the px units.
      */
-    public KittBar setSearchEditTextSize(float size) {
+    public final KittBar setSearchEditTextSize(float size) {
         mSearchView.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
         return this;
     }
@@ -836,7 +863,7 @@ public class KittBar extends FrameLayout {
      * @param unit The desired dimension unit.
      * @param size The desired size in the given units.
      */
-    public KittBar setSearchEditTextSize(int unit, float size) {
+    public final KittBar setSearchEditTextSize(int unit, float size) {
         mSearchView.setTextSize(unit, size);
         return this;
     }
@@ -846,7 +873,7 @@ public class KittBar extends FrameLayout {
      *
      * @param text text to be displayed
      */
-    public KittBar setSearchEditText(CharSequence text) {
+    public final KittBar setSearchEditText(CharSequence text) {
         mSearchView.setText(text);
         return this;
     }
@@ -856,7 +883,7 @@ public class KittBar extends FrameLayout {
      *
      * @param resId the resource identifier of the string resource to be displayed
      */
-    public KittBar setSearchEditText(@StringRes int resId) {
+    public final KittBar setSearchEditText(@StringRes int resId) {
         mSearchView.setText(resId);
         return this;
     }
@@ -866,7 +893,7 @@ public class KittBar extends FrameLayout {
      *
      * @param color A color value in the form 0xAARRGGBB.
      */
-    public KittBar setSearchEditTextColor(@ColorInt int color) {
+    public final KittBar setSearchEditTextColor(@ColorInt int color) {
         mSearchView.setTextColor(color);
         return this;
     }
@@ -887,7 +914,7 @@ public class KittBar extends FrameLayout {
      *                    <code>navy</code>, <code>olive</code>, <code>purple</code>, <code>silver</code>,
      *                    and <code>teal</code>.</p>
      */
-    public KittBar setSearchEditTextColor(@Size(min = 1) String colorString) {
+    public final KittBar setSearchEditTextColor(@Size(min = 1) String colorString) {
         mSearchView.setTextColor(Color.parseColor(colorString));
         return this;
     }
@@ -899,7 +926,7 @@ public class KittBar extends FrameLayout {
      * @param left  the left padding in pixels.
      * @param right the right padding in pixels.
      */
-    public KittBar setSearchEditViewPadding(int left, int right) {
+    public final KittBar setSearchEditViewPadding(int left, int right) {
         mSearchView.setPadding(left, 0, right, 0);
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mSearchRightTemp.getLayoutParams();
         layoutParams.rightMargin = right;
@@ -910,7 +937,7 @@ public class KittBar extends FrameLayout {
     /**
      * 设置搜索编辑框左侧的图片
      */
-    public KittBar setSearchEditViewDrawableLeft(@Nullable Drawable left) {
+    public final KittBar setSearchEditViewDrawableLeft(@Nullable Drawable left) {
 
         if (left != null)
             left.setBounds(0, 0, left.getMinimumWidth(), left.getMinimumHeight());
@@ -926,7 +953,7 @@ public class KittBar extends FrameLayout {
      * @param right Use {@code null} if you do not want a
      *              Drawable there
      */
-    public KittBar setSearchEditViewDrawableRight(@Nullable Drawable right) {
+    public final KittBar setSearchEditViewDrawableRight(@Nullable Drawable right) {
         mSearchRightIcon.setImageDrawable(right);
         return this;
     }
@@ -937,7 +964,7 @@ public class KittBar extends FrameLayout {
      *
      * @param padding padding pixels padding.
      */
-    public KittBar setSearchEditCompoundDrawablePadding(int padding) {
+    public final KittBar setSearchEditCompoundDrawablePadding(int padding) {
         mSearchView.setCompoundDrawablePadding(padding);
         Drawable drawable = mSearchRightIcon.getDrawable();
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mSearchRightIcon.getLayoutParams();
@@ -956,7 +983,7 @@ public class KittBar extends FrameLayout {
      * @param clearIcon Use {@code null} if you do not want a
      *                  Drawable there
      */
-    public KittBar setSearchEditClearViewResource(@Nullable Drawable clearIcon) {
+    public final KittBar setSearchEditClearViewResource(@Nullable Drawable clearIcon) {
         mClearView.setImageDrawable(clearIcon);
         return this;
     }
@@ -965,7 +992,7 @@ public class KittBar extends FrameLayout {
     /**
      * 编辑框支持
      */
-    public KittBar setSearchEditSupportWriteAndClear(EditSupport support) {
+    public final KittBar setSearchEditSupportWriteAndClear(EditSupport support) {
         // 不支持写入时 不弹出键盘
         mSearchView.setKeyListener(support.getType() == 1 ? null : new TextKeyListener(TextKeyListener.Capitalize.NONE, false));
         // 是否显示清除按钮
@@ -977,7 +1004,7 @@ public class KittBar extends FrameLayout {
     /**
      * 是否支持提示内容的搜索
      */
-    public KittBar setSearchEditSupportWriteAndClear(boolean supportHintSearch) {
+    public final KittBar setSearchEditSupportWriteAndClear(boolean supportHintSearch) {
         this.mSupportHintSearch = supportHintSearch;
         return this;
     }
@@ -1015,7 +1042,7 @@ public class KittBar extends FrameLayout {
     /**
      * 设置右侧三个按钮是否可见
      */
-    public KittBar setRightButtonsVisibility(boolean leftVisible, boolean middleVisible, boolean rightVisible) {
+    public final KittBar setRightButtonsVisibility(boolean leftVisible, boolean middleVisible, boolean rightVisible) {
         int flag = 0;
         flag += (leftVisible ? 1 : 0);
         flag += (middleVisible ? 10 : 0);
@@ -1030,7 +1057,7 @@ public class KittBar extends FrameLayout {
      *
      * @param padding the left、right padding in pixels
      */
-    public KittBar setRightButtonsPadding(int padding) {
+    public final KittBar setRightButtonsPadding(int padding) {
         mRightBtn1.setPadding(padding, 0, padding, 0);
         mRightBtn2.setPadding(padding, 0, padding, 0);
         mRightBtn3.setPadding(padding, 0, padding, 0);
@@ -1042,7 +1069,7 @@ public class KittBar extends FrameLayout {
      *
      * @param size he desired size in the px units.
      */
-    public KittBar setRightButtonsTextSize(float size) {
+    public final KittBar setRightButtonsTextSize(float size) {
         mRightBtn1.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
         mRightBtn2.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
         mRightBtn3.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
@@ -1056,7 +1083,7 @@ public class KittBar extends FrameLayout {
      * @param unit The desired dimension unit.
      * @param size The desired size in the given units.
      */
-    public KittBar setRightButtonsTextSize(int unit, float size) {
+    public final KittBar setRightButtonsTextSize(int unit, float size) {
         mRightBtn1.setTextSize(unit, size);
         mRightBtn2.setTextSize(unit, size);
         mRightBtn3.setTextSize(unit, size);
@@ -1069,7 +1096,7 @@ public class KittBar extends FrameLayout {
      *
      * @param color color value in the form 0xAARRGGBB.
      */
-    public KittBar setRightButtonsTextColor(@ColorInt int color) {
+    public final KittBar setRightButtonsTextColor(@ColorInt int color) {
         mRightBtn1.setTextColor(color);
         mRightBtn2.setTextColor(color);
         mRightBtn3.setTextColor(color);
@@ -1092,7 +1119,7 @@ public class KittBar extends FrameLayout {
      *                    <code>navy</code>, <code>olive</code>, <code>purple</code>, <code>silver</code>,
      *                    and <code>teal</code>.</p>
      */
-    public KittBar setRightButtonsTextColor(@Size(min = 1) String colorString) {
+    public final KittBar setRightButtonsTextColor(@Size(min = 1) String colorString) {
         mRightBtn1.setTextColor(Color.parseColor(colorString));
         mRightBtn2.setTextColor(Color.parseColor(colorString));
         mRightBtn3.setTextColor(Color.parseColor(colorString));
@@ -1105,7 +1132,7 @@ public class KittBar extends FrameLayout {
      * @param rightBtn witch right button to be set
      * @param text     text to be displayed
      */
-    public KittBar setRightButtonsText(RightBtn rightBtn, CharSequence text) {
+    public final KittBar setRightButtonsText(RightBtn rightBtn, CharSequence text) {
 
         if (text == null)
             text = "";
@@ -1131,7 +1158,7 @@ public class KittBar extends FrameLayout {
      * @param rightBtn witch right button to be set
      * @StringRes int resId
      */
-    public KittBar setRightButtonsText(RightBtn rightBtn, @StringRes int resId) {
+    public final KittBar setRightButtonsText(RightBtn rightBtn, @StringRes int resId) {
 
         switch (rightBtn) {
             case RIGHT_FIRST:
@@ -1156,7 +1183,7 @@ public class KittBar extends FrameLayout {
      * @param drawable Use {@code null} if you do not want a
      *                 Drawable there
      */
-    public KittBar setRightButtonsImage(RightBtn rightBtn, @Nullable Drawable drawable) {
+    public final KittBar setRightButtonsImage(RightBtn rightBtn, @Nullable Drawable drawable) {
 
         if (drawable != null)
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
@@ -1177,25 +1204,40 @@ public class KittBar extends FrameLayout {
     }
 
     /**
-     * 设置只能padding ,用来适应透明导航栏
+     * 设置智能padding ,用来适应透明导航栏
      */
-    public KittBar setBarSmartPadding() {
+    public final KittBar setBarSmartPadding() {
         KittBarUtils.setPaddingSmart(getContext(), this);
+        return this;
+    }
+
+    /**
+     * 设置智能状态栏文字颜色 ,根据当前是否是暗黑模式来确定状态栏文字颜色
+     */
+    public final KittBar setBarStatusTextSmartDarkMode() {
+        KittBarUtils.darkMode((Activity) getContext(), getContext().getResources().getConfiguration().uiMode != 0x21);
+        return this;
+    }
+
+    /**
+     * 设置状态栏文字颜色 ,用来自定义状态栏文字是否是黑色
+     */
+    public final KittBar setBarStatusTextDarkMode(boolean textDark) {
+        KittBarUtils.darkMode((Activity) getContext(), textDark);
         return this;
     }
 
     /**
      * 设置监听
      */
-    public KittBar setOnBarEventListener(OnBarEventListener listener) {
+    public final void setOnBarEventListener(OnBarEventListener listener) {
         this.mListener = listener;
-        return this;
     }
 
     /**
      * 设置自定义布局的监听，请在设置完自定义的view之后再设置点击事件
      */
-    public KittBar setOnCustomBarEventListener(OnCustomBarEventListener listener) {
+    public final KittBar setOnCustomBarEventListener(OnCustomBarEventListener listener) {
         if (mCustomView != null && listener != null) {
             listener.onCustom(mCustomView);
         }
@@ -1206,7 +1248,7 @@ public class KittBar extends FrameLayout {
     /**
      * 获取搜索的提示内容
      */
-    public String getBarSearchWord() {
+    public final String getBarSearchWord() {
         return mSearchView.getText().toString();
     }
 
@@ -1226,17 +1268,5 @@ public class KittBar extends FrameLayout {
         } catch (Exception e) {
             return null;
         }
-    }
-
-    private GradientDrawable getSearchLayoutDrawable() {
-
-        GradientDrawable drawable = new GradientDrawable();
-        //设置圆角大小
-        drawable.setCornerRadius(1000);
-        //设置边缘线的宽以及颜色
-        drawable.setStroke(0, Color.parseColor("#000000"));
-        //设置shape背景色
-        drawable.setColor(Color.parseColor("#F1F1F1"));
-        return drawable;
     }
 }

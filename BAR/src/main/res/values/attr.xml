@@ -129,7 +129,7 @@
         <attr name="bar_rightButton_padding" format="dimension" />
         <!--右侧三个按钮的字体大小-->
         <attr name="bar_rightButton_textSize" format="dimension" />
-        <!--右侧三个按钮的字体颜色-->
+        <!--右侧三个按钮的字体颜色,请不要使用此透明色 android.R.color.transparent-->
         <attr name="bar_rightButton_textColor" format="color" />
 
         <!--右侧三个按钮的第一个文字内容-->
