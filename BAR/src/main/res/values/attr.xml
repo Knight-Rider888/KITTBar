@@ -102,8 +102,14 @@
         <!--搜索框输入控件的左、右侧图标-->
         <attr name="bar_searchEdit_drawableLeft" format="reference" />
         <attr name="bar_searchEdit_drawableRight" format="reference" />
-        <!--搜索框输入控件的左侧图标的距离文字距离-->
+        <!--搜索框输入控件的图标的距离文字距离-->
         <attr name="bar_searchEdit_drawablePadding" format="dimension" />
+        <!--搜索框输入文字图标的摆放,仅对不可输入的情况生效-->
+        <attr name="bar_searchEdit_gravity" format="enum">
+            <enum name="normal" value="0" />
+            <enum name="textImgCenter" value="1" />
+            <enum name="textCenter" value="2" />
+        </attr>
 
         <!--搜索框输入控件的清空文字按钮-->
         <attr name="bar_searchEditClear_src" format="reference" />
