@@ -76,7 +76,7 @@
             <enum name="GONE" value="0x00000008" />
         </attr>
 
-        <!--搜索框背景,默认有背景-->
+        <!--搜索框背景,默认有背景,如想无背景，传透明色即可-->
         <attr name="bar_searchLayoutBackground" format="color|reference" />
 
         <!--搜索框高度-->
