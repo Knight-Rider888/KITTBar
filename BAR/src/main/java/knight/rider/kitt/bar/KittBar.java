@@ -310,45 +310,45 @@ public class KittBar extends FrameLayout {
         // 设置自定义布局的宽度
         int customWeight = array.getInt(R.styleable.KittBar_bar_custom_layout_width, 0);
         setCustomLayoutWidth(customWeight == 1 ? Params.MATCH_PARENT : Params.WRAP_CONTENT);
-//
-//        // 标题
-//        mTitle = ((TextView) findViewById(R.id.kitt_bar_title));
-//        mTitle.setSelected(true);
-//
-//        int titleColor = array.getColor(R.styleable.KittBar_bar_title_color, 0);
-//        if (titleColor == 0)
-//            titleColor = builder.getTitleColor();
-//        setTitleColor(titleColor);
-//
-//        String titleStr = array.getString(R.styleable.KittBar_bar_title_content);
-//        setTitleContent(titleStr);
-//
-//        float titleSize = array.getDimension(R.styleable.KittBar_bar_title_textSize, -1);
-//        if (titleSize < 0)
-//            titleSize = builder.getTitleTextSize();
-//        setTitleTextSize(titleSize);
-//
-//        int titleStyle = array.getInt(R.styleable.KittBar_bar_title_textStyle, -1);
-//        if (titleStyle < 0)
-//            titleStyle = builder.getTitleTextStyle().getStyle();
-//        setTitleTextStyle(titleStyle);
-//
-//        int titlePaddingLeft = (int) array.getDimension(R.styleable.KittBar_bar_title_paddingLeft, 0);
-//        int titlePaddingRight = (int) array.getDimension(R.styleable.KittBar_bar_title_paddingRight, 0);
-//        setTitlePadding(titlePaddingLeft, titlePaddingRight);
-//
-//
-//        int titleLeftDrawableId = array.getResourceId(R.styleable.KittBar_bar_title_drawableLeft, 0);
-//        int titleRightDrawableId = array.getResourceId(R.styleable.KittBar_bar_title_drawableRight, 0);
-//        int titleTopDrawableId = array.getResourceId(R.styleable.KittBar_bar_title_drawableTop, 0);
-//        int titleBottomDrawableId = array.getResourceId(R.styleable.KittBar_bar_title_drawableBottom, 0);
-//
-//        setTitleCompoundDrawables(getDrawable(titleLeftDrawableId), getDrawable(titleTopDrawableId),
-//                getDrawable(titleRightDrawableId), getDrawable(titleBottomDrawableId));
-//
-//        int titleDrawablePadding = (int) array.getDimension(R.styleable.KittBar_bar_title_drawablePadding, 0);
-//        setTitleCompoundDrawablePadding(titleDrawablePadding);
-//
+
+        // 标题
+        mTitle = ((TextView) findViewById(R.id.kitt_bar_title));
+        mTitle.setSelected(true);
+
+        int titleColor = array.getColor(R.styleable.KittBar_bar_title_color, 0);
+        if (titleColor == 0)
+            titleColor = builder.getTitleColor();
+        setTitleColor(titleColor);
+
+        String titleStr = array.getString(R.styleable.KittBar_bar_title_content);
+        setTitleContent(titleStr);
+
+        float titleSize = array.getDimension(R.styleable.KittBar_bar_title_textSize, -1);
+        if (titleSize < 0)
+            titleSize = builder.getTitleTextSize();
+        setTitleTextSize(titleSize);
+
+        int titleStyle = array.getInt(R.styleable.KittBar_bar_title_textStyle, -1);
+        if (titleStyle < 0)
+            titleStyle = builder.getTitleTextStyle().getStyle();
+        setTitleTextStyle(titleStyle);
+
+        int titlePaddingLeft = (int) array.getDimension(R.styleable.KittBar_bar_title_paddingLeft, 0);
+        int titlePaddingRight = (int) array.getDimension(R.styleable.KittBar_bar_title_paddingRight, 0);
+        setTitlePadding(titlePaddingLeft, titlePaddingRight);
+
+
+        int titleLeftDrawableId = array.getResourceId(R.styleable.KittBar_bar_title_drawableLeft, 0);
+        int titleRightDrawableId = array.getResourceId(R.styleable.KittBar_bar_title_drawableRight, 0);
+        int titleTopDrawableId = array.getResourceId(R.styleable.KittBar_bar_title_drawableTop, 0);
+        int titleBottomDrawableId = array.getResourceId(R.styleable.KittBar_bar_title_drawableBottom, 0);
+
+        setTitleCompoundDrawables(getDrawable(titleLeftDrawableId), getDrawable(titleTopDrawableId),
+                getDrawable(titleRightDrawableId), getDrawable(titleBottomDrawableId));
+
+        int titleDrawablePadding = (int) array.getDimension(R.styleable.KittBar_bar_title_drawablePadding, 0);
+        setTitleCompoundDrawablePadding(titleDrawablePadding);
+
 //        // 搜索区域
 //        mSearchLayout = findViewById(R.id.kitt_bar_searchLayout);
 //
