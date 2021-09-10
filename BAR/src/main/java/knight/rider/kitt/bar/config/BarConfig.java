@@ -81,7 +81,7 @@ public class BarConfig {
         private int backIcon_paddingRight;
         private int backIcon_paddingLeft;
 
-        private int title_color = -1;
+        private String title_color = "";
         private float title_textSize = -1;
         private TextStyle title_textStyle = TextStyle.NORMAL;
 
@@ -127,11 +127,11 @@ public class BarConfig {
         }
 
         public int getTitleColor() {
-            return title_color < 0 ? Color.parseColor("#000000") : title_color;
+            return title_color.equals("") ? Color.parseColor("#000000") : Integer.parseInt(title_color);
         }
 
         public void setTitleColor(int title_color) {
-            this.title_color = title_color;
+            this.title_color = String.valueOf(title_color);
         }
 
         public float getTitleTextSize() {

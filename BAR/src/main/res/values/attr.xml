@@ -77,10 +77,7 @@
         </attr>
 
         <!--搜索框背景,默认有背景-->
-        <attr name="bar_searchLayout_color" format="color|reference" />
-        <attr name="bar_searchLayout_stoke_width" format="dimension" />
-        <attr name="bar_searchLayout_stoke_color" format="color|reference" />
-        <attr name="bar_searchLayout_radius" format="dimension" />
+        <attr name="bar_searchLayoutBackground" format="color|reference" />
 
         <!--搜索框margin-->
         <attr name="bar_searchLayout_margin" format="dimension" />

@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.text.Editable;
@@ -79,9 +78,6 @@ public class KittBar extends FrameLayout {
     private ImageView mSearchRightTemp;
     private ImageView mSearchRightIcon;
     private ImageView mClearView;
-
-
-    private GradientDrawable mSearchLayoutDrawable;
 
     // 是否支持清除和输入
     private int mSupportWriteAndClear;
@@ -359,18 +355,9 @@ public class KittBar extends FrameLayout {
         int searchLayoutVisible = array.getInt(R.styleable.KittBar_bar_searchLayout_visibility, INVISIBLE);
         setSearchLayoutVisibility(searchLayoutVisible);
 
-        mSearchLayoutDrawable = getSearchLayoutDrawable();
-        mSearchLayout.setBackground(mSearchLayoutDrawable);
+        // 搜索框背景
+        setSearchLayoutBackground(getSearchLayoutDrawable());
 
-        Drawable searchBg = array.getDrawable(R.styleable.KittBar_bar_searchLayout_color);
-        setSearchLayoutBackground(searchBg);
-
-        int searchBgStoke = (int) array.getDimension(R.styleable.KittBar_bar_searchLayout_stoke_width, 0);
-        int searchBgStokeColor = array.getColor(R.styleable.KittBar_bar_searchLayout_stoke_color, Color.parseColor("#00000000"));
-        setSearchLayoutStoke(searchBgStoke, searchBgStokeColor);
-
-        float searchBgRadius = array.getDimension(R.styleable.KittBar_bar_searchLayout_radius, 0);
-        setSearchLayoutCornerRadius(searchBgRadius);
 
         int searchLayoutMargin = (int) array.getDimension(R.styleable.KittBar_bar_searchLayout_margin, 0);
         int searchLayoutMarginTop = (int) array.getDimension(R.styleable.KittBar_bar_searchLayout_marginTop, 0);
@@ -755,73 +742,11 @@ public class KittBar extends FrameLayout {
      *
      * @param background The Drawable to use as the background
      */
-    private void setSearchLayoutBackground(Drawable background) {
-        if (background instanceof ColorDrawable)
-            mSearchLayoutDrawable.setColor(((ColorDrawable) background).getColor());
-    }
-
-    /**
-     * 设置搜索布局背景色
-     *
-     * @param color A color value in the form 0xAARRGGBB.
-     */
-    public KittBar setSearchLayoutColor(@ColorInt int color) {
-        mSearchLayoutDrawable.setColor(color);
+    public KittBar setSearchLayoutBackground(Drawable background) {
+        mSearchLayout.setBackground(background);
         return this;
     }
 
-    /**
-     * 设置搜索布局背景色
-     *
-     * <ul>
-     *   <li><code>#RRGGBB</code></li>
-     *   <li><code>#AARRGGBB</code></li>
-     * </ul>
-     * <p>
-     * The following names are also accepted: <code>red</code>, <code>blue</code>,
-     * <code>green</code>, <code>black</code>, <code>white</code>, <code>gray</code>,
-     * <code>cyan</code>, <code>magenta</code>, <code>yellow</code>, <code>lightgray</code>,
-     * <code>darkgray</code>, <code>grey</code>, <code>lightgrey</code>, <code>darkgrey</code>,
-     * <code>aqua</code>, <code>fuchsia</code>, <code>lime</code>, <code>maroon</code>,
-     * <code>navy</code>, <code>olive</code>, <code>purple</code>, <code>silver</code>,
-     * and <code>teal</code>.</p>
-     */
-    public KittBar setSearchLayoutColor(@Size(min = 1) String colorString) {
-        mSearchLayoutDrawable.setColor(Color.parseColor(colorString));
-        return this;
-    }
-
-    /**
-     * 设置搜索布局背景描边
-     *
-     * @param width The width in pixels of the stroke
-     * @param color The color of the stroke
-     */
-    public KittBar setSearchLayoutStoke(int width, @ColorInt int color) {
-        mSearchLayoutDrawable.setStroke(width, color);
-        return this;
-    }
-
-    /**
-     * 设置搜索布局背景描边
-     *
-     * @param width       The width in pixels of the stroke
-     * @param colorString like #AARRGGBB
-     */
-    public KittBar setSearchLayoutStoke(int width, @Size(min = 1) String colorString) {
-        mSearchLayoutDrawable.setStroke(width, Color.parseColor(colorString));
-        return this;
-    }
-
-    /**
-     * 设置搜索布局背景圆角
-     *
-     * @param radius The radius in pixels of the corners of the background
-     */
-    public KittBar setSearchLayoutCornerRadius(float radius) {
-        mSearchLayoutDrawable.setCornerRadius(radius);
-        return this;
-    }
 
     /**
      * 设置搜索布局外边距

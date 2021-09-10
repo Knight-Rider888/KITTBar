@@ -109,10 +109,7 @@ public class TopBarActivity extends AppCompatActivity {
     }
 
     public void searchLayoutBg(View view) {
-        kittBar.setSearchLayoutCornerRadius(1000)
-                .setSearchLayoutColor("red")
-                .setSearchLayoutMargin(1, 40, 5, 20)
-                .setSearchLayoutStoke(5, "blue");
+
     }
 
     public void searchVisible(View view) {
