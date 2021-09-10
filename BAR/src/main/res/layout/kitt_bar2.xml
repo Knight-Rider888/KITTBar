@@ -41,8 +41,7 @@
             android:background="@drawable/kitt_bar_search_bg"
             android:gravity="center"
             android:orientation="horizontal"
-            android:textColor="@android:color/white"
-            android:textSize="16dp">
+            android:textColor="@android:color/white">
 
             <EditText
                 android:id="@+id/kitt_bar_search_edit"
