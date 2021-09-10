@@ -19,6 +19,7 @@ import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -106,7 +107,7 @@ public class KittBar extends FrameLayout {
         super(context, attrs, defStyleAttr);
         this.mContext = context;
         init(attrs, defStyleAttr);
-        initListener();
+//        initListener();
     }
 
     private void initListener() {
@@ -309,168 +310,168 @@ public class KittBar extends FrameLayout {
         // 设置自定义布局的宽度
         int customWeight = array.getInt(R.styleable.KittBar_bar_custom_layout_width, 0);
         setCustomLayoutWidth(customWeight == 1 ? Params.MATCH_PARENT : Params.WRAP_CONTENT);
-
-        // 标题
-        mTitle = ((TextView) findViewById(R.id.kitt_bar_title));
-        mTitle.setSelected(true);
-
-        int titleColor = array.getColor(R.styleable.KittBar_bar_title_color, 0);
-        if (titleColor == 0)
-            titleColor = builder.getTitleColor();
-        setTitleColor(titleColor);
-
-        String titleStr = array.getString(R.styleable.KittBar_bar_title_content);
-        setTitleContent(titleStr);
-
-        float titleSize = array.getDimension(R.styleable.KittBar_bar_title_textSize, -1);
-        if (titleSize < 0)
-            titleSize = builder.getTitleTextSize();
-        setTitleTextSize(titleSize);
-
-        int titleStyle = array.getInt(R.styleable.KittBar_bar_title_textStyle, -1);
-        if (titleStyle < 0)
-            titleStyle = builder.getTitleTextStyle().getStyle();
-        setTitleTextStyle(titleStyle);
-
-        int titlePaddingLeft = (int) array.getDimension(R.styleable.KittBar_bar_title_paddingLeft, 0);
-        int titlePaddingRight = (int) array.getDimension(R.styleable.KittBar_bar_title_paddingRight, 0);
-        setTitlePadding(titlePaddingLeft, titlePaddingRight);
-
-
-        int titleLeftDrawableId = array.getResourceId(R.styleable.KittBar_bar_title_drawableLeft, 0);
-        int titleRightDrawableId = array.getResourceId(R.styleable.KittBar_bar_title_drawableRight, 0);
-        int titleTopDrawableId = array.getResourceId(R.styleable.KittBar_bar_title_drawableTop, 0);
-        int titleBottomDrawableId = array.getResourceId(R.styleable.KittBar_bar_title_drawableBottom, 0);
-
-        setTitleCompoundDrawables(getDrawable(titleLeftDrawableId), getDrawable(titleTopDrawableId),
-                getDrawable(titleRightDrawableId), getDrawable(titleBottomDrawableId));
-
-        int titleDrawablePadding = (int) array.getDimension(R.styleable.KittBar_bar_title_drawablePadding, 0);
-        setTitleCompoundDrawablePadding(titleDrawablePadding);
-
-        // 搜索区域
-        mSearchLayout = findViewById(R.id.kitt_bar_searchLayout);
-
-        int searchLayoutHeight = (int) array.getDimension(R.styleable.KittBar_bar_searchLayout_height, -1);
-        if (searchLayoutHeight == -1)
-            searchLayoutHeight = builder.getSearchLayoutHeight();
-        setSearchLayoutHeight(searchLayoutHeight);
-
-        // 是否可见
-        int searchLayoutVisible = array.getInt(R.styleable.KittBar_bar_searchLayout_visibility, INVISIBLE);
-        setSearchLayoutVisibility(searchLayoutVisible);
-
-        Drawable drawable = array.getDrawable(R.styleable.KittBar_bar_searchLayoutBackground);
-
-        if (drawable == null)
-            drawable = builder.getSearchLayoutBackground();
-
-        // 搜索框背景
-        setSearchLayoutBackground(drawable);
-
-
-        int searchLayoutMarginLeft = (int) array.getDimension(R.styleable.KittBar_bar_searchLayout_marginLeft, 0);
-        int searchLayoutMarginRight = (int) array.getDimension(R.styleable.KittBar_bar_searchLayout_marginRight, 0);
-        setSearchLayoutMargin(searchLayoutMarginLeft, 0, searchLayoutMarginRight, 0);
-
-
-        // 搜索编辑框
-        mSearchView = ((EditText) findViewById(R.id.kitt_bar_search_edit));
-
-        String hint = array.getString(R.styleable.KittBar_bar_searchEdit_hint);
-        setSearchEditHint(hint);
-        int hintColor = array.getColor(R.styleable.KittBar_bar_searchEdit_hintColor, 0);
-        if (hintColor == 0)
-            hintColor = builder.getSearchEditHintColor();
-        setSearchEditHintColor(hintColor);
-
-        float editSize = array.getDimension(R.styleable.KittBar_bar_searchEdit_textSize, dip2px(13));
-        setSearchEditTextSize(editSize);
-        int editColor = array.getColor(R.styleable.KittBar_bar_searchEdit_textColor, 0);
-        if (editColor == 0)
-            editColor = builder.getSearchEditTextColor();
-        setSearchEditTextColor(editColor);
-
-        int searchEditViewPaddingLeft = (int) array.getDimension(R.styleable.KittBar_bar_searchEdit_paddingLeft, 0);
-        int searchEditViewPaddingRight = (int) array.getDimension(R.styleable.KittBar_bar_searchEdit_paddingRight, 0);
-        mSearchRightTemp = ((ImageView) findViewById(R.id.kitt_right_temp));
-        setSearchEditViewPadding(searchEditViewPaddingLeft, searchEditViewPaddingRight);
-
-
-        int drawableLeftResourceId = array.getResourceId(R.styleable.KittBar_bar_searchEdit_drawableLeft, 0);
-        setSearchEditViewDrawableLeft(getDrawable(drawableLeftResourceId));
-
-        mSearchRightIcon = ((ImageView) findViewById(R.id.kitt_edit_right_icon));
-        int searchRightIconId = array.getResourceId(R.styleable.KittBar_bar_searchEdit_drawableRight, 0);
-        setSearchEditViewDrawableRight(getDrawable(searchRightIconId));
-
-        // 清除按钮
-        mClearView = ((ImageView) findViewById(R.id.kitt_clear_View));
-        // 要放在设置编辑框drawPadding前
-        int closeResourceId = array.getResourceId(R.styleable.KittBar_bar_searchEditClear_src, 0);
-        if (closeResourceId != 0)
-            setSearchEditClearViewResource(getDrawable(closeResourceId));
-        else
-            setSearchEditClearViewResource(builder.getSearchEditClear() == null ? getDrawable(R.drawable.lib_temp_close) : builder.getSearchEditClear());
-
-        int drawablePadding = (int) array.getDimension(R.styleable.KittBar_bar_searchEdit_drawablePadding, 0);
-        setSearchEditCompoundDrawablePadding(drawablePadding);
-
-        // 是否支持清除和输入
-        mSupportWriteAndClear = array.getInt(R.styleable.KittBar_bar_searchEdit_support_write_and_clear, 0);
-        EditSupport editSupport;
-        switch (mSupportWriteAndClear) {
-            case 1:
-                editSupport = EditSupport.NONE_SUPPORT;
-                break;
-            case 2:
-                editSupport = EditSupport.ONLY_WRITE;
-                break;
-            default:
-                editSupport = EditSupport.WRITE_AND_CLEAR;
-                break;
-        }
-        setSearchEditSupportWriteAndClear(editSupport);
-
-
-        // 是否支持提示内容搜索
-        mSupportHintSearch = array.getBoolean(R.styleable.KittBar_bar_searchEdit_hint_search_support, false);
-
-
-        // 右侧按钮
-        mRightBtn1 = findViewById(R.id.kitt_bar_right_btn1);
-        mRightBtn2 = findViewById(R.id.kitt_bar_right_btn2);
-        mRightBtn3 = findViewById(R.id.kitt_bar_right_btn3);
-
-        int flagValue = array.getInt(R.styleable.KittBar_bar_rightButton_show, 0);
-        setRightButtonsVisibility(flagValue);
-
-        float rightBtnPadding = array.getDimension(R.styleable.KittBar_bar_rightButton_padding, 0);
-        setRightButtonsPadding((int) rightBtnPadding);
-
-        float rightBtnTextSize = array.getDimension(R.styleable.KittBar_bar_rightButton_textSize, -1);
-        if (rightBtnTextSize == -1)
-            rightBtnTextSize = builder.getRightButtonTextSize();
-        setRightButtonsTextSize(rightBtnTextSize);
-
-        int color = array.getColor(R.styleable.KittBar_bar_rightButton_textColor, 0);
-        if (color == 0)
-            color = builder.getRightButtonTextColor();
-        setRightButtonsTextColor(color);
-
-        String text1 = array.getString(R.styleable.KittBar_bar_rightButton_first_text);
-        setRightButtonsText(RightBtn.RIGHT_FIRST, text1);
-        String text2 = array.getString(R.styleable.KittBar_bar_rightButton_second_text);
-        setRightButtonsText(RightBtn.RIGHT_SECOND, text2);
-        String text3 = array.getString(R.styleable.KittBar_bar_rightButton_third_text);
-        setRightButtonsText(RightBtn.RIGHT_THIRD, text3);
-
-        int resourceId1 = array.getResourceId(R.styleable.KittBar_bar_rightButton_first_src, 0);
-        setRightButtonsImage(RightBtn.RIGHT_FIRST, getDrawable(resourceId1));
-        int resourceId2 = array.getResourceId(R.styleable.KittBar_bar_rightButton_second_src, 0);
-        setRightButtonsImage(RightBtn.RIGHT_SECOND, getDrawable(resourceId2));
-        int resourceId3 = array.getResourceId(R.styleable.KittBar_bar_rightButton_third_src, 0);
-        setRightButtonsImage(RightBtn.RIGHT_THIRD, getDrawable(resourceId3));
+//
+//        // 标题
+//        mTitle = ((TextView) findViewById(R.id.kitt_bar_title));
+//        mTitle.setSelected(true);
+//
+//        int titleColor = array.getColor(R.styleable.KittBar_bar_title_color, 0);
+//        if (titleColor == 0)
+//            titleColor = builder.getTitleColor();
+//        setTitleColor(titleColor);
+//
+//        String titleStr = array.getString(R.styleable.KittBar_bar_title_content);
+//        setTitleContent(titleStr);
+//
+//        float titleSize = array.getDimension(R.styleable.KittBar_bar_title_textSize, -1);
+//        if (titleSize < 0)
+//            titleSize = builder.getTitleTextSize();
+//        setTitleTextSize(titleSize);
+//
+//        int titleStyle = array.getInt(R.styleable.KittBar_bar_title_textStyle, -1);
+//        if (titleStyle < 0)
+//            titleStyle = builder.getTitleTextStyle().getStyle();
+//        setTitleTextStyle(titleStyle);
+//
+//        int titlePaddingLeft = (int) array.getDimension(R.styleable.KittBar_bar_title_paddingLeft, 0);
+//        int titlePaddingRight = (int) array.getDimension(R.styleable.KittBar_bar_title_paddingRight, 0);
+//        setTitlePadding(titlePaddingLeft, titlePaddingRight);
+//
+//
+//        int titleLeftDrawableId = array.getResourceId(R.styleable.KittBar_bar_title_drawableLeft, 0);
+//        int titleRightDrawableId = array.getResourceId(R.styleable.KittBar_bar_title_drawableRight, 0);
+//        int titleTopDrawableId = array.getResourceId(R.styleable.KittBar_bar_title_drawableTop, 0);
+//        int titleBottomDrawableId = array.getResourceId(R.styleable.KittBar_bar_title_drawableBottom, 0);
+//
+//        setTitleCompoundDrawables(getDrawable(titleLeftDrawableId), getDrawable(titleTopDrawableId),
+//                getDrawable(titleRightDrawableId), getDrawable(titleBottomDrawableId));
+//
+//        int titleDrawablePadding = (int) array.getDimension(R.styleable.KittBar_bar_title_drawablePadding, 0);
+//        setTitleCompoundDrawablePadding(titleDrawablePadding);
+//
+//        // 搜索区域
+//        mSearchLayout = findViewById(R.id.kitt_bar_searchLayout);
+//
+//        int searchLayoutHeight = (int) array.getDimension(R.styleable.KittBar_bar_searchLayout_height, -1);
+//        if (searchLayoutHeight == -1)
+//            searchLayoutHeight = builder.getSearchLayoutHeight();
+//        setSearchLayoutHeight(searchLayoutHeight);
+//
+//        // 是否可见
+//        int searchLayoutVisible = array.getInt(R.styleable.KittBar_bar_searchLayout_visibility, INVISIBLE);
+//        setSearchLayoutVisibility(searchLayoutVisible);
+//
+//        Drawable drawable = array.getDrawable(R.styleable.KittBar_bar_searchLayoutBackground);
+//
+//        if (drawable == null)
+//            drawable = builder.getSearchLayoutBackground();
+//
+//        // 搜索框背景
+//        setSearchLayoutBackground(drawable);
+//
+//
+//        int searchLayoutMarginLeft = (int) array.getDimension(R.styleable.KittBar_bar_searchLayout_marginLeft, 0);
+//        int searchLayoutMarginRight = (int) array.getDimension(R.styleable.KittBar_bar_searchLayout_marginRight, 0);
+//        setSearchLayoutMargin(searchLayoutMarginLeft, 0, searchLayoutMarginRight, 0);
+//
+//
+//        // 搜索编辑框
+//        mSearchView = ((EditText) findViewById(R.id.kitt_bar_search_edit));
+//
+//        String hint = array.getString(R.styleable.KittBar_bar_searchEdit_hint);
+//        setSearchEditHint(hint);
+//        int hintColor = array.getColor(R.styleable.KittBar_bar_searchEdit_hintColor, 0);
+//        if (hintColor == 0)
+//            hintColor = builder.getSearchEditHintColor();
+//        setSearchEditHintColor(hintColor);
+//
+//        float editSize = array.getDimension(R.styleable.KittBar_bar_searchEdit_textSize, dip2px(13));
+//        setSearchEditTextSize(editSize);
+//        int editColor = array.getColor(R.styleable.KittBar_bar_searchEdit_textColor, 0);
+//        if (editColor == 0)
+//            editColor = builder.getSearchEditTextColor();
+//        setSearchEditTextColor(editColor);
+//
+//        int searchEditViewPaddingLeft = (int) array.getDimension(R.styleable.KittBar_bar_searchEdit_paddingLeft, 0);
+//        int searchEditViewPaddingRight = (int) array.getDimension(R.styleable.KittBar_bar_searchEdit_paddingRight, 0);
+//        mSearchRightTemp = ((ImageView) findViewById(R.id.kitt_right_temp));
+//        setSearchEditViewPadding(searchEditViewPaddingLeft, searchEditViewPaddingRight);
+//
+//
+//        int drawableLeftResourceId = array.getResourceId(R.styleable.KittBar_bar_searchEdit_drawableLeft, 0);
+//        setSearchEditViewDrawableLeft(getDrawable(drawableLeftResourceId));
+//
+//        mSearchRightIcon = ((ImageView) findViewById(R.id.kitt_edit_right_icon));
+//        int searchRightIconId = array.getResourceId(R.styleable.KittBar_bar_searchEdit_drawableRight, 0);
+//        setSearchEditViewDrawableRight(getDrawable(searchRightIconId));
+//
+//        // 清除按钮
+//        mClearView = ((ImageView) findViewById(R.id.kitt_clear_View));
+//        // 要放在设置编辑框drawPadding前
+//        int closeResourceId = array.getResourceId(R.styleable.KittBar_bar_searchEditClear_src, 0);
+//        if (closeResourceId != 0)
+//            setSearchEditClearViewResource(getDrawable(closeResourceId));
+//        else
+//            setSearchEditClearViewResource(builder.getSearchEditClear() == null ? getDrawable(R.drawable.lib_temp_close) : builder.getSearchEditClear());
+//
+//        int drawablePadding = (int) array.getDimension(R.styleable.KittBar_bar_searchEdit_drawablePadding, 0);
+//        setSearchEditCompoundDrawablePadding(drawablePadding);
+//
+//        // 是否支持清除和输入
+//        mSupportWriteAndClear = array.getInt(R.styleable.KittBar_bar_searchEdit_support_write_and_clear, 0);
+//        EditSupport editSupport;
+//        switch (mSupportWriteAndClear) {
+//            case 1:
+//                editSupport = EditSupport.NONE_SUPPORT;
+//                break;
+//            case 2:
+//                editSupport = EditSupport.ONLY_WRITE;
+//                break;
+//            default:
+//                editSupport = EditSupport.WRITE_AND_CLEAR;
+//                break;
+//        }
+//        setSearchEditSupportWriteAndClear(editSupport);
+//
+//
+//        // 是否支持提示内容搜索
+//        mSupportHintSearch = array.getBoolean(R.styleable.KittBar_bar_searchEdit_hint_search_support, false);
+//
+//
+//        // 右侧按钮
+//        mRightBtn1 = findViewById(R.id.kitt_bar_right_btn1);
+//        mRightBtn2 = findViewById(R.id.kitt_bar_right_btn2);
+//        mRightBtn3 = findViewById(R.id.kitt_bar_right_btn3);
+//
+//        int flagValue = array.getInt(R.styleable.KittBar_bar_rightButton_show, 0);
+//        setRightButtonsVisibility(flagValue);
+//
+//        float rightBtnPadding = array.getDimension(R.styleable.KittBar_bar_rightButton_padding, 0);
+//        setRightButtonsPadding((int) rightBtnPadding);
+//
+//        float rightBtnTextSize = array.getDimension(R.styleable.KittBar_bar_rightButton_textSize, -1);
+//        if (rightBtnTextSize == -1)
+//            rightBtnTextSize = builder.getRightButtonTextSize();
+//        setRightButtonsTextSize(rightBtnTextSize);
+//
+//        int color = array.getColor(R.styleable.KittBar_bar_rightButton_textColor, 0);
+//        if (color == 0)
+//            color = builder.getRightButtonTextColor();
+//        setRightButtonsTextColor(color);
+//
+//        String text1 = array.getString(R.styleable.KittBar_bar_rightButton_first_text);
+//        setRightButtonsText(RightBtn.RIGHT_FIRST, text1);
+//        String text2 = array.getString(R.styleable.KittBar_bar_rightButton_second_text);
+//        setRightButtonsText(RightBtn.RIGHT_SECOND, text2);
+//        String text3 = array.getString(R.styleable.KittBar_bar_rightButton_third_text);
+//        setRightButtonsText(RightBtn.RIGHT_THIRD, text3);
+//
+//        int resourceId1 = array.getResourceId(R.styleable.KittBar_bar_rightButton_first_src, 0);
+//        setRightButtonsImage(RightBtn.RIGHT_FIRST, getDrawable(resourceId1));
+//        int resourceId2 = array.getResourceId(R.styleable.KittBar_bar_rightButton_second_src, 0);
+//        setRightButtonsImage(RightBtn.RIGHT_SECOND, getDrawable(resourceId2));
+//        int resourceId3 = array.getResourceId(R.styleable.KittBar_bar_rightButton_third_src, 0);
+//        setRightButtonsImage(RightBtn.RIGHT_THIRD, getDrawable(resourceId3));
 
         // 回收
         array.recycle();
@@ -598,6 +599,7 @@ public class KittBar extends FrameLayout {
     public final KittBar setCustomLayoutWidth(Params params) {
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mCustomLayout.getLayoutParams();
         layoutParams.weight = params == Params.MATCH_PARENT ? 1 : 0;
+        layoutParams.width = params == Params.MATCH_PARENT ? 0 : ViewGroup.LayoutParams.WRAP_CONTENT;
         mCustomLayout.setLayoutParams(layoutParams);
         return this;
     }
