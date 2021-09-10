@@ -79,6 +79,9 @@
         <!--搜索框背景,默认有背景-->
         <attr name="bar_searchLayoutBackground" format="color|reference" />
 
+        <!--搜索框高度-->
+        <attr name="bar_searchLayout_height" format="dimension" />
+
         <!--搜索框margin-->
         <attr name="bar_searchLayout_marginLeft" format="dimension" />
         <attr name="bar_searchLayout_marginRight" format="dimension" />
