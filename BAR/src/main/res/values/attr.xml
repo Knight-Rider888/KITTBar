@@ -85,18 +85,27 @@
         <attr name="bar_searchLayout_marginLeft" format="dimension" />
         <attr name="bar_searchLayout_marginRight" format="dimension" />
 
+
+        <!--搜索框输入控件的清空文字按钮，支持全局配置-->
+        <attr name="bar_searchEditClear_src" format="reference" />
+        <!--搜索框删除icon的padding，支持全局配置-->
+        <attr name="bar_searchEditClear_paddingLeft" format="dimension" />
+        <attr name="bar_searchEditClear_paddingRight" format="dimension" />
         <!--输入框内最右侧的图标-->
-        <attr name="bar_searchLayout_rightIcon" format="reference" />
+        <attr name="bar_searchEdit_rightIcon" format="reference" />
+        <!--输入框内最右侧的图标的padding-->
+        <attr name="bar_searchEdit_rightIcon_paddingLeft" format="dimension" />
+        <attr name="bar_searchEdit_rightIcon_paddingRight" format="dimension" />
 
         <!--搜索框输入控件的hint-->
         <attr name="bar_searchEdit_hint" format="string" />
-        <!--搜索框输入控件的hint颜色,请不要使用此透明色 android.R.color.transparent-->
+        <!--搜索框输入控件的hint颜色,请不要使用此透明色 android.R.color.transparent，支持全局配置-->
         <attr name="bar_searchEdit_hintColor" format="color" />
-        <!--搜索框输入控件的字体大小-->
+        <!--搜索框输入控件的字体大小，支持全局配置-->
         <attr name="bar_searchEdit_textSize" format="dimension" />
-        <!--搜索框输入控件的颜色,请不要使用此透明色 android.R.color.transparent-->
+        <!--搜索框输入控件的颜色,请不要使用此透明色 android.R.color.transparent，支持全局配置-->
         <attr name="bar_searchEdit_textColor" format="color" />
-        <!--搜索框输入控件的padding-->
+        <!--搜索框输入控件的padding，支持全局配置-->
         <attr name="bar_searchEdit_paddingLeft" format="dimension" />
         <attr name="bar_searchEdit_paddingRight" format="dimension" />
 
@@ -105,15 +114,6 @@
         <attr name="bar_searchEdit_drawableRight" format="reference" />
         <!--搜索框输入控件的图标的距离文字距离-->
         <attr name="bar_searchEdit_drawablePadding" format="dimension" />
-        <!--搜索框输入文字图标的摆放,仅对不可输入的情况生效-->
-        <attr name="bar_searchEdit_gravity" format="enum">
-            <enum name="normal" value="0" />
-            <enum name="textImgCenter" value="1" />
-            <enum name="textCenter" value="2" />
-        </attr>
-
-        <!--搜索框输入控件的清空文字按钮-->
-        <attr name="bar_searchEditClear_src" format="reference" />
 
         <!--搜索框输入控件是否支持输入和清除 默认支持写入与删除-->
         <attr name="bar_searchEdit_support_write_and_clear" format="enum">
