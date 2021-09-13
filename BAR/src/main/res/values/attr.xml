@@ -68,20 +68,20 @@
         <attr name="bar_title_drawablePadding" format="dimension" />
 
 
-        <!--搜索框是否支持、默认不支持搜索框-->
+        <!--搜索框是否显示、默认INVISIBLE-->
         <attr name="bar_searchLayout_visibility" format="enum">
             <enum name="VISIBLE" value="0x00000000" />
             <enum name="INVISIBLE" value="0x00000004" />
             <enum name="GONE" value="0x00000008" />
         </attr>
 
-        <!--搜索框背景,默认有背景,如想无背景，传透明色即可-->
+        <!--搜索框背景,默认为圆角背景,如想无背景，传透明色即可，支持全局配置-->
         <attr name="bar_searchLayoutBackground" format="color|reference" />
 
-        <!--搜索框高度-->
+        <!--搜索框高度，支持全局配置-->
         <attr name="bar_searchLayout_height" format="dimension" />
 
-        <!--搜索框margin-->
+        <!--搜索框margin，支持全局配置-->
         <attr name="bar_searchLayout_marginLeft" format="dimension" />
         <attr name="bar_searchLayout_marginRight" format="dimension" />
 

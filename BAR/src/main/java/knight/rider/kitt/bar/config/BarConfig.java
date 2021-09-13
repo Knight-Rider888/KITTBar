@@ -78,6 +78,17 @@ public class BarConfig {
         return this;
     }
 
+    public BarConfig setSearchLayoutMarginLeft(int searchLayoutMarginLeft) {
+        builder.setSearchLayoutMarginLeft(searchLayoutMarginLeft);
+        return this;
+    }
+
+
+    public BarConfig setSearchLayoutMarginRight(int searchLayoutMarginRight) {
+        builder.setSearchLayoutMarginRight(searchLayoutMarginRight);
+        return this;
+    }
+
     public BarConfig setSearchEditHintColor(int searchEditHintColor) {
         builder.setSearchEditHintColor(searchEditHintColor);
         return this;
@@ -118,27 +129,33 @@ public class BarConfig {
         // 标题的位置
         private BarTitleGravity titleGravity;
         // 返回键按钮
-        private int backIcon = R.drawable.kitt_bar_back;
+        private String backIcon = "";
         // 返回键icon的垂直方向padding，同时设置paddingTop、paddingBottom
-        private int backIcon_verticalPadding;
+        private String backIcon_verticalPadding = "";
         // 返回键icon的paddingLeft
-        private int backIcon_paddingRight;
+        private String backIcon_paddingLeft = "";
         // bar_backIcon_paddingRight
-        private int backIcon_paddingLeft;
+        private String backIcon_paddingRight = "";
         // title颜色
         private String title_color = "";
         // title字体大小
-        private float title_textSize = -1;
+        private String title_textSize = "";
         // title字体样式
         private TextStyle title_textStyle;
 
 
+        // 搜索框高度
+        private String bar_searchLayout_height = "";
+        // 搜索框背景
         private Drawable bar_searchLayoutBackground;
+        // 搜索框margin
+        private String bar_searchLayout_marginLeft = "";
+        private String bar_searchLayout_marginRight = "";
         private String bar_searchEdit_hintColor = "";
         private String bar_searchEdit_textColor = "";
 
         private Drawable bar_searchEditClear_src;
-        private int bar_searchLayout_height = -1;
+
         private float bar_rightButton_textSize = -1;
         private String bar_rightButton_textColor = "";
 
@@ -151,35 +168,35 @@ public class BarConfig {
         }
 
         public int getBarBackIcon() {
-            return backIcon;
+            return backIcon.equals("") ? R.drawable.kitt_bar_back : Integer.parseInt(backIcon);
         }
 
         public void setBackIcon(int backIcon) {
-            this.backIcon = backIcon;
+            this.backIcon = String.valueOf(backIcon);
         }
 
         public int getBackIconVerticalPadding() {
-            return backIcon_verticalPadding;
+            return backIcon_verticalPadding.equals("") ? 0 : Integer.parseInt(backIcon_verticalPadding);
         }
 
         public void setBackIconVerticalPadding(int backIcon_verticalPadding) {
-            this.backIcon_verticalPadding = backIcon_verticalPadding;
+            this.backIcon_verticalPadding = String.valueOf(backIcon_verticalPadding);
         }
 
         public int getBackIconPaddingRight() {
-            return backIcon_paddingRight;
+            return backIcon_paddingRight.equals("") ? 0 : Integer.parseInt(backIcon_paddingRight);
         }
 
         public void setBackIconPaddingRight(int backIcon_paddingRight) {
-            this.backIcon_paddingRight = backIcon_paddingRight;
+            this.backIcon_paddingRight = String.valueOf(backIcon_paddingRight);
         }
 
         public int getBackIconPaddingLeft() {
-            return backIcon_paddingLeft;
+            return backIcon_paddingLeft.equals("") ? 0 : Integer.parseInt(backIcon_paddingLeft);
         }
 
         public void setBackIconPaddingLeft(int backIcon_paddingLeft) {
-            this.backIcon_paddingLeft = backIcon_paddingLeft;
+            this.backIcon_paddingLeft = String.valueOf(backIcon_paddingLeft);
         }
 
         public int getTitleColor() {
@@ -191,11 +208,11 @@ public class BarConfig {
         }
 
         public float getTitleTextSize() {
-            return title_textSize < 0 ? 30 : title_textSize;
+            return title_textSize.equals("") ? 30 : Float.parseFloat(title_textSize);
         }
 
         public void setTitleTextSize(float title_textSize) {
-            this.title_textSize = title_textSize;
+            this.title_textSize = String.valueOf(title_textSize);
         }
 
         public TextStyle getTitleTextStyle() {
@@ -212,6 +229,22 @@ public class BarConfig {
 
         public void setSearchLayoutBackground(Drawable bar_searchLayoutBackground) {
             this.bar_searchLayoutBackground = bar_searchLayoutBackground;
+        }
+
+        public int getSearchLayoutMarginLeft() {
+            return bar_searchLayout_marginLeft.equals("") ? 0 : Integer.parseInt(bar_searchLayout_marginLeft);
+        }
+
+        public void setSearchLayoutMarginLeft(int bar_searchLayout_marginLeft) {
+            this.bar_searchLayout_marginLeft = String.valueOf(bar_searchLayout_marginLeft);
+        }
+
+        public int getSearchLayoutMarginRight() {
+            return bar_searchLayout_marginRight.equals("") ? 0 : Integer.parseInt(bar_searchLayout_marginRight);
+        }
+
+        public void setSearchLayoutMarginRight(int bar_searchLayout_marginRight) {
+            this.bar_searchLayout_marginRight = String.valueOf(bar_searchLayout_marginRight);
         }
 
         public int getSearchEditHintColor() {
@@ -239,11 +272,11 @@ public class BarConfig {
         }
 
         public int getSearchLayoutHeight() {
-            return bar_searchLayout_height < 0 ? 90 : bar_searchLayout_height;
+            return bar_searchLayout_height.equals("") ? 90 : Integer.parseInt(bar_searchLayout_height);
         }
 
         public void setBarSearchLayoutHeight(int bar_searchLayout_height) {
-            this.bar_searchLayout_height = bar_searchLayout_height;
+            this.bar_searchLayout_height = String.valueOf(bar_searchLayout_height);
         }
 
         public float getRightButtonTextSize() {
