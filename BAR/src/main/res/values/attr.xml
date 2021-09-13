@@ -31,11 +31,12 @@
 
 
         <!--返回键右侧可进行自定义扩展，如 < x 这种有两个图标(返回[当前控件已经提供]、关闭)，只需自定义布局填充一个x图标，其余样式还可以继续使用：标题、搜索、右侧按钮-->
-        <!--完全自定义：返回键设置 GONE 搜索框位置 GONE 其他都无内容 自定义布局的宽度设置为match_parent 即可占满整个宽度，实现完全自定义-->
+        <!--完全自定义：返回键设置 GONE 搜索框Layout GONE 其他都无内容 自定义布局的宽度设置为match_parent 即可占满整个宽度，实现完全自定义-->
         <attr name="bar_custom_layout" format="reference" />
 
 
         <!--默认是自适应的宽度，可设置为整个导航栏的剩余空间的长度-->
+        <!--注：搜索框默认是INVISIBLE,如果自定义布局宽度设置match_parent，搜索框与自定义布局会平分剩余空间，如不用搜索框，请设置为GONE-->
         <attr name="bar_custom_layout_width" format="enum">
             <enum name="wrap_content" value="0" />
             <enum name="match_parent" value="1" />
