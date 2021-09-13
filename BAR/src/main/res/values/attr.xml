@@ -43,31 +43,28 @@
         </attr>
 
 
-        <!--title颜色,请不要使用此透明色 android.R.color.transparent -->
+        <!--title颜色,请不要使用此透明色 android.R.color.transparent,如果使用透明色会替换成全局配置的文字颜色-->
+        <!--支持全局配置-->
         <attr name="bar_title_color" format="color" />
         <!--title文字内容-->
         <attr name="bar_title_content" format="string" />
-        <!--title字体大小-->
+        <!--title字体大小，支持全局配置-->
         <attr name="bar_title_textSize" format="dimension" />
-        <!--title字体样式-->
+        <!--title字体样式，支持全局配置-->
         <attr name="bar_title_textStyle" format="enum">
             <enum name="normal" value="0" />
             <enum name="bold" value="1" />
             <enum name="italic" value="2" />
             <enum name="bold_italic" value="3" />
         </attr>
-
-
         <!--title字体左边距-->
         <attr name="bar_title_paddingLeft" format="dimension" />
         <!--title字体右边距-->
         <attr name="bar_title_paddingRight" format="dimension" />
-        <!--title四周的图片-->
+        <!--title左右的图片-->
         <attr name="bar_title_drawableLeft" format="reference" />
         <attr name="bar_title_drawableRight" format="reference" />
-        <attr name="bar_title_drawableTop" format="reference" />
-        <attr name="bar_title_drawableBottom" format="reference" />
-        <!--title四周的图片与文字的距离-->
+        <!--title左右的图片与文字的距离-->
         <attr name="bar_title_drawablePadding" format="dimension" />
 
 

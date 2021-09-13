@@ -125,10 +125,12 @@ public class BarConfig {
         private int backIcon_paddingRight;
         // bar_backIcon_paddingRight
         private int backIcon_paddingLeft;
-
+        // title颜色
         private String title_color = "";
+        // title字体大小
         private float title_textSize = -1;
-        private TextStyle title_textStyle = TextStyle.NORMAL;
+        // title字体样式
+        private TextStyle title_textStyle;
 
 
         private Drawable bar_searchLayoutBackground;
@@ -197,7 +199,7 @@ public class BarConfig {
         }
 
         public TextStyle getTitleTextStyle() {
-            return title_textStyle;
+            return title_textStyle == null ? TextStyle.NORMAL : title_textStyle;
         }
 
         public void setTitleTextStyle(TextStyle title_textStyle) {
