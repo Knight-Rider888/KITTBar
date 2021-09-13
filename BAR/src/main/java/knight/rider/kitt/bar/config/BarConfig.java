@@ -115,10 +115,15 @@ public class BarConfig {
 
     public static class Builder {
 
+        // 标题的位置
         private BarTitleGravity titleGravity;
+        // 返回键按钮
         private int backIcon = R.drawable.kitt_bar_back;
+        // 返回键icon的垂直方向padding，同时设置paddingTop、paddingBottom
         private int backIcon_verticalPadding;
+        // 返回键icon的paddingLeft
         private int backIcon_paddingRight;
+        // bar_backIcon_paddingRight
         private int backIcon_paddingLeft;
 
         private String title_color = "";

@@ -3,7 +3,7 @@
 
     <declare-styleable name="KittBar">
 
-        <!--标题的位置，默认左侧-->
+        <!--标题的位置，默认左侧(可全局配置)-->
         <attr name="bar_title_gravity" format="enum">
             <enum name="left" value="0x03" />
             <enum name="center" value="0x11" />
@@ -14,12 +14,13 @@
 
         <!--返回键按钮，请将切图放入到对应的文件夹下，此处用的wrap_content进行自适应的-->
         <!--如果图片过大，需要通过控制导航栏高度、padding等方式进行限制-->
+        <!--支持全局配置-->
         <attr name="bar_backIcon" format="reference" />
-        <!--返回键icon的垂直方向padding，包含paddingTop、paddingBottom，默认0-->
+        <!--返回键icon的垂直方向padding，同时设置paddingTop、paddingBottom，默认0(可全局配置)-->
         <attr name="bar_backIcon_verticalPadding" format="dimension" />
-        <!--返回键icon的paddingLeft，默认0-->
+        <!--返回键icon的paddingLeft，默认0(可全局配置)-->
         <attr name="bar_backIcon_paddingLeft" format="dimension" />
-        <!--返回键icon的paddingRight，默认0-->
+        <!--返回键icon的paddingRight，默认0(可全局配置)-->
         <attr name="bar_backIcon_paddingRight" format="dimension" />
         <!--返回键icon的是否显示，默认显示-->
         <attr name="bar_backIcon_visibility" format="enum">
@@ -86,6 +87,8 @@
         <attr name="bar_searchLayout_marginLeft" format="dimension" />
         <attr name="bar_searchLayout_marginRight" format="dimension" />
 
+        <!--输入框内最右侧的图标-->
+        <attr name="bar_searchLayout_rightIcon" format="reference" />
 
         <!--搜索框输入控件的hint-->
         <attr name="bar_searchEdit_hint" format="string" />
