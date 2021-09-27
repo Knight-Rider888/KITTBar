@@ -91,6 +91,7 @@ public class KittBar extends FrameLayout {
     private TextView mRightBtn2;
     private TextView mRightBtn3;
 
+    private EditSupport mEditSupport;
 
     private final Context mContext;
 
@@ -435,19 +436,18 @@ public class KittBar extends FrameLayout {
 
         // 是否支持清除和输入
         mSupportWriteAndClear = array.getInt(R.styleable.KittBar_bar_searchEdit_support_write_and_clear, 0);
-        EditSupport editSupport;
         switch (mSupportWriteAndClear) {
             case 1:
-                editSupport = EditSupport.NONE_SUPPORT;
+                mEditSupport = EditSupport.NONE_SUPPORT;
                 break;
             case 2:
-                editSupport = EditSupport.ONLY_WRITE;
+                mEditSupport = EditSupport.ONLY_WRITE;
                 break;
             default:
-                editSupport = EditSupport.WRITE_AND_CLEAR;
+                mEditSupport = EditSupport.WRITE_AND_CLEAR;
                 break;
         }
-        setSearchEditSupportWriteAndClear(editSupport);
+        setSearchEditSupportWriteAndClear(mEditSupport);
 
 
         // 是否支持提示内容搜索
@@ -817,6 +817,17 @@ public class KittBar extends FrameLayout {
      */
     public final KittBar setSearchLayoutVisibility(@Visibility int visibility) {
         mSearchLayout.setVisibility(visibility);
+        if (mEditSupport != null && (mEditSupport.getType() == EditSupport.ONLY_WRITE.getType() || mEditSupport.getType() == EditSupport.WRITE_AND_CLEAR.getType()) && mSearchLayout.getVisibility() == VISIBLE) {
+            // 支持编辑框,并且显示弹出键盘
+            this.post(new Runnable() {
+                @Override
+                public void run() {
+                    mSearchView.setFocusable(true);
+                    mSearchView.setFocusableInTouchMode(true);
+                    mSearchView.requestFocus();
+                }
+            });
+        }
         return this;
     }
 
@@ -1042,6 +1053,19 @@ public class KittBar extends FrameLayout {
         // 是否显示清除按钮
         mClearView.setVisibility(support.getType() == 0 ? (TextUtils.isEmpty(mSearchView.getText().toString().trim()) ? GONE : VISIBLE) : GONE);
         mSupportWriteAndClear = support.getType();
+
+        if (support.getType() == EditSupport.ONLY_WRITE.getType() || support.getType() == EditSupport.WRITE_AND_CLEAR.getType() && mSearchLayout.getVisibility() == VISIBLE) {
+            // 支持编辑框,并且显示弹出键盘
+            this.post(new Runnable() {
+                @Override
+                public void run() {
+                    mSearchView.setFocusable(true);
+                    mSearchView.setFocusableInTouchMode(true);
+                    mSearchView.requestFocus();
+                }
+            });
+        }
+
         return this;
     }
 
