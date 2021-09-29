@@ -426,10 +426,8 @@ public class KittBar extends FrameLayout {
         setSearchEditViewPadding(searchEditViewPaddingLeft, searchEditViewPaddingRight);
 
 
-        int drawableLeftResourceId = array.getResourceId(R.styleable.KittBar_bar_searchEdit_drawableLeft, 0);
-        setSearchEditViewDrawableLeft(getDrawable(drawableLeftResourceId));
-        int searchRightIconId = array.getResourceId(R.styleable.KittBar_bar_searchEdit_drawableRight, 0);
-        setSearchEditViewDrawableRight(getDrawable(searchRightIconId));
+        Drawable drawableLeftResource = array.getDrawable(R.styleable.KittBar_bar_searchEdit_drawableLeft);
+        setSearchEditViewDrawableLeft(drawableLeftResource);
 
         int drawablePadding = (int) array.getDimension(R.styleable.KittBar_bar_searchEdit_drawablePadding, 0);
         setSearchEditCompoundDrawablePadding(drawablePadding);
@@ -972,21 +970,6 @@ public class KittBar extends FrameLayout {
         mSearchView.setCompoundDrawables(left, null, null, null);
 
         return this;
-    }
-
-    /**
-     * 设置搜索编辑框右侧的图片
-     *
-     * @param right Use {@code null} if you do not want a
-     *              Drawable there
-     */
-    public final KittBar setSearchEditViewDrawableRight(@Nullable Drawable right) {
-        if (right != null)
-            right.setBounds(0, 0, right.getMinimumWidth(), right.getMinimumHeight());
-
-        mSearchView.setCompoundDrawables(null, null, right, null);
-        return this;
-
     }
 
     /**
