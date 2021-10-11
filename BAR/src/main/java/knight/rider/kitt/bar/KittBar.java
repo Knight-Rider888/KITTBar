@@ -112,6 +112,16 @@ public class KittBar extends FrameLayout {
 
     private void initListener() {
 
+        mSearchLayout.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mEditSupport == EditSupport.NONE_SUPPORT && mListener != null) {
+                    // 触发监听
+                    mListener.onSearchLayoutClick(mSearchLayout);
+                }
+            }
+        });
+
         // 清除按钮的监听
         mClearView.setOnClickListener(new OnClickListener() {
             @Override

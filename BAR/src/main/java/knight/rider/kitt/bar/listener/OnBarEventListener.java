@@ -1,6 +1,7 @@
 package knight.rider.kitt.bar.listener;
 
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import knight.rider.kitt.bar.attr.RightBtn;
@@ -11,6 +12,9 @@ public interface OnBarEventListener {
     void onBack(ImageView backView);
 
     void onTitleClick(TextView titleView);
+
+    // 只有不可输入时才会触发监听
+    void onSearchLayoutClick(LinearLayout searchLayout);
 
     void onRightButtonClick(RightBtn rightBtn, TextView right);
 
