@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import knight.rider.kitt.bar.KittBar;
+import knight.rider.kitt.bar.attr.EditSupport;
 import knight.rider.kitt.bar.attr.RightBtn;
 import knight.rider.kitt.bar.listener.OnBarEventListener;
 
@@ -24,6 +25,8 @@ public class TopBarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_top_bar);
 
         kittBar = (KittBar) findViewById(R.id.kitt_bar);
+
+        kittBar.setSearchEditSupportWriteAndClear(EditSupport.NONE_SUPPORT);
 
         kittBar.setBarSmartPadding()
                 .setOnBarEventListener(new OnBarEventListener() {

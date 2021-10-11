@@ -1041,6 +1041,9 @@ public class KittBar extends FrameLayout {
      * 编辑框支持
      */
     public final KittBar setSearchEditSupportWriteAndClear(EditSupport support) {
+
+        mEditSupport = support;
+
         // 不支持写入时 不弹出键盘
         mSearchView.setKeyListener(support.getType() == 1 ? null : new TextKeyListener(TextKeyListener.Capitalize.NONE, false));
         // 是否显示清除按钮

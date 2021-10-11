@@ -103,7 +103,6 @@
     <knight.rider.kitt.bar.KittBar
         android:id="@+id/kitt_bar"
         app:bar_searchLayout_visibility="VISIBLE"
-        app:bar_searchEdit_support_write_and_clear="noneSupport"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
 
