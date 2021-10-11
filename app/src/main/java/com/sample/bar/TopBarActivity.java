@@ -3,8 +3,8 @@ package com.sample.bar;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -38,7 +38,7 @@ public class TopBarActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onSearchLayoutClick(LinearLayout searchLayout) {
+                    public void onSearchViewClick(EditText searchView) {
 
                     }
 

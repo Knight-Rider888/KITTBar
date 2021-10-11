@@ -112,12 +112,12 @@ public class KittBar extends FrameLayout {
 
     private void initListener() {
 
-        mSearchLayout.setOnClickListener(new OnClickListener() {
+        mSearchView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mEditSupport == EditSupport.NONE_SUPPORT && mListener != null) {
+                if (EditSupport.NONE_SUPPORT == mEditSupport && mListener != null) {
                     // 触发监听
-                    mListener.onSearchLayoutClick(mSearchLayout);
+                    mListener.onSearchViewClick(mSearchView);
                 }
             }
         });
