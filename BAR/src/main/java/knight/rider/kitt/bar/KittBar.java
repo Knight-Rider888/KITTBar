@@ -18,6 +18,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -110,15 +111,19 @@ public class KittBar extends FrameLayout {
         initListener();
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void initListener() {
 
-        mSearchView.setOnClickListener(new OnClickListener() {
+        mSearchView.setOnTouchListener(new OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                if (EditSupport.NONE_SUPPORT == mEditSupport && mListener != null) {
-                    // 触发监听
-                    mListener.onSearchViewClick(mSearchView);
+            public boolean onTouch(View v, MotionEvent event) {
+                if (MotionEvent.ACTION_UP == event.getAction()) {
+                    if (EditSupport.NONE_SUPPORT == mEditSupport && mListener != null) {
+                        // 触发监听
+                        mListener.onSearchViewClick(mSearchView);
+                    }
                 }
+                return false;
             }
         });
 
