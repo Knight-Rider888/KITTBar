@@ -2,7 +2,6 @@ package knight.rider.kitt.bar.config;
 
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
 
 import androidx.annotation.DrawableRes;
 
@@ -67,14 +66,6 @@ public class BarConfig {
 
     public BarConfig setTitleTextStyle(TextStyle titleTextStyle) {
         builder.setTitleTextStyle(titleTextStyle);
-        return this;
-    }
-
-    /**
-     * 如想无背景，请传透明ColorDrawable，不要传null
-     */
-    public BarConfig setSearchLayoutBackground(Drawable searchLayoutBackground) {
-        builder.setSearchLayoutBackground(searchLayoutBackground);
         return this;
     }
 
@@ -172,8 +163,7 @@ public class BarConfig {
 
         // 搜索框高度
         private String bar_searchLayout_height = "";
-        // 搜索框背景
-        private Drawable bar_searchLayoutBackground;
+        // 搜索框背景(不能全局设置，否则可能出问题)
         // 搜索框margin
         private String bar_searchLayout_marginLeft = "";
         private String bar_searchLayout_marginRight = "";
@@ -259,14 +249,6 @@ public class BarConfig {
 
         public void setTitleTextStyle(TextStyle title_textStyle) {
             this.title_textStyle = title_textStyle;
-        }
-
-        public Drawable getSearchLayoutBackground() {
-            return bar_searchLayoutBackground == null ? getSearchLayoutDrawable() : bar_searchLayoutBackground;
-        }
-
-        public void setSearchLayoutBackground(Drawable bar_searchLayoutBackground) {
-            this.bar_searchLayoutBackground = bar_searchLayoutBackground;
         }
 
         public int getSearchLayoutMarginLeft() {
@@ -373,16 +355,6 @@ public class BarConfig {
             this.bar_rightButton_textColor = String.valueOf(bar_rightButton_textColor);
         }
 
-        private GradientDrawable getSearchLayoutDrawable() {
-            GradientDrawable drawable = new GradientDrawable();
-            //设置圆角大小
-            drawable.setCornerRadius(1000);
-            //设置边缘线的宽以及颜色
-            drawable.setStroke(0, Color.parseColor("#000000"));
-            //设置shape背景色
-            drawable.setColor(Color.parseColor("#F1F1F1"));
-            return drawable;
-        }
     }
 
 }

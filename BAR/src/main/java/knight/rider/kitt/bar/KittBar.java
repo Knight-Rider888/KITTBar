@@ -368,10 +368,6 @@ public class KittBar extends FrameLayout {
         setSearchLayoutVisibility(searchLayoutVisible);
 
         Drawable drawable = array.getDrawable(R.styleable.KittBar_bar_searchLayoutBackground);
-
-        if (drawable == null)
-            drawable = builder.getSearchLayoutBackground();
-
         // 搜索框背景
         setSearchLayoutBackground(drawable);
 
