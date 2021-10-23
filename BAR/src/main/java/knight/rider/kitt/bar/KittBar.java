@@ -1274,7 +1274,7 @@ public class KittBar extends FrameLayout {
      * 设置智能padding ,用来适应透明导航栏
      */
     public final KittBar setBarSmartPadding() {
-        KittBarUtils.setPaddingSmart(getContext(), this);
+        KittBarUtils.setPadding(getContext(), this);
         return this;
     }
 
