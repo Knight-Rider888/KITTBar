@@ -288,7 +288,7 @@ public class KittBarUtils {
      * 获取状态栏高度
      */
     public static int getStatusBarHeight(Context context) {
-        float result = 49.5f;
+        float result = 39.5f;
         try {
             int resId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
             if (resId > 0) {
