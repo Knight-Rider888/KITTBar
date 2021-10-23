@@ -2,10 +2,8 @@ package knight.rider.kitt.bar;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
 import android.os.Build;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -296,13 +294,16 @@ public class KittBarUtils {
             if (resId > 0) {
                 result = context.getResources().getDimensionPixelSize(resId);
             } else {
-                result = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-                        result, Resources.getSystem().getDisplayMetrics());
+                result = dip2px(context, result);
             }
         } catch (Exception e) {
-            result = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-                    result, Resources.getSystem().getDisplayMetrics());
+            result = dip2px(context, result);
         }
         return (int) result;
+    }
+
+    private static float dip2px(Context context, float dpValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return dpValue * scale + 0.5f;
     }
 }
