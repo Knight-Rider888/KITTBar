@@ -16,6 +16,9 @@ public interface OnBarEventListener {
     // 只有不可输入时才会触发监听
     void onSearchViewClick(EditText searchView);
 
+    // 只有可输入时才会出发监听
+    void onSearchViewFocusChange(EditText searchView, boolean b);
+
     void onRightButtonClick(RightBtn rightBtn, TextView right);
 
     void onSearchRightIconClick(ImageView rightIcon);
@@ -24,4 +27,5 @@ public interface OnBarEventListener {
     void onKeyboardSearchClick(String content, boolean isHintSearch);
 
     void onTextChanged(String content);
+
 }

@@ -131,6 +131,14 @@ public class KittBar extends FrameLayout {
             }
         });
 
+        mSearchView.setOnFocusChangeListener(new OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (EditSupport.NONE_SUPPORT != mEditSupport && mListener != null)
+                    mListener.onSearchViewFocusChange(mSearchView, b);
+            }
+        });
+
         // 清除按钮的监听
         mClearView.setOnClickListener(new OnClickListener() {
             @Override
@@ -856,6 +864,28 @@ public class KittBar extends FrameLayout {
     }
 
     /**
+     * 设置失去焦点
+     */
+    public final KittBar setSearchEditClearFocus() {
+
+        if (mEditSupport != null && (mEditSupport.getType() == EditSupport.ONLY_WRITE.getType() || mEditSupport.getType() == EditSupport.WRITE_AND_CLEAR.getType()) && mSearchLayout.getVisibility() == VISIBLE) {
+            // 支持编辑框,并且显示弹出键盘
+            this.post(new Runnable() {
+                @Override
+                public void run() {
+                    mSearchLayout.setFocusable(true);
+                    mSearchLayout.setFocusableInTouchMode(true);
+                    mSearchLayout.requestFocus();
+                    InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(mSearchView.getWindowToken(), 0);
+                }
+            });
+        }
+
+        return this;
+    }
+
+    /**
      * 设置搜索提示内容
      *
      * @param hint Sets the text to be displayed when the text of the TextView is empty
@@ -1321,6 +1351,12 @@ public class KittBar extends FrameLayout {
         return mSearchView.getText().toString();
     }
 
+    /**
+     * 获取搜索是否是获取焦点,只有可编辑模式才会生效，否则返回false
+     */
+    public final boolean getBarSearchFocus() {
+        return EditSupport.NONE_SUPPORT != mEditSupport && mSearchView.hasFocus();
+    }
 
     /******************私有方法**********************/
 

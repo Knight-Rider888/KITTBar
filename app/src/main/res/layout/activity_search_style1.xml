@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SearchStyle1Activity">
+
+    <knight.rider.kitt.bar.KittBar
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:bar_searchEdit_auto_open_keyboard="false"
+        app:bar_searchEdit_hint="请输入名称"
+        app:bar_searchEdit_paddingLeft="15dp"
+        app:bar_searchEdit_paddingRight="15dp"
+        app:bar_searchEdit_support_write_and_clear="bothSupport"
+        app:bar_searchEdit_textSize="14dp"
+        app:bar_searchLayoutBackground="@drawable/bg"
+        app:bar_searchLayout_height="35dp"
+        app:bar_searchLayout_marginRight="20dp"
+        app:bar_searchLayout_visibility="VISIBLE" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <FrameLayout
+            android:id="@+id/fl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#43000000"
+            android:visibility="gone" />
+    </FrameLayout>
+
+</LinearLayout>

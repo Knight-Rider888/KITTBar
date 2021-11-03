@@ -46,6 +46,11 @@ public class TopBarActivity extends AppCompatActivity {
                     }
 
                     @Override
+                    public void onSearchViewFocusChange(EditText searchView, boolean b) {
+
+                    }
+
+                    @Override
                     public void onRightButtonClick(RightBtn rightBtn, TextView right) {
 
                     }

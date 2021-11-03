@@ -40,4 +40,5 @@ dependencies {
 
     implementation 'com.airbnb.android:lottie:3.7.2'
     implementation 'com.github.mmin18:realtimeblurview:1.2.1'
+    implementation 'com.github.Knight-Rider888:KITTAdapter:1.1.3'
 }
