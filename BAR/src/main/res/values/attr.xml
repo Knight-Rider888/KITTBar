@@ -67,7 +67,6 @@
         <!--title左右的图片与文字的距离-->
         <attr name="bar_title_drawablePadding" format="dimension" />
 
-
         <!--搜索框是否显示、默认INVISIBLE-->
         <attr name="bar_searchLayout_visibility" format="enum">
             <enum name="VISIBLE" value="0x00000000" />
@@ -85,6 +84,9 @@
         <attr name="bar_searchLayout_marginLeft" format="dimension" />
         <attr name="bar_searchLayout_marginRight" format="dimension" />
 
+
+        <!--搜索控件初始化完成是否自动弹出键盘，默认true，仅可输入时有效-->
+        <attr name="bar_searchEdit_auto_open_keyboard" format="boolean" />
 
         <!--搜索框输入控件的清空文字按钮，支持全局配置-->
         <attr name="bar_searchEditClear_src" format="reference" />
