@@ -38,8 +38,8 @@ public class SearchStyle1Activity extends AppCompatActivity {
         rv = (RecyclerView) findViewById(R.id.rv);
         bar = (KittBar) findViewById(R.id.bar);
 
-        rv.setLayoutManager(new LinearLayoutManager(SearchStyle1Activity.this));
-        nameAdapter = new NameAdapter(SearchStyle1Activity.this);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        nameAdapter = new NameAdapter(this);
         rv.setAdapter(nameAdapter);
         nameAdapter.addData(all);
 
@@ -54,7 +54,7 @@ public class SearchStyle1Activity extends AppCompatActivity {
         bar.setOnBarEventListener(new OnBarEventListener() {
             @Override
             public void onBack(ImageView backView) {
-
+                finish();
             }
 
             @Override

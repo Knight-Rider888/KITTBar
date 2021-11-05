@@ -10,14 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KittBar">
         <activity
+            android:name=".SearchStyle2Activity"
+            android:exported="false" />
+        <activity
             android:name=".SearchStyle1Activity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true"/>
         <activity
             android:name=".BottomBarActivity"
             android:exported="true" />
@@ -31,7 +28,11 @@
             android:name=".TopBarActivity"
             android:exported="true" />
         <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

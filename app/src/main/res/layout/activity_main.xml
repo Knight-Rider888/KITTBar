@@ -1,24 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFC107"
+    android:orientation="vertical"
     tools:context=".MainActivity">
+
+    <knight.rider.kitt.bar.KittBar
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:bar_backIcon_visibility="GONE"
+        app:bar_searchEdit_hint="搜索"
+        app:bar_searchEdit_drawablePadding="10dp"
+        app:bar_searchEdit_drawableLeft="@drawable/lib_top_bar_search"
+        app:bar_searchEdit_paddingLeft="15dp"
+        app:bar_searchEdit_paddingRight="15dp"
+        app:bar_searchEdit_support_write_and_clear="noneSupport"
+        app:bar_searchEdit_textSize="14dp"
+        app:bar_searchLayoutBackground="@drawable/bg"
+        app:bar_searchLayout_height="35dp"
+        app:bar_searchLayout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        app:bar_searchLayout_visibility="VISIBLE" />
 
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginRight="10dp">
+        android:layout_margin="10dp">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:onClick="bar_search_Style1"
+                android:text="顶部导航栏-搜索样式1" />
 
 
             <Button
@@ -51,4 +75,4 @@
 
     </ScrollView>
 
-</FrameLayout>
+</LinearLayout>
