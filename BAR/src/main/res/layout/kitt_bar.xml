@@ -35,10 +35,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:ellipsize="marquee"
+        android:fontFamily="sans-serif"
         android:gravity="center_vertical"
         android:marqueeRepeatLimit="marquee_forever"
         android:singleLine="true"
         android:textColor="@android:color/holo_blue_dark"
+        android:textFontWeight="600"
         android:textSize="16dp"
         tools:text="我的资料" />
 

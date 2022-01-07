@@ -7,7 +7,6 @@ import androidx.annotation.DrawableRes;
 
 import knight.rider.kitt.bar.R;
 import knight.rider.kitt.bar.attr.BarTitleGravity;
-import knight.rider.kitt.bar.attr.TextStyle;
 
 /**
  * 全局样式，只要请单文件、代码无设置就会使用全局的样式，
@@ -61,11 +60,6 @@ public class BarConfig {
 
     public BarConfig setTitleTextSize(float titleTextSize) {
         builder.setTitleTextSize(titleTextSize);
-        return this;
-    }
-
-    public BarConfig setTitleTextStyle(TextStyle titleTextStyle) {
-        builder.setTitleTextStyle(titleTextStyle);
         return this;
     }
 
@@ -157,8 +151,6 @@ public class BarConfig {
         private String title_color = "";
         // title字体大小
         private String title_textSize = "";
-        // title字体样式
-        private TextStyle title_textStyle;
 
 
         // 搜索框高度
@@ -241,14 +233,6 @@ public class BarConfig {
 
         public void setTitleTextSize(float title_textSize) {
             this.title_textSize = String.valueOf(title_textSize);
-        }
-
-        public TextStyle getTitleTextStyle() {
-            return title_textStyle == null ? TextStyle.NORMAL : title_textStyle;
-        }
-
-        public void setTitleTextStyle(TextStyle title_textStyle) {
-            this.title_textStyle = title_textStyle;
         }
 
         public int getSearchLayoutMarginLeft() {

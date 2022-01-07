@@ -50,13 +50,6 @@
         <attr name="bar_title_content" format="string" />
         <!--title字体大小，支持全局配置-->
         <attr name="bar_title_textSize" format="dimension" />
-        <!--title字体样式，支持全局配置-->
-        <attr name="bar_title_textStyle" format="enum">
-            <enum name="normal" value="0" />
-            <enum name="bold" value="1" />
-            <enum name="italic" value="2" />
-            <enum name="bold_italic" value="3" />
-        </attr>
         <!--title字体左边距-->
         <attr name="bar_title_paddingLeft" format="dimension" />
         <!--title字体右边距-->
