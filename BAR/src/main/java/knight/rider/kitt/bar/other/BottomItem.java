@@ -8,9 +8,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.airbnb.lottie.LottieAnimationView;
-
 import knight.rider.kitt.bar.R;
+import knight.rider.kitt.bar.view.LottieAnimationView2;
 
 public class BottomItem extends LinearLayout {
 
@@ -22,7 +21,7 @@ public class BottomItem extends LinearLayout {
     // 文字
     private final TextView mWord;
     // 图片
-    private final LottieAnimationView mLottie;
+    private final LottieAnimationView2 mLottie;
 
     private int mUnSelectedPicRes;
     private int mSelectedPicRes;
@@ -41,7 +40,7 @@ public class BottomItem extends LinearLayout {
         mBadge = (TextView) findViewById(R.id.kitt_bar_item_badge);
         mWord = (TextView) findViewById(R.id.kitt_bar_item_word);
 
-        mLottie = (LottieAnimationView) findViewById(R.id.kitt_bar_item_lottie);
+        mLottie = (LottieAnimationView2) findViewById(R.id.kitt_bar_item_lottie);
     }
 
 

@@ -7,7 +7,7 @@
     android:layout_height="28dp"
     android:layout_gravity="center">
 
-    <com.airbnb.lottie.LottieAnimationView
+    <knight.rider.kitt.bar.view.LottieAnimationView2
         android:id="@+id/kitt_bar_item_lottie"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
