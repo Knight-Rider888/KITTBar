@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.library'
+    id 'com.github.dcendents.android-maven'
 }
+
+group = 'knight.rider.kitt'
 
 android {
     compileSdkVersion 30
