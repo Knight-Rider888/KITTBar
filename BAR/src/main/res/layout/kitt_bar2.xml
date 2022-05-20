@@ -123,4 +123,5 @@
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="16dp"
         tools:text="我的资料" />
+
 </FrameLayout>
